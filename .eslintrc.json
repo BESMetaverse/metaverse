@@ -1,0 +1,39 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "prettier",
+    "plugin:react/jsx-runtime",
+    "plugin:react/recommended",
+    "standard-with-typescript",
+    "plugin:@next/next/recommended"
+  ],
+  "overrides": [],
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier", "@typescript-eslint"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "singleQuote": true,
+        "trailingComma": "none",
+        "semi": false
+      }
+    ],
+    "indent": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/indent": "warn",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off"
+  }
+}
