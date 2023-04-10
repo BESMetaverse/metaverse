@@ -22,6 +22,26 @@ yarn create next-app --example with-jest with-jest-app
 pnpm create next-app --example with-jest with-jest-app
 ```
 
+## How to run Next App
+
+```bash
+npm i
+```
+
+```bash
+npm run dev
+```
+
+## How to run Build
+
+```bash
+npm run build
+```
+
+```bash
+npm start
+```
+
 ## Run Jest Tests
 
 ```bash
