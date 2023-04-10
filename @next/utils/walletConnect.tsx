@@ -20,12 +20,16 @@ export const createSignClient = async (): Promise<any> => {
 
 // 3. Configure web3Modal
 export const configureWeb3Modal = (): any => {
-  const web3Modal = new Web3Modal({
-    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-    walletConnectVersion: 2
-    // standaloneChains: ["eip155:5"]
-  })
-  return web3Modal
+  if (process.env.NEXT_PUBLIC_PROJECT_ID) {
+    const web3Modal = new Web3Modal({
+      projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+      walletConnectVersion: 2
+      // standaloneChains: ["eip155:5"]
+    })
+    return web3Modal
+  } else {
+    return null
+  }
 }
 
 // 4. Initiate connection and pass pairing uri to the modal

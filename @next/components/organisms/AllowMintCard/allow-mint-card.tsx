@@ -42,21 +42,23 @@ export const AllowMintCard = (): JSX.Element => {
       console.log('user has selected Freighter wallet')
     } else if (walletProvider === 'WalletConnect') {
       const web3modal = await configureWeb3Modal()
-      const session = await openWalletConnectConn(signClient, web3modal)
-      if (session) {
-        console.log('session is', session)
-        console.log(
-          'user Account is ',
-          session.namespaces.eip155.accounts[0].slice(9)
-        )
+      if (web3modal) {
+        const session = await openWalletConnectConn(signClient, web3modal)
+        if (session) {
+          console.log('session is', session)
+          console.log(
+            'user Account is ',
+            session.namespaces.eip155.accounts[0].slice(9)
+          )
 
-        setSession(session)
-        setAccount(session.namespaces.eip155.accounts[0].slice(9))
+          setSession(session)
+          setAccount(session.namespaces.eip155.accounts[0].slice(9))
 
-        // Now moving to the next step for walletConnect success scenario
-        setStepOne(false)
-        setStepTwo(false)
-        setStepThree(true)
+          // Now moving to the next step for walletConnect success scenario
+          setStepOne(false)
+          setStepTwo(false)
+          setStepThree(true)
+        }
       }
     } else if (walletProvider === 'XBULL') {
       // XBULL
