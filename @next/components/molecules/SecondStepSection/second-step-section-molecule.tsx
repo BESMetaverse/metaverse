@@ -1,7 +1,13 @@
 import { Box } from '@mui/material'
 import { FieldLabel } from '@next/components/atoms/FieldLabel'
 import { IconItem } from '@next/components/atoms/IconItem'
-export const SecondStepSection = (): JSX.Element => {
+export const SecondStepSection = ({
+  walletProvider,
+  changeWalletProvider
+}: {
+  walletProvider: string
+  changeWalletProvider: (selectedOption: string) => void
+}): JSX.Element => {
   return (
     <Box
       sx={{
@@ -34,7 +40,13 @@ export const SecondStepSection = (): JSX.Element => {
         <FieldLabel FieldLabel={'Connect Network'} />
         <Box
           sx={{
-            width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' }
+            width: {
+              xl: '32%',
+              lg: '32%',
+              md: '32%',
+              sm: '48%',
+              xs: '100%'
+            }
           }}
         >
           <IconItem Title={'Stellar'} icon={'/images/Stellar.svg'} />
@@ -75,11 +87,17 @@ export const SecondStepSection = (): JSX.Element => {
                 sm: '0 0 1.5rem',
                 xs: '0'
               },
+
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' }
             }}
           >
             {' '}
-            <IconItem Title={'Freighter'} icon={'/images/Freighter.svg'} />
+            <IconItem
+              selected={walletProvider === 'Freighter'}
+              Title={'Freighter'}
+              icon={'/images/Freighter.svg'}
+              changeWalletProvider={changeWalletProvider}
+            />
           </Box>
           <Box
             sx={{
@@ -95,8 +113,10 @@ export const SecondStepSection = (): JSX.Element => {
           >
             {' '}
             <IconItem
+              selected={walletProvider === 'WalletConnect'}
               Title={'WalletConnect'}
               icon={'/images/WalletConnect.svg'}
+              changeWalletProvider={changeWalletProvider}
             />
           </Box>
           <Box
@@ -104,7 +124,13 @@ export const SecondStepSection = (): JSX.Element => {
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' }
             }}
           >
-            <IconItem Title={'XBULL'} icon={'/images/XBULL.svg'} />
+            {/* {walletProvider !== 'XBULL'} */}
+            <IconItem
+              selected={walletProvider === 'XBULL'}
+              Title={'XBULL'}
+              icon={'/images/XBULL.svg'}
+              changeWalletProvider={changeWalletProvider}
+            />
           </Box>
         </Box>
       </Box>
