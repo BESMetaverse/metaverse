@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 32" width="31" height="32">
+	<title>XBULL-svg</title>
+	<defs>
+		<image  width="30" height="32" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAgCAMAAAAynjhNAAAAAXNSR0IB2cksfwAAAbBQTFRF/////////v397cTE3JGQ/v7+/Pj4139/9Nvb//7+1HR0wioq6sPC/f392ISEwy8v5q+v9+rq2oqK1Xp50mxs6ba26ba17snI6re36LOzzmFg03Bv0W1s/Pn45bCu+Ozs1HFw9uTk5rGwzFdW7cbF13197cnJ2IWE6bm47MPDxTw77cfH+e/vz2Vl4Z2d9N3d8tzb68TC3ZWV24yM8NDQ2YOD4qOj/fz8z2Rk35iY4qWlz15d6Lm57srJ0m5t7MjH1nx7+vPyyExL+fHx89ra7MDA7L/A7cjI+/X12oyL14CA6ri47L+/7cPC9+jo68XE2YWE+/T01nx8zVZW0Wpp/Pf2/vz80Wdm5a+w46mo9OLhzl5dzVZX4aKi/fn58dbWyUdG+/j4y1hW79DQ14SD9+zrxj08/Pb2/fv70Wdo8NjXwjEw8NbWzFlZ3Jyawzk57s7M4qSkylRTxDk56bu7yU5N7MrJ1oKC0nJyxT8+2H185K2s35ub+OjozV1b9N7d3pua36Cf+Onpz2Vk9uzr8tvb4qin3IyN7MLB9uPj2IKB8djX+vb19ufn4Jqa4Z6eFulwqAAAAJB0Uk5TAP//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Fh588QAAARpJREFUeJxjYIADRjhgwACMaAC/LIo8piSyAuyyMHlcshB53LKEpBnxywLlIRQTMwsrXIyNnQNVmpOLm4cXJs/KyscvgCItKCQsIiomKg5kSoiKSkpJy8giS8vJKygqKauoqjGqa2hqaevo6ukjSxsYGhmbmJqZW1hasVrb2NrZOzgiSzM5Obu4uqm6e3gyeXn7+Pr5B6C6PDAoOCQ0LFyRMSKSMSo6JjYMVZqRMS4+ITFJhzE5JTUtPQPd30CQmZWdk5jLmpdfUIgRLEBQVFzCVFpWzlhRWYVNurqmtq6esaGxqbkFmzRra1t7R2dXt1kPI1ZpRsbevv4+JkZGrNJYASFpAsmBUFojJE0gIRPKBoQyEcEsiCsDAwC79C0hJ5viKAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Layer" href="#img1" x="0" y="0"/>
+</svg>
