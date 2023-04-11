@@ -1,5 +1,4 @@
-import React from 'react'
-import { screen, render, fireEvent } from 'test-utils'
+import { render } from 'test-utils'
 import { MainLayout } from './main-layout'
 import { Provider } from 'react-redux'
 import { createStore } from '@store'
@@ -8,7 +7,7 @@ const props = {
   children: <></>
 }
 
-const setup = () => {
+const setup = (): void => {
   render(
     <Provider store={{ ...createStore }}>
       <MainLayout {...props} />
