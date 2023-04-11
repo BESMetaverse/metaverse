@@ -1,4 +1,5 @@
-import { Box, CircularProgress } from '@mui/material'
+import { Box} from '@mui/material'
+import { SpinLoader } from '@next/components/atoms/SpinLoader'
 export const MainLoader = (): JSX.Element => {
   return (
     <Box
@@ -6,12 +7,11 @@ export const MainLoader = (): JSX.Element => {
         display: 'flex',
         width: '100%',
         height: '100vh',
-        bgcolor: '#fff',
         justifyContent: 'center',
         alignItems: 'center'
       }}
     >
-      <CircularProgress />
+      <SpinLoader />
     </Box>
   )
 }

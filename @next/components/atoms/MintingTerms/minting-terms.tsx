@@ -8,7 +8,7 @@ export const MintingTerms = (): JSX.Element => {
       sx={{
         alignItems: 'center',
         color: '#fff',
-        display: 'flex',
+        display: 'block',
         fontSize: '1rem',
         fontWeight: 400,
         fontFamily: 'Inter',
