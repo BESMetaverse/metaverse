@@ -188,3 +188,58 @@ input[type='number'] {
     opacity: 0;
   }
 }
+
+/* SELECT PLANET Main Heading Styles */
+.gradient-text {
+  /* Fallback: Set a background color. */
+  background-color: #fff;
+
+  /* Create the gradient. */
+  background-image: linear-gradient(50deg, #004e7e, #fff);
+
+  /* Set the background size and repeat properties. */
+  background-size: 100%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+
+  font-family: Amaranth !important;
+}
+/* Planet Card Styles */
+.planet-item {
+  margin: 0 1rem 1rem;
+  width: 25%;
+}
+
+.planet-card {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  width: 203px;
+  background: rgb(100, 130, 185);
+  background: linear-gradient(
+    90deg,
+    rgba(100, 130, 185, 1) 0%,
+    rgba(107, 144, 195, 1) 59%
+  );
+  -webkit-box-shadow: 0px 0px 16px 13px rgba(194, 109, 194, 1);
+  -moz-box-shadow: 0px 0px 16px 13px rgba(194, 109, 194, 1);
+  box-shadow: 0px 0px 16px 13px rgba(194, 109, 194, 1);
+}
+
+@media (max-width: 899px) {
+  .planet-item {
+    width: 40%;
+  }
+}
+@media (max-width: 599px) {
+  .planet-item {
+    margin: 0 1rem 1rem;
+    width: 100%;
+  }
+}

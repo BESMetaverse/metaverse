@@ -14,6 +14,8 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.11.12",
     "@reduxjs/toolkit": "^1.8.5",
+    "@walletconnect/sign-client": "^2.6.2",
+    "@web3modal/standalone": "^2.2.2",
     "axios": "^0.27.2",
     "globe.gl": "^2.27.1",
     "next": "13.2.3",
