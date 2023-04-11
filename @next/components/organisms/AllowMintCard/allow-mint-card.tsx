@@ -8,23 +8,76 @@ import { SecondStepHeading } from '@next/components/molecules/SecondStepHeading'
 import { SecondStepSection } from '@next/components/molecules/SecondStepSection'
 import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+import {
+  configureWeb3Modal,
+  createSignClient,
+  openWalletConnectConn,
+  subscribeToEvents
+} from '@utils'
 
 export const AllowMintCard = (): JSX.Element => {
   const [stepOne, setStepOne] = useState(true)
   const [stepTwo, setStepTwo] = useState(false)
   const [stepThree, setStepThree] = useState(false)
+  const [walletProvider, setWalletProvider] = useState('')
+
+  const [signClient, setSignClient] = useState()
+  const [session, setSession] = useState([])
+  const [account, setAccount] = useState([])
+
+  const changeWalletProvider = (selectedOption: string): void => {
+    setWalletProvider(selectedOption)
+  }
 
   const handleStepOne = () => {
     setStepOne(false)
     setStepTwo(true)
     setStepThree(false)
   }
-  const handleStepTwo = () => {
-    setStepOne(false)
-    setStepTwo(false)
-    setStepThree(true)
+  const handleStepTwo = async (): Promise<any> => {
+    // check which wallet provider is selected
+    if (walletProvider === 'Freighter') {
+      console.log('user has selected Freighter wallet')
+    } else if (walletProvider === 'WalletConnect') {
+      const web3modal = await configureWeb3Modal()
+      if (web3modal) {
+        const session = await openWalletConnectConn(signClient, web3modal)
+        if (session) {
+          console.log('session is', session)
+          console.log(
+            'user Account is ',
+            session.namespaces.eip155.accounts[0].slice(9)
+          )
+
+          setSession(session)
+          setAccount(session.namespaces.eip155.accounts[0].slice(9))
+
+          // Now moving to the next step for walletConnect success scenario
+          setStepOne(false)
+          setStepTwo(false)
+          setStepThree(true)
+        }
+      }
+    } else if (walletProvider === 'XBULL') {
+      // XBULL
+      console.log('user has selected XBUll wallet')
+    }
   }
+
+  useEffect(() => {
+    const createClient = async (): Promise<any> => {
+      if (!signClient) {
+        const tempsignClient = await createSignClient()
+        if (tempsignClient) {
+          setSignClient(tempsignClient)
+          await subscribeToEvents(tempsignClient)
+        }
+      }
+    }
+    createClient()
+  }, [signClient])
 
   return (
     <Box sx={{ maxWidth: '42.75rem', width: '100%' }}>
@@ -57,8 +110,15 @@ export const AllowMintCard = (): JSX.Element => {
         {stepTwo && (
           <>
             <SecondStepHeading />
-            <SecondStepSection />
-            <ContinueButton handleStepTwo={handleStepTwo} Text={'Continue'} />
+            <SecondStepSection
+              walletProvider={walletProvider}
+              changeWalletProvider={changeWalletProvider}
+            />
+            <ContinueButton
+              // disabled={!signClient}
+              handleStepTwo={handleStepTwo}
+              Text={'Continue'}
+            />
           </>
         )}
         {stepThree && (

@@ -4,10 +4,10 @@
 import { UserConfig } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { FC } from 'react'
-import AllowMintPage from './allow-mint'
+import { SelectPlanet } from '@next/components/organisms/SelectPlanet'
 
 const Homepage: FC = () => {
-  return <AllowMintPage />
+  return <SelectPlanet />
 }
 
 // export const getServerSideProps = async ({ locale }) => ({
