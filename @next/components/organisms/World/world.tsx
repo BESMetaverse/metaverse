@@ -6,9 +6,9 @@ const COLORS = ['#6898FF', '#A45CFF', '#D72E2E']
 
 export const World = ({ features }: any): JSX.Element => {
   const globeEl = useRef(undefined)
-  const w = window.innerWidth
-  const shiftFactor = 0.4
-  const shiftAmmount = shiftFactor * w
+  // const w = window.innerWidth
+  // const shiftFactor = 0.4
+  // const shiftAmmount = shiftFactor * w
 
   const [countries, setCountries] = useState(features)
   const [showGlobe, setShowGlobe] = useState<boolean>(false)
@@ -18,10 +18,10 @@ export const World = ({ features }: any): JSX.Element => {
       return (globeEl.current as GlobeMethods).pointOfView({
         lat: 42,
         lng: -95,
-        altitude: 0.8
+        altitude: 0.7
       })
     }
-  }, [globeEl])
+  }, [])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -49,6 +49,7 @@ export const World = ({ features }: any): JSX.Element => {
     <>
       {showGlobe && (
         <Globe
+          polygonAltitude={30}
           ref={globeEl}
           // width={w + shiftAmmount}
           globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
