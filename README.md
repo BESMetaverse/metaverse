@@ -10,7 +10,7 @@ To get started, just clone the repository and run `npm install && npm run dev`:
     npm install
     npm run dev
 
-## ## Building locally in development mode
+## Building locally in development mode
 
 If you wanted to run this site in locally development, you should install modules then build the site with `npm run build` and run it with `npm start`:
 
