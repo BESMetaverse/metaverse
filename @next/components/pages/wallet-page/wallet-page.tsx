@@ -1,10 +1,10 @@
 import { Box } from '@mui/material'
-import { SoldOut } from '@next/components/atoms/SoldOut'
-import { SpinLoader } from '@next/components/atoms/SpinLoader'
-import { WalletConnecting } from '@next/components/atoms/WalletConnecting'
+// import { SoldOut } from '@next/components/atoms/SoldOut'
+// import { SpinLoader } from '@next/components/atoms/SpinLoader'
+// import { WalletConnecting } from '@next/components/atoms/WalletConnecting'
 import { AllowMintCard } from '@next/components/organisms/AllowMintCard'
 
-export const AllowMintPage = (): JSX.Element => {
+export const WalletPage = (): JSX.Element => {
   return (
     <Box
       sx={{

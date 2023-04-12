@@ -4,7 +4,7 @@ export const HeadConnectWallet = (): JSX.Element => {
   const router = useRouter()
 
   const handleConnectWallet = (): void => {
-    router.push('/allow-mint')
+    router.push('/wallet')
   }
   return (
     <Button
