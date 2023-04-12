@@ -32,6 +32,10 @@ You should run `npm run build` again any time you make changes to the site.
 
 If you configure a .env file (just copy [.env.example](https://github.com/BESMetaverse/metaverse/blob/main/.env.example) over to '.env' and fill in the options) you can configure a range of options.
 
+    NEXT_PUBLIC_API_KEY=API_KEY_URL
+    NEXT_PUBLIC_PROJECT_ID='PROJECT_ID'
+    GENERATE_SOURCEMAP=false    
+
 ## Running Jest Tests
 
 Here is a command you should now be able to run tests once `npm test`
