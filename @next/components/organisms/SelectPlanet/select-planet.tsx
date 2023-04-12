@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material'
 import { PlanetCard } from '@next/components/atoms/PlanetCard'
+import Image from 'next/image'
 
 export const SelectPlanet = (): JSX.Element => {
   const PlanetList = [
@@ -52,28 +53,38 @@ export const SelectPlanet = (): JSX.Element => {
   return (
     <Box
       sx={{
-        background: 'url(/images/EarthBg.png)',
+        background: 'url(/images/mainBg.svg)',
         backgroundPosition: 'bottom center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         height: {
-          xl: '100vh',
-          lg: '100vh',
-          md: '100vh',
-          sm: '100vh',
+          xl: '100%',
+          lg: '100%',
+          md: '100%',
+          sm: '100%',
           xs: '100%'
         },
+        overflow: 'hidden',
         padding: {
-          xl: '9rem 0',
-          lg: '9rem 0',
-          md: '9rem 0',
-          sm: '9rem 0',
-          xs: '7rem 0 3rem'
+          xl: '9rem 0 0',
+          lg: '9rem 0 0',
+          md: '9rem 0 0',
+          sm: '9rem 0 0',
+          xs: '7rem 0 0'
         },
+        position: 'relative',
         width: '100%'
       }}
     >
-      {/* <PlotDetails /> */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '5rem',
+          right: '0'
+        }}
+      >
+        <Image src="/images/radar.svg" height={660} width={208} alt="radar" />
+      </Box>
       <Typography
         variant="h1"
         sx={{
@@ -105,7 +116,7 @@ export const SelectPlanet = (): JSX.Element => {
             sm: 'center',
             xs: 'center'
           },
-          maxWidth: '65rem',
+          maxWidth: '66.5rem',
           margin: {
             xl: '5rem auto 0',
             lg: '5rem auto 0',
@@ -113,6 +124,7 @@ export const SelectPlanet = (): JSX.Element => {
             sm: '3rem auto 0',
             xs: '2.5rem auto 0'
           },
+          position: 'relative',
           padding: {
             xl: '0',
             lg: '0',
@@ -120,7 +132,8 @@ export const SelectPlanet = (): JSX.Element => {
             sm: '0 1rem',
             xs: '0 1rem'
           },
-          width: '100%'
+          width: '100%',
+          zIndex: 1
         }}
       >
         <Grid container spacing={2.5} sx={{ marginLeft: '0' }}>
@@ -135,6 +148,16 @@ export const SelectPlanet = (): JSX.Element => {
             </Grid>
           ))}
         </Grid>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          margin: '0 0 -5rem',
+          width: '100%'
+        }}
+      >
+        <Image src="/images/earth.svg" height={500} width={1920} alt="earth" />
       </Box>
     </Box>
   )

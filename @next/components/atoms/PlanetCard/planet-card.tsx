@@ -57,7 +57,7 @@ export const PlanetCard = ({
           >
             {title}
           </Typography>
-          <Typography
+          {/* <Typography
             variant="h4"
             sx={{
               color: '#fff',
@@ -66,7 +66,7 @@ export const PlanetCard = ({
             }}
           >
             {planetSize} square km
-          </Typography>
+          </Typography> */}
         </Box>
       </Box>
     </Link>
