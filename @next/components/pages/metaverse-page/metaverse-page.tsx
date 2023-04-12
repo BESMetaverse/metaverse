@@ -1,14 +1,14 @@
 import { Box } from '@mui/material'
-import { World } from '@organisms'
+import { Planet } from '@organisms'
 
-export const MintLandPage = (): JSX.Element => {
+export const MetaversePage = (): JSX.Element => {
   return (
     <Box
       sx={{
         height: '100%'
       }}
     >
-      <World />
+      <Planet />
     </Box>
   )
 }

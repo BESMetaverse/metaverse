@@ -1,52 +1,61 @@
 import { Box, Grid, Typography } from '@mui/material'
 import { PlanetCard } from '@next/components/atoms/PlanetCard'
-import { PlotDetails } from '@next/components/atoms/PlotDetails'
+// import { PlotDetails } from '@next/components/atoms/PlotDetails'
 
 export const SelectPlanet = (): JSX.Element => {
   const PlanetList = [
     {
       icon: '/images/planets/Earth.svg',
       title: 'Earth',
+      url: 'earth',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Saturn.svg',
       title: 'Saturn',
+      url: 'saturn',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Mars.svg',
       title: 'Mars',
+      url: 'mars',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Moon.svg',
       title: 'Moon',
+      url: 'moon',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Jupiter.svg',
       title: 'Jupiter',
+      url: 'jupiter',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Neptune.svg',
       title: 'Neptune',
+      url: 'neptune',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Mercury.svg',
       title: 'Mercury',
+      url: 'mercury',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Venus.svg',
       title: 'Venus',
+      url: 'venus',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Pluto.svg',
       title: 'Pluto',
+      url: 'pluto',
       planetSize: '509 600 000'
     }
   ]
@@ -136,6 +145,7 @@ export const SelectPlanet = (): JSX.Element => {
                 icon={planet.icon}
                 title={planet.title}
                 planetSize={planet.planetSize}
+                url={planet.url}
               />
             </Grid>
           ))}
