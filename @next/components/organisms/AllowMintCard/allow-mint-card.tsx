@@ -14,7 +14,7 @@ import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
 
 const web3Modal = new Web3Modal({
-  projectId: '7dac674c8ea2b550dfb4b918b14204b9',
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
   standaloneChains: ['eip155:5']
 })
 
