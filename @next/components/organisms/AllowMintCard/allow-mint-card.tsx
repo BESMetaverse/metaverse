@@ -41,9 +41,16 @@ export const AllowMintCard = (): JSX.Element => {
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
     if (walletProvider === 'Freighter') {
+      setStepOne(false)
+      setStepTwo(false)
+      setStepThree(true)
+
       console.log('user has selected Freighter wallet')
     } else if (walletProvider === 'WalletConnect') {
       await handleWalletConnect()
+      setStepOne(false)
+      setStepTwo(false)
+      setStepThree(true)
     } else if (walletProvider === 'XBULL') {
       // XBULL
       console.log('user has selected XBUll wallet')

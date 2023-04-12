@@ -3,7 +3,25 @@ import { DisconnectWalletModal } from '@next/components/atoms/DisconnectWalletMo
 import { FieldLabel } from '@next/components/atoms/FieldLabel'
 import { MintSuccessfullModal } from '@next/components/atoms/MintSuccessfullModal'
 import { MintingCalculation } from '@next/components/atoms/MintingCalculation'
+
+// soroban
+import { useSorobanReact } from '@soroban-react/core'
+import { WalletData } from '@soroban-react/wallet-data'
+import { getCurrentSupply, getTotalNFTSupply, mintNFT } from '@soroban'
+// import { useIsPetAdopted } from '@soroban'
+
 export const ThirdStepSection = (): JSX.Element => {
+  // call contract functions here to check if our contract is working fine
+  const sorobanContext = useSorobanReact()
+
+  getCurrentSupply({ sorobanContext: sorobanContext })
+  getTotalNFTSupply({ sorobanContext: sorobanContext })
+
+  // mintNFT({
+  //   publicKey: 'GARZ4OVDBZ2XEVLJMDECDQOHXERLXU4D3W2CVAZ3SCRBSJFZQUWKVQ4O',
+  //   sorobanContext: sorobanContext
+  // })
+
   return (
     <Box
       sx={{
@@ -29,6 +47,10 @@ export const ThirdStepSection = (): JSX.Element => {
       </Typography>
       <MintingCalculation />
       <MintSuccessfullModal Text={'Mint'} />
+      {/* to display frighter wallet details */}
+      {/* If the Connector is not connected, will show the ConnectButton. If the Connector is connected, will show address and network. */}
+      {/* <WalletData sorobanContext={useSorobanReact()} /> */}
+
       {/* <DisconnectWalletModal /> */}
     </Box>
   )
