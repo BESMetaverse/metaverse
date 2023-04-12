@@ -1,3 +1,2 @@
 export * from './AllowMintCard'
-export * from './World'
-export * from './SelectPlanet'
+export * from './Planet'

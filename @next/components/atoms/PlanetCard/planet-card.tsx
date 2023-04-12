@@ -4,14 +4,16 @@ import Link from 'next/link'
 export const PlanetCard = ({
   icon,
   title,
-  planetSize
+  planetSize,
+  url
 }: {
   icon: any
   title: string
   planetSize: string
+  url: string
 }): JSX.Element => {
   return (
-    <Link href="/mint-land" className="planet-item">
+    <Link href={`/metaverse/${url}`} className="planet-item">
       <Box
         sx={{
           alignItems: 'center',
@@ -22,7 +24,6 @@ export const PlanetCard = ({
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           margin: '0 auto',
-          // padding: '1.5rem 1.5rem 1rem 1rem',
           height: 100,
           width: 220
         }}
