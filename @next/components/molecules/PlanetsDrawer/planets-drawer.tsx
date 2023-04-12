@@ -9,7 +9,7 @@ type ToggleDrawerFn = (
 ) => (event: React.KeyboardEvent | React.MouseEvent) => void
 
 interface DrawerProps {
-  showLand: { bottom: boolean }
+  showLand: { right: boolean }
   toggleDrawer: ToggleDrawerFn
 }
 
@@ -17,8 +17,8 @@ export const PlanetsDrawer = ({ showLand, toggleDrawer }: DrawerProps): any => {
   return (
     <React.Fragment>
       <Drawer
-        anchor="bottom"
-        open={showLand.bottom}
+        anchor="right"
+        open={showLand.right}
         onClose={toggleDrawer(false)}
         sx={{
           borderRadius: '2px'
