@@ -11,7 +11,7 @@ export const PlanetCard = ({
   planetSize: string
 }): JSX.Element => {
   return (
-    <Link href="#" className="planet-item">
+    <Link href="/mint-land" className="planet-item">
       <Box
         sx={{
           alignItems: 'center',
