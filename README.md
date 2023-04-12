@@ -6,7 +6,7 @@ BesMetaverse project is related to land purchase, it is likely that it is focuse
 
 To get started, just clone the repository and run `npm install && npm run dev`:
     
-    git clone https://github.com/iaincollins/nextjs-starter.git
+    git clone https://github.com/BESMetaverse/metaverse.git
     npm install
     npm run dev
 
