@@ -1,6 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material'
 import { PlanetCard } from '@next/components/atoms/PlanetCard'
-// import { PlotDetails } from '@next/components/atoms/PlotDetails'
 
 export const SelectPlanet = (): JSX.Element => {
   const PlanetList = [
