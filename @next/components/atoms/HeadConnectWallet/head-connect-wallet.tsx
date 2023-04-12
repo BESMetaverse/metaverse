@@ -1,5 +1,11 @@
 import { Button } from '@mui/material'
+import { useRouter } from 'next/router'
 export const HeadConnectWallet = (): JSX.Element => {
+  const router = useRouter()
+
+  const handleConnectWallet = (): void => {
+    router.push('/allow-mint')
+  }
   return (
     <Button
       sx={{
@@ -13,6 +19,7 @@ export const HeadConnectWallet = (): JSX.Element => {
         textAlign: 'center',
         width: '8.813rem'
       }}
+      onClick={handleConnectWallet}
     >
       Connect wallet
     </Button>
