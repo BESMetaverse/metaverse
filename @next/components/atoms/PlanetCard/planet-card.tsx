@@ -58,16 +58,6 @@ export const PlanetCard = ({
           >
             {title}
           </Typography>
-          <Typography
-            variant="h4"
-            sx={{
-              color: '#fff',
-              fontSize: '0.875rem',
-              fontFamily: 'Amaranth'
-            }}
-          >
-            {planetSize} square km
-          </Typography>
         </Box>
       </Box>
     </Link>

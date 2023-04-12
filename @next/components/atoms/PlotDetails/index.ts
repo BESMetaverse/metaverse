@@ -1,1 +1,1 @@
-export * from './plot-etails'
+export * from './plot-details'

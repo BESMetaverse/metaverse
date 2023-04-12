@@ -3,9 +3,10 @@ import { useRouter } from 'next/router'
 export const HeadConnectWallet = (): JSX.Element => {
   const router = useRouter()
 
-  const handleConnectWallet = (): void => {
-    router.push('/wallet')
+  const handleConnectWallet = (): any => {
+    return router.push('/wallet')
   }
+
   return (
     <Button
       sx={{
