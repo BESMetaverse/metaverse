@@ -11,7 +11,6 @@ const Document: FC<Props> = (props) => {
   return (
     <Html lang={currentLocale}>
       <Head>
-        <title>Besmetaverse</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
