@@ -58,6 +58,13 @@ code {
 
 /* Header Styles */
 header {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.6082808123249299) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
   padding: 1.25rem 0;
   position: fixed;
   width: 100%;
@@ -212,34 +219,13 @@ input[type='number'] {
 }
 /* Planet Card Styles */
 .planet-item {
-  margin: 0 1rem 1rem;
-  width: 25%;
+  display: block;
+  margin: 0 0 1.5rem;
 }
 
-.planet-card {
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
-  width: 203px;
-  background: rgb(100, 130, 185);
-  background: linear-gradient(
-    90deg,
-    rgba(100, 130, 185, 1) 0%,
-    rgba(107, 144, 195, 1) 59%
-  );
-  -webkit-box-shadow: 0px 0px 16px 13px rgba(194, 109, 194, 1);
-  -moz-box-shadow: 0px 0px 16px 13px rgba(194, 109, 194, 1);
-  box-shadow: 0px 0px 16px 13px rgba(194, 109, 194, 1);
-}
-
-@media (max-width: 899px) {
-  .planet-item {
-    width: 40%;
-  }
-}
 @media (max-width: 599px) {
   .planet-item {
-    margin: 0 1rem 1rem;
-    width: 100%;
+    margin: 0 0 1rem;
+
   }
 }

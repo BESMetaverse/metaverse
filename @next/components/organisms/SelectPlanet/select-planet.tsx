@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material'
 import { PlanetCard } from '@next/components/atoms/PlanetCard'
-import { PlotDetails } from '@next/components/atoms/PlotDetails'
+// import { PlotDetails } from '@next/components/atoms/PlotDetails'
 
 export const SelectPlanet = (): JSX.Element => {
   const PlanetList = [
@@ -124,13 +124,9 @@ export const SelectPlanet = (): JSX.Element => {
           width: '100%'
         }}
       >
-        <Grid
-          container
-          spacing={2.5}
-          sx={{ justifyContent: 'center', marginLeft: '0' }}
-        >
+        <Grid container spacing={2.5} sx={{ marginLeft: '0' }}>
           {PlanetList.map((planet, index) => (
-            <Grid xl={4} lg={4} md={4} sm={6} xs={12} key={index}>
+            <Grid xl={3} lg={3} md={4} sm={6} xs={12} key={index}>
               <PlanetCard
                 key={index}
                 icon={planet.icon}

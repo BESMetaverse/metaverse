@@ -48,10 +48,6 @@ Quickly get started using [Create Next App](https://nextjs.org/docs/api-referenc
 
 In your terminal, run the following command:
 
-```bash
-npx create-next-app
-```
-
-```bash
-yarn create next-app
-```
+    npx create-next-app
+    or
+    yarn create-next-app
