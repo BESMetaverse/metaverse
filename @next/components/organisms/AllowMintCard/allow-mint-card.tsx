@@ -1,3 +1,6 @@
+import { SignClient } from '@walletconnect/sign-client'
+import { Web3Modal } from '@web3modal/standalone'
+
 import { Box } from '@mui/material'
 import { ContinueButton } from '@next/components/atoms/ContinueButton'
 import { MintingTerms } from '@next/components/atoms/MintingTerms'
@@ -10,12 +13,10 @@ import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
 
-import {
-  configureWeb3Modal,
-  createSignClient,
-  openWalletConnectConn,
-  subscribeToEvents
-} from '@utils'
+const web3Modal = new Web3Modal({
+  projectId: '7dac674c8ea2b550dfb4b918b14204b9',
+  standaloneChains: ['eip155:5']
+})
 
 export const AllowMintCard = (): JSX.Element => {
   const [stepOne, setStepOne] = useState(true)
@@ -23,15 +24,16 @@ export const AllowMintCard = (): JSX.Element => {
   const [stepThree, setStepThree] = useState(false)
   const [walletProvider, setWalletProvider] = useState('')
 
-  const [signClient, setSignClient] = useState()
-  const [session, setSession] = useState([])
-  const [account, setAccount] = useState([])
+  // wallet connect
+  const [signClient, setSignClient] = useState<any>()
+  const [sessions, setSessions] = useState([])
+  const [accounts, setAccounts] = useState([])
 
   const changeWalletProvider = (selectedOption: string): void => {
     setWalletProvider(selectedOption)
   }
 
-  const handleStepOne = () => {
+  const handleStepOne = (): void => {
     setStepOne(false)
     setStepTwo(true)
     setStepThree(false)
@@ -41,42 +43,85 @@ export const AllowMintCard = (): JSX.Element => {
     if (walletProvider === 'Freighter') {
       console.log('user has selected Freighter wallet')
     } else if (walletProvider === 'WalletConnect') {
-      const web3modal = await configureWeb3Modal()
-      if (web3modal) {
-        const session = await openWalletConnectConn(signClient, web3modal)
-        if (session) {
-          console.log('session is', session)
-          console.log(
-            'user Account is ',
-            session.namespaces.eip155.accounts[0].slice(9)
-          )
-
-          setSession(session)
-          setAccount(session.namespaces.eip155.accounts[0].slice(9))
-
-          // Now moving to the next step for walletConnect success scenario
-          setStepOne(false)
-          setStepTwo(false)
-          setStepThree(true)
-        }
-      }
+      await handleWalletConnect()
     } else if (walletProvider === 'XBULL') {
       // XBULL
       console.log('user has selected XBUll wallet')
     }
   }
 
-  useEffect(() => {
-    const createClient = async (): Promise<any> => {
-      if (!signClient) {
-        const tempsignClient = await createSignClient()
-        if (tempsignClient) {
-          setSignClient(tempsignClient)
-          await subscribeToEvents(tempsignClient)
+  async function createClient(): Promise<void> {
+    try {
+      const client = await SignClient.init({
+        projectId: '7948ceba0f5cf15f799771ed57ec69f6'
+      })
+      console.log('client is ', client)
+      setSignClient(client)
+      await subscribeToEvents(client)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  async function handleWalletConnect(): Promise<void> {
+    if (!signClient) throw Error('Cannot connect. Sign Client is not created')
+    try {
+      // dapp is going to send a proposal namespace
+      const proposalNamespace = {
+        eip155: {
+          chains: ['eip155:5'],
+          methods: ['eth_sendTransaction'],
+          events: ['connect', 'disconnect']
         }
       }
+
+      const { uri, approval } = await signClient.connect({
+        requiredNamespaces: proposalNamespace
+      })
+
+      if (uri) {
+        console.log('uri is ', uri)
+        await web3Modal.openModal({ uri })
+        const sessionNamespace = await approval()
+        await onSessionConnect(sessionNamespace)
+        web3Modal.closeModal()
+      }
+    } catch (e) {
+      console.log(e)
     }
-    createClient()
+  }
+  async function onSessionConnect(session: any): Promise<void> {
+    if (!session) throw Error("session doesn't exist")
+    try {
+      console.log('session connected ', session)
+      setSessions(session)
+      setAccounts(session.namespaces.eip155.accounts[0].slice(9))
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  async function subscribeToEvents(client: any): Promise<void> {
+    if (!client) {
+      throw Error('No events to subscribe to b/c the client does not exist')
+    }
+
+    try {
+      client.on('session_delete', () => {
+        console.log('user disconnected the session from their wallet')
+        reset()
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  const reset = (): void => {
+    setAccounts([])
+    setSessions([])
+  }
+
+  useEffect(() => {
+    if (!signClient) {
+      createClient()
+    }
   }, [signClient])
 
   return (
@@ -115,7 +160,7 @@ export const AllowMintCard = (): JSX.Element => {
               changeWalletProvider={changeWalletProvider}
             />
             <ContinueButton
-              // disabled={!signClient}
+              disabled={!signClient}
               handleStepTwo={handleStepTwo}
               Text={'Continue'}
             />
