@@ -18,6 +18,8 @@ import { walletActions } from '@store'
 
 export const ConnectWalletCard = (): JSX.Element => {
   const dispatch = useAppDispatch()
+  const account = useAppSelector((state: any) => state.wallet)
+  console.log('account is ', account)
 
   const web3Modal = new Web3Modal({
     projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
@@ -25,9 +27,9 @@ export const ConnectWalletCard = (): JSX.Element => {
     walletConnectVersion: 2
   })
 
-  const [stepOne, setStepOne] = useState(true)
+  const [stepOne, setStepOne] = useState(false)
   const [stepTwo, setStepTwo] = useState(false)
-  const [stepThree, setStepThree] = useState(false)
+  const [stepThree, setStepThree] = useState(true)
   const [connectWalletDisabled, setConnectWalletDisabled] = useState(false)
   const [continueDisabled, setContinueDisabled] = useState(false)
   const [network, setNetwork] = useState('')
@@ -115,15 +117,18 @@ export const ConnectWalletCard = (): JSX.Element => {
     if (!session) throw Error("session doesn't exist")
     try {
       console.log('session connected ', session)
-      setSessions(session)
-      setAccounts(session.namespaces.stellar.accounts[0].slice(9))
+      // setSessions(session)
+      // setAccounts(session.namespaces.stellar.accounts[0].slice(9))
+      //  set wallet Details here
       dispatch(
-        walletActions.setWalleAccount(
+        walletActions.setWalletAccount(
           session.namespaces.stellar.accounts[0].slice(9)
         )
       )
+      dispatch(walletActions.setWalletProvider('WalletConnect'))
+      dispatch(walletActions.setActiveNetwork('stellar'))
 
-      void router.push('/wallet')
+      // void router.push('/minting')
     } catch (e) {
       console.log(e)
     }

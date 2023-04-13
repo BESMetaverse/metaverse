@@ -5,22 +5,40 @@
  */
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { WalletAccountNumber } from './wallet.types'
+import { walletSliceState } from './wallet.types'
 
-export const WalletAccountInitialState: WalletAccountNumber = {
-  walletAccountNumber: null
+export const WalletAccountInitialState: walletSliceState = {
+  walletAccountNumber: null,
+  walletProvider: null,
+  activeChain: null
+
+  // walletAccountNumber: null
 }
 
 const walletSlice = createSlice({
   name: 'wallet',
   initialState: WalletAccountInitialState,
   reducers: {
-    setWalleAccount(
-      state: WalletAccountNumber,
+    setWalletAccount(
+      state: walletSliceState,
       { payload }: PayloadAction<string>
     ) {
+      console.log('payload is ', payload)
       state.walletAccountNumber = payload
-      console.log('Payload', payload)
+    },
+    setWalletProvider(
+      state: walletSliceState,
+      { payload }: PayloadAction<string>
+    ) {
+      console.log('payload is ', payload)
+      state.walletProvider = payload
+    },
+    setActiveNetwork(
+      state: walletSliceState,
+      { payload }: PayloadAction<string>
+    ) {
+      console.log('payload is ', payload)
+      state.walletAccountNumber = payload
     }
   }
 })
