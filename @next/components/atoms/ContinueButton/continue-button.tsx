@@ -4,7 +4,7 @@ export const ContinueButton = ({
   handleStepTwo,
   Text
 }: {
-  disabled?: boolean
+  disabled: boolean
   handleStepTwo: any
   Text: string
 }): JSX.Element => {
@@ -12,28 +12,29 @@ export const ContinueButton = ({
     <Button
       disabled={disabled}
       sx={{
-        backgroundColor: '#616D72',
-        border: '1px solid #616D72',
+        backgroundColor: '#02BCFC',
+        border: '1px solid #02BCFC',
         borderRadius: '0.313rem',
-        color: '#DBD8D8',
+        color: '#181D18',
         fontSize: '1.125rem',
         fontWeight: 500,
         height: '3.438rem',
         textAlign: 'center',
         width: '100%',
-        '& :disabled': {
-          backgroundColor: '#616D72'
+        '&:disabled': {
+          backgroundColor: '#616D72',
+          border: '1px solid #616D72',
+          color: '#DBD8D8'
         },
         '&:hover': {
-          backgroundColor: '#171729',
+          backgroundColor: '#02BCFC',
           border: '1px solid #02BCFC'
         },
         '&:focus': {
-          backgroundColor: '#171729',
+          backgroundColor: '#02BCFC',
           border: '1px solid #02BCFC'
         }
       }}
-      // disabled={true}
       onClick={handleStepTwo}
     >
       {Text}

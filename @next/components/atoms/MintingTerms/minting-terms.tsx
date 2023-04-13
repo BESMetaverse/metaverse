@@ -2,7 +2,31 @@ import { Box } from '@mui/material'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Link from 'next/link'
-export const MintingTerms = (): JSX.Element => {
+import { useEffect, useState } from 'react'
+
+interface MintingTermsProps {
+  setConnectWalletDisabled: (connectWalletDisabled: boolean) => void
+}
+
+export const MintingTerms = ({
+  setConnectWalletDisabled
+}: MintingTermsProps): JSX.Element => {
+  const [isChecked, setIsChecked] = useState(false)
+
+  const handleCheckboxChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setIsChecked(event.target.checked)
+  }
+
+  useEffect(() => {
+    if (isChecked) {
+      setConnectWalletDisabled(true)
+    } else {
+      setConnectWalletDisabled(false)
+    }
+  }, [isChecked])
+
   return (
     <Box
       sx={{
@@ -19,7 +43,9 @@ export const MintingTerms = (): JSX.Element => {
     >
       <FormControlLabel
         value="end"
-        control={<Checkbox />}
+        control={
+          <Checkbox checked={isChecked} onChange={handleCheckboxChange} />
+        }
         label="By minting you agree to the"
         labelPlacement="end"
         style={{

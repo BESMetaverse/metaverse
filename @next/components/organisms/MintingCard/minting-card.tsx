@@ -7,6 +7,9 @@ import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
 import { ConnectWalletAlert } from '@next/components/atoms/ConnectWalletAlert'
 import { MintingSale } from '@next/components/atoms/MintingSale'
+import { ConnectWalletCard } from '../ConnectWalletCard'
+import { ConnectWalletModal } from '@next/components/molecules/Modals/conect-wallet-modal/connect-wallet-modal'
+import { connect } from 'react-redux'
 
 // const web3Modal = new Web3Modal({
 //   projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
@@ -21,6 +24,8 @@ export const MintingCard = (): JSX.Element => {
   const [signClient, setSignClient] = useState<any>()
   const [sessions, setSessions] = useState([])
   const [accounts, setAccounts] = useState([])
+
+  const handleClose = (): void => setConnected(true)
 
   const changeWalletProvider = (selectedOption: string): void => {
     setWalletProvider(selectedOption)
@@ -144,7 +149,9 @@ export const MintingCard = (): JSX.Element => {
         <ThirdStepHeading />
         <ThirdStepSection />
       </Box>
-      {!connected ? <ConnectWalletAlert /> : null}
+
+      <ConnectWalletModal connected={connected} handleClose={handleClose} />
+      {/* {!connected ? <ConnectWalletAlert /> : null} */}
     </Box>
   )
 }
