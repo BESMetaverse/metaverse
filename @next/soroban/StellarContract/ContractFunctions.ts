@@ -1,8 +1,7 @@
 import { SorobanContextType } from '@soroban-react/core'
 import addresses from '../addresses.json'
 import { useContractValue } from '@soroban-react/contracts'
-import BigNumber from 'bignumber.js'
-import { bigNumberToI128 } from '@soroban-react/utils'
+import * as SorobanClient from 'soroban-client'
 
 /// Mint NFT function here
 interface mintContractProps {
@@ -20,6 +19,7 @@ export const mintNFT = async ({
   console.log('*public key is ', publicKey)
 
   const mintToken = useContractValue({
+    //paste line
     contractId: addresses.pet_adopt_id,
     method: 'balance',
     // params: [contractIdentifier(Buffer.from(publicKey, 'hex'))],
@@ -36,16 +36,15 @@ export const getNFT = async ({
   tokenId,
   sorobanContext
 }: {
-  tokenId: string
+  tokenId: number
   sorobanContext: SorobanContextType
 }): Promise<string | undefined> => {
-  const tokenIdBN = new BigNumber(tokenId)
-  const tokenIdScval = bigNumberToI128(tokenIdBN.shiftedBy(0).decimalPlaces(0))
+  const nftId = SorobanClient.xdr.ScVal.scvU32(tokenId)
 
   const NFT = await useContractValue({
     contractId: addresses.pet_adopt_id,
     method: 'get_nft',
-    params: [tokenIdScval],
+    params: [nftId],
     // params: [tokenIdScval],
     sorobanContext
   }).result
