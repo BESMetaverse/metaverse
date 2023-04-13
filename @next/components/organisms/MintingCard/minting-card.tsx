@@ -12,7 +12,7 @@ export const MintingCard = (): JSX.Element => {
   const handleClose = (): void => setConnected(true)
 
   return (
-    <Box sx={{ maxWidth: '42.75rem', width: '100%' }}>
+    <Box sx={{ alignItems: 'baseline', maxWidth: '42.75rem', width: '100%' }}>
       {/* <MintingSale /> */}
       <Box
         sx={{
