@@ -3,10 +3,14 @@ import { FieldLabel } from '@next/components/atoms/FieldLabel'
 import { IconItem } from '@next/components/atoms/IconItem'
 export const SecondStepSection = ({
   walletProvider,
-  changeWalletProvider
+  changeWalletProvider,
+  setNetwork,
+  setWallet
 }: {
   walletProvider: string
   changeWalletProvider: (selectedOption: string) => void
+  setNetwork: (network: string) => void
+  setWallet: (wallet: string) => void
 }): JSX.Element => {
   return (
     <Box
@@ -36,7 +40,6 @@ export const SecondStepSection = ({
           width: '100%'
         }}
       >
-        {' '}
         <FieldLabel FieldLabel={'Connect Network'} />
         <Box
           sx={{
@@ -48,6 +51,7 @@ export const SecondStepSection = ({
               xs: '100%'
             }
           }}
+          onClick={() => setNetwork('Stellar')}
         >
           <IconItem Title={'Stellar'} icon={'/images/Stellar.svg'} />
         </Box>
@@ -61,7 +65,6 @@ export const SecondStepSection = ({
           width: '100%'
         }}
       >
-        {' '}
         <FieldLabel FieldLabel={'Connect Wallet'} />
         <Box
           sx={{
@@ -90,8 +93,8 @@ export const SecondStepSection = ({
 
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' }
             }}
+            onClick={() => setWallet('Freighter')}
           >
-            {' '}
             <IconItem
               selected={walletProvider === 'Freighter'}
               Title={'Freighter'}
@@ -110,8 +113,8 @@ export const SecondStepSection = ({
                 xs: '1.5rem 0'
               }
             }}
+            onClick={() => setWallet('WalletConnect')}
           >
-            {' '}
             <IconItem
               selected={walletProvider === 'WalletConnect'}
               Title={'WalletConnect'}
@@ -123,6 +126,7 @@ export const SecondStepSection = ({
             sx={{
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' }
             }}
+            onClick={() => setWallet('XBULL')}
           >
             {/* {walletProvider !== 'XBULL'} */}
             <IconItem

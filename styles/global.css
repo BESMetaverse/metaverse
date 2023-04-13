@@ -58,11 +58,11 @@ code {
 
 /* Header Styles */
 header {
-  background: rgb(0, 0, 0);
+  background: rgb(23, 23, 41);
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.6082808123249299) 60%,
+    rgba(23, 23, 41, 0.9416141456582633) 0%,
+    rgba(23, 23, 41, 0.5046393557422969) 60%,
     rgba(255, 255, 255, 0) 100%
   );
   padding: 1.25rem 0;

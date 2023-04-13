@@ -16,19 +16,31 @@ import { useState, useEffect } from 'react'
 const web3Modal = new Web3Modal({
   projectId: "7dac674c8ea2b550dfb4b918b14204b9",
   standaloneChains: ["eip155:"],
-  walletConnectVersion:1
+  walletConnectVersion:1,
 })
 
 export const ConnectWalletCard = (): JSX.Element => {
   const [stepOne, setStepOne] = useState(true)
   const [stepTwo, setStepTwo] = useState(false)
   const [stepThree, setStepThree] = useState(false)
+  const [connectWalletDisabled, setConnectWalletDisabled] = useState(false)
+  const [continueDisabled, setContinueDisabled] = useState(false)
+  const [network, setNetwork] = useState('')
+  const [wallet, setWallet] = useState('')
   const [walletProvider, setWalletProvider] = useState('')
 
   // wallet connect
   const [signClient, setSignClient] = useState<any>()
   const [sessions, setSessions] = useState([])
   const [accounts, setAccounts] = useState([])
+
+  useEffect(() => {
+    if (network !== '' && wallet !== '') {
+      setContinueDisabled(true)
+    } else {
+      setConnectWalletDisabled(false)
+    }
+  }, [network, wallet])
 
   const changeWalletProvider = (selectedOption: string): void => {
     setWalletProvider(selectedOption)
@@ -128,7 +140,7 @@ export const ConnectWalletCard = (): JSX.Element => {
 
   useEffect(() => {
     if (!signClient) {
-      createClient()
+      void createClient()
     }
   }, [signClient])
 
@@ -145,7 +157,7 @@ export const ConnectWalletCard = (): JSX.Element => {
             lg: '2.5rem 2rem',
             md: '1.5rem',
             sm: '1.25rem',
-            xs: '1.25rem 0.5rem'
+            xs: '1.25rem 1rem'
           },
           width: '100%'
         }}
@@ -157,6 +169,7 @@ export const ConnectWalletCard = (): JSX.Element => {
             <CardButtonSection
               handleStepOne={handleStepOne}
               Text={'Connect Wallet'}
+              disabled={!connectWalletDisabled}
             />
           </>
         )}
@@ -166,9 +179,11 @@ export const ConnectWalletCard = (): JSX.Element => {
             <SecondStepSection
               walletProvider={walletProvider}
               changeWalletProvider={changeWalletProvider}
+              setNetwork={setNetwork}
+              setWallet={setWallet}
             />
             <ContinueButton
-              disabled={!signClient}
+              disabled={!continueDisabled}
               handleStepTwo={handleStepTwo}
               Text={'Continue'}
             />
@@ -181,7 +196,9 @@ export const ConnectWalletCard = (): JSX.Element => {
           </>
         )}
       </Box>
-      {stepOne ? <MintingTerms /> : null}
+      {stepOne && (
+        <MintingTerms setConnectWalletDisabled={setConnectWalletDisabled} />
+      )}
     </Box>
   )
 }

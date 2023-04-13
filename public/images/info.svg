@@ -1,12 +1,22 @@
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_373_6077)">
-<path d="M2 8C2 8.78793 2.15519 9.56815 2.45672 10.2961C2.75825 11.0241 3.20021 11.6855 3.75736 12.2426C4.31451 12.7998 4.97595 13.2417 5.7039 13.5433C6.43185 13.8448 7.21207 14 8 14C8.78793 14 9.56815 13.8448 10.2961 13.5433C11.0241 13.2417 11.6855 12.7998 12.2426 12.2426C12.7998 11.6855 13.2417 11.0241 13.5433 10.2961C13.8448 9.56815 14 8.78793 14 8C14 7.21207 13.8448 6.43185 13.5433 5.7039C13.2417 4.97595 12.7998 4.31451 12.2426 3.75736C11.6855 3.20021 11.0241 2.75825 10.2961 2.45672C9.56815 2.15519 8.78793 2 8 2C7.21207 2 6.43185 2.15519 5.7039 2.45672C4.97595 2.75825 4.31451 3.20021 3.75736 3.75736C3.20021 4.31451 2.75825 4.97595 2.45672 5.7039C2.15519 6.43185 2 7.21207 2 8Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8 5.33325H8.01" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7.33301 8H7.99967V10.6667H8.66634" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle opacity="0.3" cx="45" cy="45" r="45" fill="url(#paint0_radial_405_4166)"/>
+<circle cx="45" cy="45" r="39" fill="url(#paint1_radial_405_4166)"/>
+<g clip-path="url(#clip0_405_4166)">
+<path d="M27 45C27 47.3638 27.4656 49.7044 28.3702 51.8883C29.2748 54.0722 30.6006 56.0565 32.2721 57.7279C33.9435 59.3994 35.9278 60.7252 38.1117 61.6298C40.2956 62.5344 42.6362 63 45 63C47.3638 63 49.7044 62.5344 51.8883 61.6298C54.0722 60.7252 56.0565 59.3994 57.7279 57.7279C59.3994 56.0565 60.7252 54.0722 61.6298 51.8883C62.5344 49.7044 63 47.3638 63 45C63 42.6362 62.5344 40.2956 61.6298 38.1117C60.7252 35.9278 59.3994 33.9435 57.7279 32.2721C56.0565 30.6006 54.0722 29.2748 51.8883 28.3702C49.7044 27.4656 47.3638 27 45 27C42.6362 27 40.2956 27.4656 38.1117 28.3702C35.9278 29.2748 33.9435 30.6006 32.2721 32.2721C30.6006 33.9435 29.2748 35.9278 28.3702 38.1117C27.4656 40.2956 27 42.6362 27 45Z" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M45 37H45.03" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M43 45H45V53H47" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <defs>
-<clipPath id="clip0_373_6077">
-<rect width="16" height="16" fill="white"/>
+<radialGradient id="paint0_radial_405_4166" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-1377.1 -2585.34) scale(10129.7 8533.74)">
+<stop stop-color="#FF0000"/>
+<stop offset="1" stop-color="#868686"/>
+</radialGradient>
+<radialGradient id="paint1_radial_405_4166" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-1187.48 -2234.63) scale(8779.05 7395.91)">
+<stop stop-color="#FF0000"/>
+<stop offset="1" stop-color="#868686"/>
+</radialGradient>
+<clipPath id="clip0_405_4166">
+<rect width="48" height="48" fill="white" transform="translate(21 21)"/>
 </clipPath>
 </defs>
 </svg>

@@ -21,8 +21,7 @@ export const ConnectWalletAlert = (): JSX.Element => {
           fontSize: '0.875rem',
           fontWeight: 500,
           fontFamily: 'Inter',
-          margin: '0 0.5rem',
-          width: '100%'
+          margin: '0 0.5rem'
         }}
       >
         Your Wallet is not connected first you have to connect the wallet
