@@ -5,6 +5,7 @@ import Head from 'next/head'
 import { PersistGate } from 'redux-persist/integration/react'
 import { createStore } from '@store'
 import { Provider } from 'react-redux'
+import { MySorobanReactProvider } from '@soroban'
 import { persistStore } from 'redux-persist'
 import { appWithTranslation } from 'next-i18next'
 
@@ -36,7 +37,9 @@ const MyApp: FC<Props> = ({ Component, pageProps }) => {
               horizontal: 'center'
             }}
           >
-            <MainLayout>{getLayout(<Component {...pageProps} />)}</MainLayout>
+            <MySorobanReactProvider>
+              <MainLayout>{getLayout(<Component {...pageProps} />)}</MainLayout>
+            </MySorobanReactProvider>
           </SnackbarProvider>
         </PersistGate>
       </Provider>
