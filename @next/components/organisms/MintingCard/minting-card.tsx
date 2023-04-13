@@ -1,28 +1,19 @@
 import { SignClient } from '@walletconnect/sign-client'
-import { Web3Modal } from '@web3modal/standalone'
+// import { Web3Modal } from '@web3modal/standalone'
 
 import { Box } from '@mui/material'
-import { ContinueButton } from '@next/components/atoms/ContinueButton'
-import { MintingTerms } from '@next/components/atoms/MintingTerms'
-import { CardButtonSection } from '@next/components/molecules/CardButtonSection'
-import { CardHeadingSection } from '@next/components/molecules/CardHeadingSection'
-import { FirstStepSection } from '@next/components/molecules/FirstStepSection'
-import { SecondStepHeading } from '@next/components/molecules/SecondStepHeading'
-import { SecondStepSection } from '@next/components/molecules/SecondStepSection'
 import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
 import { ConnectWalletAlert } from '@next/components/atoms/ConnectWalletAlert'
 
-const web3Modal = new Web3Modal({
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-  standaloneChains: ['eip155:5']
-})
+// const web3Modal = new Web3Modal({
+//   projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+//   standaloneChains: ['eip155:5']
+// })
 
 export const MintingCard = (): JSX.Element => {
   const [connected, setConnected] = useState(false)
-  // const [stepTwo, setStepTwo] = useState(false)
-  // const [stepThree, setStepThree] = useState(false)
   const [walletProvider, setWalletProvider] = useState('')
 
   // wallet connect
@@ -34,11 +25,6 @@ export const MintingCard = (): JSX.Element => {
     setWalletProvider(selectedOption)
   }
 
-  const handleStepOne = (): void => {
-    setConnected(false)
-    setStepTwo(true)
-    setStepThree(false)
-  }
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
     if (walletProvider === 'Freighter') {
@@ -84,10 +70,10 @@ export const MintingCard = (): JSX.Element => {
 
       if (uri) {
         console.log('uri is ', uri)
-        await web3Modal.openModal({ uri })
+        // await web3Modal.openModal({ uri })
         const sessionNamespace = await approval()
         await onSessionConnect(sessionNamespace)
-        web3Modal.closeModal()
+        // web3Modal.closeModal()
       }
     } catch (e) {
       console.log(e)
@@ -129,7 +115,7 @@ export const MintingCard = (): JSX.Element => {
   }, [signClient])
 
   return (
-    <Box sx={{ maxWidth: '42.75rem', width: '100%' }}>
+    <Box sx={{ alignItems: 'baseline', maxWidth: '42.75rem', width: '100%' }}>
       {/* <MintingSale /> */}
       <Box
         sx={{
