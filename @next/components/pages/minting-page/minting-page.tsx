@@ -2,9 +2,9 @@ import { Box } from '@mui/material'
 // import { SoldOut } from '@next/components/atoms/SoldOut'
 // import { SpinLoader } from '@next/components/atoms/SpinLoader'
 // import { WalletConnecting } from '@next/components/atoms/WalletConnecting'
-import { ConnectWalletCard } from '@next/components/organisms/ConnectWalletCard'
+import { MintingCard } from '@next/components/organisms/MintingCard'
 
-export const WalletPage = (): JSX.Element => {
+export const MintingPage = (): JSX.Element => {
   return (
     <Box
       sx={{
@@ -27,7 +27,7 @@ export const WalletPage = (): JSX.Element => {
           width: '100%'
         }}
       >
-        <ConnectWalletCard />
+        <MintingCard />
       </Box>
     </Box>
   )

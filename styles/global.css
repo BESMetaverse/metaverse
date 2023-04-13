@@ -226,6 +226,14 @@ input[type='number'] {
 @media (max-width: 599px) {
   .planet-item {
     margin: 0 0 1rem;
-
   }
+}
+
+.connect-wallet {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-align: center;
+  min-width: 6.75rem;
 }

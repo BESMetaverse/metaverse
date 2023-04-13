@@ -2,6 +2,7 @@ import { Box, Container } from '@mui/material'
 // import { DisconnectWalletModal } from '@next/components/atoms/DisconnectWalletModal'
 import { HeadConnectWallet } from '@next/components/atoms/HeadConnectWallet'
 import { HeadLogo } from '@next/components/atoms/HeadLogo'
+import { Minting } from '@next/components/atoms/Minting'
 export const Header = (): JSX.Element => {
   return (
     <header>
@@ -17,7 +18,7 @@ export const Header = (): JSX.Element => {
       >
         <HeadLogo />
         <Box>
-          {' '}
+          <Minting />
           <HeadConnectWallet />
           {/* <DisconnectWalletModal Text={'0xab2073j789D66'} /> */}
         </Box>
