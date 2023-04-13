@@ -24,19 +24,17 @@ export const ThirdStepSection = (): JSX.Element => {
   // call contract functions here to check if our contract is working fine
   const sorobanContext = useSorobanReact()
   const { address, activeChain, server } = useSorobanReact()
-  console.log(
-    'soroban context activechain is ==> ',
-    activeChain
-    // server,
-    // address
-  )
+  console.log('soroban context activechain is ==> ', activeChain, address)
 
   console.log('soroban context is ', sorobanContext)
 
   const { sendTransaction } = useSendTransaction()
-
-  getCurrentSupply({ sorobanContext: sorobanContext })
-  getTotalNFTSupply({ sorobanContext: sorobanContext })
+  if (!activeChain || !address || !server) {
+    console.log('No active chain')
+  } else {
+    // getCurrentSupply({ sorobanContext: sorobanContext })
+    // getTotalNFTSupply({ sorobanContext: sorobanContext })
+  }
 
   const handleMint = async (): Promise<void> => {
     const { activeChain, server, address } = sorobanContext

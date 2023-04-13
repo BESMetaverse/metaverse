@@ -13,13 +13,12 @@ import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useAppDispatch, useAppSelector } from '@hooks'
+import { useAppDispatch } from '@hooks'
 import { walletActions } from '@store'
+import { useSorobanReact } from '@soroban-react/core'
 
 export const ConnectWalletCard = (): JSX.Element => {
   const dispatch = useAppDispatch()
-  const account = useAppSelector((state: any) => state.wallet)
-  console.log('account is ', account)
 
   const web3Modal = new Web3Modal({
     projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
@@ -27,9 +26,9 @@ export const ConnectWalletCard = (): JSX.Element => {
     walletConnectVersion: 2
   })
 
-  const [stepOne, setStepOne] = useState(false)
+  const [stepOne, setStepOne] = useState(true)
   const [stepTwo, setStepTwo] = useState(false)
-  const [stepThree, setStepThree] = useState(true)
+  const [stepThree, setStepThree] = useState(false)
   const [connectWalletDisabled, setConnectWalletDisabled] = useState(false)
   const [continueDisabled, setContinueDisabled] = useState(false)
   const [network, setNetwork] = useState('')
@@ -41,6 +40,9 @@ export const ConnectWalletCard = (): JSX.Element => {
   const [signClient, setSignClient] = useState<any>()
   const [sessions, setSessions] = useState([])
   const [accounts, setAccounts] = useState([])
+
+  // for freighter wallet
+  const { address, activeChain, server } = useSorobanReact()
 
   useEffect(() => {
     if (network !== '' && wallet !== '') {
@@ -58,6 +60,11 @@ export const ConnectWalletCard = (): JSX.Element => {
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
     if (wallet === 'Freighter') {
+      dispatch(walletActions.setWalletAccount(address as string))
+      dispatch(walletActions.setWalletProvider('Freighter'))
+      // set it from activeChain
+      dispatch(walletActions.setActiveNetwork('stellar'))
+
       setStepOne(false)
       setStepTwo(false)
       setStepThree(true)
@@ -117,8 +124,6 @@ export const ConnectWalletCard = (): JSX.Element => {
     if (!session) throw Error("session doesn't exist")
     try {
       console.log('session connected ', session)
-      // setSessions(session)
-      // setAccounts(session.namespaces.stellar.accounts[0].slice(9))
       //  set wallet Details here
       dispatch(
         walletActions.setWalletAccount(

@@ -38,7 +38,7 @@ const walletSlice = createSlice({
       { payload }: PayloadAction<string>
     ) {
       console.log('payload is ', payload)
-      state.walletAccountNumber = payload
+      state.activeChain = payload
     }
   }
 })
