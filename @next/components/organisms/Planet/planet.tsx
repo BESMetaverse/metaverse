@@ -9,14 +9,14 @@ import { GlobeMethods } from 'react-globe.gl'
 const COLORS = ['#6898FF', '#A45CFF', '#D72E2E']
 
 export const Planet = (): JSX.Element => {
-  const globeEl = useRef<GlobeMethods>()
+  const globeEl = useRef()
   const [showLand, setShowLand] = useState({ right: false })
   const [countries, setCountries] = useState<{ features: any } | null>(null)
 
   useEffect((): any => {
     if (globeEl.current) {
       console.log('Test: ', globeEl)
-      return globeEl.current.pointOfView?.({
+      return globeEl.current.pointOfView({
         lat: 42,
         lng: -95,
         altitude: 0.5
