@@ -13,9 +13,12 @@ import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '@hooks'
+import { walletActions } from '@store'
 
 export const ConnectWalletCard = (): JSX.Element => {
+  const dispatch = useAppDispatch()
+
   const web3Modal = new Web3Modal({
     projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
     standaloneChains: ['stellar:futurenet'],
@@ -31,7 +34,6 @@ export const ConnectWalletCard = (): JSX.Element => {
   const [wallet, setWallet] = useState('')
 
   const router = useRouter()
-  const dispatch = useDispatch()
 
   // wallet connect
   const [signClient, setSignClient] = useState<any>()
@@ -115,9 +117,11 @@ export const ConnectWalletCard = (): JSX.Element => {
       console.log('session connected ', session)
       setSessions(session)
       setAccounts(session.namespaces.stellar.accounts[0].slice(9))
-      // dispatch(() =>
-      //   setWalletAccount(session.namespaces.stellar.accounts[0].slice(9))
-      // )
+      dispatch(
+        walletActions.setWalleAccount(
+          session.namespaces.stellar.accounts[0].slice(9)
+        )
+      )
 
       void router.push('/wallet')
     } catch (e) {
