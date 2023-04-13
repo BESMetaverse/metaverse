@@ -1,5 +1,5 @@
 import { SignClient } from '@walletconnect/sign-client'
-import { Web3Modal } from '@web3modal/standalone'
+// import { Web3Modal } from '@web3modal/standalone'
 
 import { Box } from '@mui/material'
 import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
