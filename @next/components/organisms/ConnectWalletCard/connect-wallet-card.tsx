@@ -19,7 +19,7 @@ const web3Modal = new Web3Modal({
   walletConnectVersion:1
 })
 
-export const AllowMintCard = (): JSX.Element => {
+export const ConnectWalletCard = (): JSX.Element => {
   const [stepOne, setStepOne] = useState(true)
   const [stepTwo, setStepTwo] = useState(false)
   const [stepThree, setStepThree] = useState(false)

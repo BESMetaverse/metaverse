@@ -1,2 +1,2 @@
-export * from './AllowMintCard'
+export * from './ConnectWalletCard'
 export * from './Planet'
