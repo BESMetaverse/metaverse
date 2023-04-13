@@ -12,16 +12,17 @@ import { SecondStepSection } from '@next/components/molecules/SecondStepSection'
 import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
+import { ConnectWalletAlert } from '@next/components/atoms/ConnectWalletAlert'
 
 const web3Modal = new Web3Modal({
   projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
   standaloneChains: ['eip155:5']
 })
 
-export const AllowMintCard = (): JSX.Element => {
-  const [stepOne, setStepOne] = useState(true)
-  const [stepTwo, setStepTwo] = useState(false)
-  const [stepThree, setStepThree] = useState(false)
+export const MintingCard = (): JSX.Element => {
+  const [connected, setConnected] = useState(false)
+  // const [stepTwo, setStepTwo] = useState(false)
+  // const [stepThree, setStepThree] = useState(false)
   const [walletProvider, setWalletProvider] = useState('')
 
   // wallet connect
@@ -34,23 +35,19 @@ export const AllowMintCard = (): JSX.Element => {
   }
 
   const handleStepOne = (): void => {
-    setStepOne(false)
+    setConnected(false)
     setStepTwo(true)
     setStepThree(false)
   }
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
     if (walletProvider === 'Freighter') {
-      setStepOne(false)
-      setStepTwo(false)
-      setStepThree(true)
+      setConnected(true)
 
       console.log('user has selected Freighter wallet')
     } else if (walletProvider === 'WalletConnect') {
       await handleWalletConnect()
-      setStepOne(false)
-      setStepTwo(false)
-      setStepThree(true)
+      setConnected(true)
     } else if (walletProvider === 'XBULL') {
       // XBULL
       console.log('user has selected XBUll wallet')
@@ -149,38 +146,10 @@ export const AllowMintCard = (): JSX.Element => {
           width: '100%'
         }}
       >
-        {stepOne && (
-          <>
-            <CardHeadingSection />
-            <FirstStepSection />
-            <CardButtonSection
-              handleStepOne={handleStepOne}
-              Text={'Connect Wallet'}
-            />
-          </>
-        )}
-        {stepTwo && (
-          <>
-            <SecondStepHeading />
-            <SecondStepSection
-              walletProvider={walletProvider}
-              changeWalletProvider={changeWalletProvider}
-            />
-            <ContinueButton
-              disabled={!signClient}
-              handleStepTwo={handleStepTwo}
-              Text={'Continue'}
-            />
-          </>
-        )}
-        {stepThree && (
-          <>
-            <ThirdStepHeading />
-            <ThirdStepSection />
-          </>
-        )}
+        <ThirdStepHeading />
+        <ThirdStepSection />
       </Box>
-      {stepOne ? <MintingTerms /> : null}
+      {!connected ? <ConnectWalletAlert /> : null}
     </Box>
   )
 }
