@@ -15,13 +15,13 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 
-const web3Modal = new Web3Modal({
-  projectId: '7dac674c8ea2b550dfb4b918b14204b9',
-  standaloneChains: ['eip155:'],
-  walletConnectVersion: 1
-})
-
 export const ConnectWalletCard = (): JSX.Element => {
+  const web3Modal = new Web3Modal({
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
+    standaloneChains: ['stellar:futurenet'],
+    walletConnectVersion: 2
+  })
+
   const [stepOne, setStepOne] = useState(true)
   const [stepTwo, setStepTwo] = useState(false)
   const [stepThree, setStepThree] = useState(false)
@@ -29,9 +29,9 @@ export const ConnectWalletCard = (): JSX.Element => {
   const [continueDisabled, setContinueDisabled] = useState(false)
   const [network, setNetwork] = useState('')
   const [wallet, setWallet] = useState('')
-  // const [walletProvider, setWalletProvider] = useState('')
+
   const router = useRouter()
-  const dispatch 
+  const dispatch = useDispatch()
 
   // wallet connect
   const [signClient, setSignClient] = useState<any>()
@@ -73,7 +73,7 @@ export const ConnectWalletCard = (): JSX.Element => {
   async function createClient(): Promise<void> {
     try {
       const client = await SignClient.init({
-        projectId: '7948ceba0f5cf15f799771ed57ec69f6'
+        projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string
       })
       console.log('client is ', client)
       setSignClient(client)
@@ -87,9 +87,9 @@ export const ConnectWalletCard = (): JSX.Element => {
     try {
       // dapp is going to send a proposal namespace
       const proposalNamespace = {
-        eip155: {
-          chains: ['eip155:5'],
-          methods: ['eth_sendTransaction'],
+        stellar: {
+          chains: ['stellar:futurenet'],
+          methods: ['stellar_signAndSubmitXDR', 'stellar_signXDR'],
           events: ['connect', 'disconnect']
         }
       }
@@ -105,7 +105,6 @@ export const ConnectWalletCard = (): JSX.Element => {
         await onSessionConnect(sessionNamespace)
         web3Modal.closeModal()
       }
-      void router.push('/minting')
     } catch (e) {
       console.log(e)
     }
@@ -115,7 +114,12 @@ export const ConnectWalletCard = (): JSX.Element => {
     try {
       console.log('session connected ', session)
       setSessions(session)
-      setAccounts(session.namespaces.eip155.accounts[0].slice(9))
+      setAccounts(session.namespaces.stellar.accounts[0].slice(9))
+      // dispatch(() =>
+      //   setWalletAccount(session.namespaces.stellar.accounts[0].slice(9))
+      // )
+
+      void router.push('/wallet')
     } catch (e) {
       console.log(e)
     }
@@ -158,7 +162,7 @@ export const ConnectWalletCard = (): JSX.Element => {
             lg: '2.5rem 2rem',
             md: '1.5rem',
             sm: '1.25rem',
-            xs: '1.25rem 0.5rem'
+            xs: '1.25rem 1rem'
           },
           width: '100%'
         }}
@@ -185,7 +189,6 @@ export const ConnectWalletCard = (): JSX.Element => {
             <ContinueButton
               disabled={!continueDisabled}
               handleStepTwo={handleStepTwo}
-              handleWalletConnect={handleWalletConnect}
               Text={'Continue'}
             />
           </>
