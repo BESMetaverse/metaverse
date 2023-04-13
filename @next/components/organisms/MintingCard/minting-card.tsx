@@ -7,10 +7,10 @@ import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
 import { ConnectWalletAlert } from '@next/components/atoms/ConnectWalletAlert'
 
-const web3Modal = new Web3Modal({
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-  standaloneChains: ['eip155:5']
-})
+// const web3Modal = new Web3Modal({
+//   projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+//   standaloneChains: ['eip155:5']
+// })
 
 export const MintingCard = (): JSX.Element => {
   const [connected, setConnected] = useState(false)
@@ -25,11 +25,6 @@ export const MintingCard = (): JSX.Element => {
     setWalletProvider(selectedOption)
   }
 
-  const handleStepOne = (): void => {
-    setConnected(false)
-    setStepTwo(true)
-    setStepThree(false)
-  }
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
     if (walletProvider === 'Freighter') {
@@ -75,10 +70,10 @@ export const MintingCard = (): JSX.Element => {
 
       if (uri) {
         console.log('uri is ', uri)
-        await web3Modal.openModal({ uri })
+        // await web3Modal.openModal({ uri })
         const sessionNamespace = await approval()
         await onSessionConnect(sessionNamespace)
-        web3Modal.closeModal()
+        // web3Modal.closeModal()
       }
     } catch (e) {
       console.log(e)
