@@ -2,11 +2,13 @@ import { Box } from '@mui/material'
 import { FieldLabel } from '@next/components/atoms/FieldLabel'
 import { IconItem } from '@next/components/atoms/IconItem'
 export const SecondStepSection = ({
-  wallet,
+  walletProvider,
+  changeWalletProvider,
   setNetwork,
   setWallet
 }: {
-  wallet: string
+  walletProvider: string
+  changeWalletProvider: (selectedOption: string) => void
   setNetwork: (network: string) => void
   setWallet: (wallet: string) => void
 }): JSX.Element => {
@@ -94,9 +96,10 @@ export const SecondStepSection = ({
             onClick={() => setWallet('Freighter')}
           >
             <IconItem
-              selected={wallet === 'Freighter'}
+              selected={walletProvider === 'Freighter'}
               Title={'Freighter'}
               icon={'/images/Freighter.svg'}
+              changeWalletProvider={changeWalletProvider}
             />
           </Box>
           <Box
@@ -113,9 +116,10 @@ export const SecondStepSection = ({
             onClick={() => setWallet('WalletConnect')}
           >
             <IconItem
-              selected={wallet === 'WalletConnect'}
+              selected={walletProvider === 'WalletConnect'}
               Title={'WalletConnect'}
               icon={'/images/WalletConnect.svg'}
+              changeWalletProvider={changeWalletProvider}
             />
           </Box>
           <Box
@@ -124,10 +128,12 @@ export const SecondStepSection = ({
             }}
             onClick={() => setWallet('XBULL')}
           >
+            {/* {walletProvider !== 'XBULL'} */}
             <IconItem
-              selected={wallet === 'XBULL'}
+              selected={walletProvider === 'XBULL'}
               Title={'XBULL'}
               icon={'/images/XBULL.svg'}
+              changeWalletProvider={changeWalletProvider}
             />
           </Box>
         </Box>

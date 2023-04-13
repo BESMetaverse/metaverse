@@ -9,6 +9,3 @@ export interface UserInfoType {
 export interface AuthSliceState {
   userInfo: UserInfoType | null
 }
-export interface WalletAccountNumber {
-  walletAccountNumber: string | null
-}

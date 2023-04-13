@@ -12,8 +12,6 @@ import { SecondStepSection } from '@next/components/molecules/SecondStepSection'
 import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
 
 export const ConnectWalletCard = (): JSX.Element => {
   const web3Modal = new Web3Modal({
@@ -29,9 +27,7 @@ export const ConnectWalletCard = (): JSX.Element => {
   const [continueDisabled, setContinueDisabled] = useState(false)
   const [network, setNetwork] = useState('')
   const [wallet, setWallet] = useState('')
-
-  const router = useRouter()
-  const dispatch = useDispatch()
+  const [walletProvider, setWalletProvider] = useState('')
 
   // wallet connect
   const [signClient, setSignClient] = useState<any>()
@@ -46,6 +42,10 @@ export const ConnectWalletCard = (): JSX.Element => {
     }
   }, [network, wallet])
 
+  const changeWalletProvider = (selectedOption: string): void => {
+    setWalletProvider(selectedOption)
+  }
+
   const handleStepOne = (): void => {
     setStepOne(false)
     setStepTwo(true)
@@ -53,18 +53,18 @@ export const ConnectWalletCard = (): JSX.Element => {
   }
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
-    if (wallet === 'Freighter') {
+    if (walletProvider === 'Freighter') {
       setStepOne(false)
       setStepTwo(false)
       setStepThree(true)
 
       console.log('user has selected Freighter wallet')
-    } else if (wallet === 'WalletConnect') {
+    } else if (walletProvider === 'WalletConnect') {
       await handleWalletConnect()
       setStepOne(false)
       setStepTwo(false)
       setStepThree(true)
-    } else if (wallet === 'XBULL') {
+    } else if (walletProvider === 'XBULL') {
       // XBULL
       console.log('user has selected XBUll wallet')
     }
@@ -115,11 +115,6 @@ export const ConnectWalletCard = (): JSX.Element => {
       console.log('session connected ', session)
       setSessions(session)
       setAccounts(session.namespaces.stellar.accounts[0].slice(9))
-      // dispatch(() =>
-      //   setWalletAccount(session.namespaces.stellar.accounts[0].slice(9))
-      // )
-
-      void router.push('/wallet')
     } catch (e) {
       console.log(e)
     }
@@ -182,7 +177,8 @@ export const ConnectWalletCard = (): JSX.Element => {
           <>
             <SecondStepHeading />
             <SecondStepSection
-              wallet={wallet}
+              walletProvider={walletProvider}
+              changeWalletProvider={changeWalletProvider}
               setNetwork={setNetwork}
               setWallet={setWallet}
             />

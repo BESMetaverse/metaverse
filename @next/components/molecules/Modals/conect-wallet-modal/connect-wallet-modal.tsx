@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import Image from 'next/image'
 import { Box, Button, Modal, Typography } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
-import { useRouter } from 'next/router'
 
 interface MintingModalProps {
   connected: boolean
@@ -25,7 +24,9 @@ export const ConnectWalletModal = ({
   connected,
   handleClose
 }: MintingModalProps): JSX.Element => {
-  const router = useRouter()
+  useEffect(() => {
+    console.log('connected: ', connected)
+  }, [connected])
   return (
     <Modal
       open={!connected}
@@ -100,7 +101,6 @@ export const ConnectWalletModal = ({
                 border: '1px solid #02BCFC'
               }
             }}
-            onClick={() => router.push('/wallet')}
           >
             Connect Wallet
           </Button>
