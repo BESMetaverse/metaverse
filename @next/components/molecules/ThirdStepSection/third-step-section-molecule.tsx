@@ -23,21 +23,30 @@ export const ThirdStepSection = (): JSX.Element => {
 
   // call contract functions here to check if our contract is working fine
   const sorobanContext = useSorobanReact()
+  const { address, activeChain, server } = useSorobanReact()
+  console.log(
+    'soroban context activechain is ==> ',
+    activeChain
+    // server,
+    // address
+  )
+
+  console.log('soroban context is ', sorobanContext)
+
   const { sendTransaction } = useSendTransaction()
 
   getCurrentSupply({ sorobanContext: sorobanContext })
   getTotalNFTSupply({ sorobanContext: sorobanContext })
 
   const handleMint = async (): Promise<void> => {
-    console.log('sorobanContext: ', sorobanContext)
     const { activeChain, server, address } = sorobanContext
     if (!activeChain || !address || !server) {
       console.log('No active chain')
     } else {
       try {
-        let account = await server.getAccount(address)
-        let sequence = account.sequenceNumber()
-        let source = new SorobanClient.Account(address, sequence)
+        const account = await server.getAccount(address)
+        const sequence = account.sequenceNumber()
+        const source = new SorobanClient.Account(address, sequence)
         const transaction = contractTransaction({
           networkPassphrase: activeChain.networkPassphrase,
           source,
@@ -48,12 +57,11 @@ export const ThirdStepSection = (): JSX.Element => {
         })
         // open sign pop-up
         const txn = await sendTransaction(transaction, {
-          sorobanContext,
-          secretKey: 'SBAYNCPCWBWOCBT2CQYVAXTOTPYJ3B2R6Q7QJJ6BXSJYDXFJLQKNQPWH'
+          sorobanContext
         })
         // check the success response here and then open successfull model
         setOpen(true)
-        console.log('adoptPet.tsx:sendTransaction:result: ', txn)
+        console.log('adoptPet.tsx:sendTransaction:result: ')
       } catch (error) {
         console.log('Error while sending the transaction: ', error)
       }
