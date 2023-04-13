@@ -13,12 +13,13 @@ import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
 
-const web3Modal = new Web3Modal({
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-  standaloneChains: ['eip155:5']
-})
-
 export const ConnectWalletCard = (): JSX.Element => {
+  const web3Modal = new Web3Modal({
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
+    standaloneChains: ['stellar:futurenet'],
+    walletConnectVersion: 2
+  })
+
   const [stepOne, setStepOne] = useState(true)
   const [stepTwo, setStepTwo] = useState(false)
   const [stepThree, setStepThree] = useState(false)
@@ -72,7 +73,7 @@ export const ConnectWalletCard = (): JSX.Element => {
   async function createClient(): Promise<void> {
     try {
       const client = await SignClient.init({
-        projectId: '7948ceba0f5cf15f799771ed57ec69f6'
+        projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string
       })
       console.log('client is ', client)
       setSignClient(client)
@@ -86,9 +87,9 @@ export const ConnectWalletCard = (): JSX.Element => {
     try {
       // dapp is going to send a proposal namespace
       const proposalNamespace = {
-        eip155: {
-          chains: ['eip155:5'],
-          methods: ['eth_sendTransaction'],
+        stellar: {
+          chains: ['stellar:futurenet'],
+          methods: ['stellar_signAndSubmitXDR', 'stellar_signXDR'],
           events: ['connect', 'disconnect']
         }
       }
@@ -113,7 +114,7 @@ export const ConnectWalletCard = (): JSX.Element => {
     try {
       console.log('session connected ', session)
       setSessions(session)
-      setAccounts(session.namespaces.eip155.accounts[0].slice(9))
+      setAccounts(session.namespaces.stellar.accounts[0].slice(9))
     } catch (e) {
       console.log(e)
     }
