@@ -1,13 +1,16 @@
 import { Button } from '@mui/material'
 export const ConnectWallet = ({
   handleStep,
-  Text
+  Text,
+  disabled
 }: {
   handleStep: any
   Text: string
+  disabled: boolean
 }): JSX.Element => {
   return (
     <Button
+      disabled={disabled}
       sx={{
         backgroundColor: '#616D72',
         border: '1px solid #616D72',

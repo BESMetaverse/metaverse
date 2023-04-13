@@ -4,7 +4,7 @@ export const ContinueButton = ({
   handleStepTwo,
   Text
 }: {
-  disabled?: boolean
+  disabled: boolean
   handleStepTwo: any
   Text: string
 }): JSX.Element => {
@@ -33,7 +33,6 @@ export const ContinueButton = ({
           border: '1px solid #02BCFC'
         }
       }}
-      // disabled={true}
       onClick={handleStepTwo}
     >
       {Text}
