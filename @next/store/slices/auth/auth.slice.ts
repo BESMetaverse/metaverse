@@ -5,14 +5,10 @@
  */
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AuthSliceState, UserInfoType, WalletAccountNumber } from './auth.types'
+import { AuthSliceState, UserInfoType } from './auth.types'
 
 export const authInitialState: AuthSliceState = {
   userInfo: null
-}
-
-export const WalletAccountINitialState: WalletAccountNumber = {
-  walletAccountNumber: null
 }
 
 const authSlice = createSlice({
@@ -29,13 +25,6 @@ const authSlice = createSlice({
     ) {
       state.userInfo = payload
     }
-    // setWalleAccount(
-    //   state: WalletAccountNumber,
-    //   { payload }: PayloadAction<string>
-    // ) {
-    //   state.walletAccountNumber = payload
-    //   console.log('Payload', payload)
-    // }
   }
 })
 

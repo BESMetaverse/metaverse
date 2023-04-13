@@ -82,7 +82,7 @@ export function useSendTransaction<E = Error>(
       // console.log("sorobanContext.activeConnector: ", sorobanContext?.activeConnector)
       // console.log("sorobanContext.activeChain: ", sorobanContext?.activeChain)
 
-      if (!(passedOptions?.secretKey || sorobanContext?.activeConnector)) {
+      if (!sorobanContext?.activeConnector) {
         throw new Error(
           'No secret key or active wallet. Provide at least one of those'
         )
@@ -98,9 +98,9 @@ export function useSendTransaction<E = Error>(
 
       if (!sorobanContext.server) throw new Error('Not connected to server')
 
-      let activeChain = sorobanContext?.activeChain
-      let activeConnector = sorobanContext?.activeConnector
-      let server = sorobanContext?.server
+      const activeChain = sorobanContext?.activeChain
+      const activeConnector = sorobanContext?.activeConnector
+      const server = sorobanContext?.server
 
       const { timeout, skipAddingFootprint } = {
         timeout: 60000,
@@ -119,19 +119,10 @@ export function useSendTransaction<E = Error>(
 
       console.log('signing transaction')
       let signed = ''
-      if (passedOptions?.secretKey) {
-        // User as set a secretKey, txn will be signed using the secretKey
-        const keypair = SorobanClient.Keypair.fromSecret(
-          passedOptions.secretKey
-        )
-        txn.sign(keypair)
-        signed = txn.toXDR()
-      } else {
-        // User has not set a secretKey, txn will be signed using the Connector (wallet) provided in the sorobanContext
-        signed = await activeConnector.signTransaction(txn.toXDR(), {
-          networkPassphrase
-        })
-      }
+      //  Here going to sign the transaction (to get private key)
+      signed = await activeConnector.signTransaction(txn.toXDR(), {
+        networkPassphrase
+      })
 
       console.log('submitting transaction')
       const transactionToSubmit = SorobanClient.TransactionBuilder.fromXDR(
@@ -183,7 +174,7 @@ export function useSendTransaction<E = Error>(
                 return SorobanClient.xdr.ScVal.scvI32(-1)
               }
 
-              console.log(response)
+              console.log('response is', response)
               console.log('SUCCESSFULLY COMPLETED TRANSACTION')
               return value.invokeHostFunctionResult().success()
             }
@@ -230,7 +221,7 @@ export function useSendTransaction<E = Error>(
             }
             default: {
               throw new Error(
-                'Unexpected transaction status: ' + response.status
+                'Unexpected transaction status: ' + (response.status as string)
               )
             }
           }
@@ -249,16 +240,16 @@ export function useSendTransaction<E = Error>(
   )
 
   return {
-    isIdle: status == 'idle',
-    isError: status == 'error',
-    isLoading: status == 'loading',
-    isSuccess: status == 'success',
+    isIdle: status === 'idle',
+    isError: status === 'error',
+    isLoading: status === 'loading',
+    isSuccess: status === 'success',
     sendTransaction,
     reset: () => {},
     status
   }
 }
 
-async function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+async function sleep(ms: number): Promise<any> {
+  return await new Promise((resolve) => setTimeout(resolve, ms))
 }

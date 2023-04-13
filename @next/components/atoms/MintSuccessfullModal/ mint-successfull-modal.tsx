@@ -20,13 +20,18 @@ const style = {
   p: 4
 }
 export const MintSuccessfullModal = ({
-  Text
+  Text,
+  open,
+  handleMint,
+  handleOpen,
+  handleClose
 }: {
   Text: string
+  open: boolean
+  handleMint: () => Promise<void>
+  handleOpen: () => void
+  handleClose: () => void
 }): JSX.Element => {
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
   const [text, setText] = React.useState<string>('Copy')
 
   const copyText = (copyText: string): void => {
@@ -64,7 +69,7 @@ export const MintSuccessfullModal = ({
             border: '1px solid #02BCFC'
           }
         }}
-        onClick={handleOpen}
+        onClick={handleMint}
       >
         {Text} 1 Mechs
       </Button>
@@ -128,7 +133,8 @@ export const MintSuccessfullModal = ({
             >
               Your item has been minted
             </Typography>
-            <Link
+            {/* commented for now */}
+            {/* <Link
               href="https://ironpaw.io/terms"
               target="_blank"
               rel="noopener noreferrer"
@@ -186,7 +192,7 @@ export const MintSuccessfullModal = ({
                   />
                 </Button>
               </Tooltip>
-            </Box>
+            </Box> */}
           </Box>
         </Box>
       </Modal>
