@@ -22,7 +22,7 @@ export const HeadConnectWallet = (): JSX.Element => {
       }}
       onClick={handleConnectWallet}
     >
-      Connect wallet
+      Connect Wallet
     </Button>
   )
 }

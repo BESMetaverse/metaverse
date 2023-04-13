@@ -13,14 +13,17 @@ export const Header = (): JSX.Element => {
           display: 'flex',
           justifyContent: 'space-between',
           maxWidth: '1320px',
-          padding: '0 1rem !important'
+          padding: {
+            xl: '0 1rem !important',
+            xs: '0 0.5rem !important'
+          }
         }}
       >
         <HeadLogo />
         <Box>
-          <Minting />
           <HeadConnectWallet />
           {/* <DisconnectWalletModal Text={'0xab2073j789D66'} /> */}
+          <Minting />
         </Box>
       </Container>
     </header>

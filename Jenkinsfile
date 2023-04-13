@@ -42,7 +42,7 @@ pipeline {
     post {
         always {
 
-        discordSend description: 'Jenkins Pipeline Build', footer:  '' , link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: 'https://discordapp.com/api/webhooks/836489945262063626/_SxqgqjzQ-NHYzUhMKYK6dvzj46jV9jbBXVNNPx3wO0CcmMxAAVOT-08rUL8RMBrIW96'
+        discordSend description: 'Jenkins Pipeline Build', footer:  '' , link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: 'https://discord.com/api/webhooks/1095986279310708807/TJAdvMMG7HN1fbNgO0xfrNQ5GJ5hBCn8NJjGVDrOfo0dx2FrFjulfSWokDFkoEX-AqU2'
         }
     }
 

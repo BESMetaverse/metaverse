@@ -74,7 +74,7 @@ export const ConnectWalletModal = ({
               textAlign: 'center'
             }}
           >
-            Your Wallet is not connected first you have to connect the wallet
+            Your Wallet is not connected first you have to connect the wallet.
           </Typography>
 
           <Button
@@ -82,7 +82,7 @@ export const ConnectWalletModal = ({
               backgroundColor: '#02BCFC',
               border: '1px solid #02BCFC',
               borderRadius: '0.313rem',
-              color: '#DBD8D8',
+              color: '#181D18',
               fontSize: '1.125rem',
               fontWeight: 500,
               height: '3.438rem',

@@ -31,7 +31,7 @@ export const ConnectWalletCard = (): JSX.Element => {
   const [wallet, setWallet] = useState('')
   // const [walletProvider, setWalletProvider] = useState('')
   const router = useRouter()
-  const dispatch = useDispatch()
+  const dispatch 
 
   // wallet connect
   const [signClient, setSignClient] = useState<any>()
@@ -116,7 +116,6 @@ export const ConnectWalletCard = (): JSX.Element => {
       console.log('session connected ', session)
       setSessions(session)
       setAccounts(session.namespaces.eip155.accounts[0].slice(9))
-      dispatch(setWalleAccount(session.namespaces.eip155.accounts[0].slice(9)))
     } catch (e) {
       console.log(e)
     }
