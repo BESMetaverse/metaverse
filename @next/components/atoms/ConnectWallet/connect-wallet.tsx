@@ -21,7 +21,7 @@ export const ConnectWallet = ({
         height: '3.438rem',
         textAlign: 'center',
         width: '100%',
-        '& :disabled': {
+        '&:disabled': {
           backgroundColor: '#616D72'
         },
         '&:hover': {

@@ -12,10 +12,13 @@ import { SecondStepSection } from '@next/components/molecules/SecondStepSection'
 import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
 
 const web3Modal = new Web3Modal({
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-  standaloneChains: ['eip155:5']
+  projectId: '7dac674c8ea2b550dfb4b918b14204b9',
+  standaloneChains: ['eip155:'],
+  walletConnectVersion: 1
 })
 
 export const ConnectWalletCard = (): JSX.Element => {
@@ -26,7 +29,9 @@ export const ConnectWalletCard = (): JSX.Element => {
   const [continueDisabled, setContinueDisabled] = useState(false)
   const [network, setNetwork] = useState('')
   const [wallet, setWallet] = useState('')
-  const [walletProvider, setWalletProvider] = useState('')
+  // const [walletProvider, setWalletProvider] = useState('')
+  const router = useRouter()
+  const dispatch = useDispatch()
 
   // wallet connect
   const [signClient, setSignClient] = useState<any>()
@@ -41,10 +46,6 @@ export const ConnectWalletCard = (): JSX.Element => {
     }
   }, [network, wallet])
 
-  const changeWalletProvider = (selectedOption: string): void => {
-    setWalletProvider(selectedOption)
-  }
-
   const handleStepOne = (): void => {
     setStepOne(false)
     setStepTwo(true)
@@ -52,18 +53,18 @@ export const ConnectWalletCard = (): JSX.Element => {
   }
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
-    if (walletProvider === 'Freighter') {
+    if (wallet === 'Freighter') {
       setStepOne(false)
       setStepTwo(false)
       setStepThree(true)
 
       console.log('user has selected Freighter wallet')
-    } else if (walletProvider === 'WalletConnect') {
+    } else if (wallet === 'WalletConnect') {
       await handleWalletConnect()
       setStepOne(false)
       setStepTwo(false)
       setStepThree(true)
-    } else if (walletProvider === 'XBULL') {
+    } else if (wallet === 'XBULL') {
       // XBULL
       console.log('user has selected XBUll wallet')
     }
@@ -104,6 +105,7 @@ export const ConnectWalletCard = (): JSX.Element => {
         await onSessionConnect(sessionNamespace)
         web3Modal.closeModal()
       }
+      void router.push('/minting')
     } catch (e) {
       console.log(e)
     }
@@ -114,6 +116,7 @@ export const ConnectWalletCard = (): JSX.Element => {
       console.log('session connected ', session)
       setSessions(session)
       setAccounts(session.namespaces.eip155.accounts[0].slice(9))
+      dispatch(setWalleAccount(session.namespaces.eip155.accounts[0].slice(9)))
     } catch (e) {
       console.log(e)
     }
@@ -176,14 +179,14 @@ export const ConnectWalletCard = (): JSX.Element => {
           <>
             <SecondStepHeading />
             <SecondStepSection
-              walletProvider={walletProvider}
-              changeWalletProvider={changeWalletProvider}
+              wallet={wallet}
               setNetwork={setNetwork}
               setWallet={setWallet}
             />
             <ContinueButton
               disabled={!continueDisabled}
               handleStepTwo={handleStepTwo}
+              handleWalletConnect={handleWalletConnect}
               Text={'Continue'}
             />
           </>

@@ -2,11 +2,13 @@ import { Button } from '@mui/material'
 export const ContinueButton = ({
   disabled,
   handleStepTwo,
-  Text
+  Text,
+  handleWalletConnect
 }: {
   disabled: boolean
   handleStepTwo: any
   Text: string
+  handleWalletConnect: () => void
 }): JSX.Element => {
   return (
     <Button
