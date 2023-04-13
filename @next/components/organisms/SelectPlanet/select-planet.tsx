@@ -6,56 +6,74 @@ export const SelectPlanet = (): JSX.Element => {
   const PlanetList = [
     {
       icon: '/images/planets/Earth.svg',
-      title: 'Earth',
-      url: 'earth',
+      title: 'BESterionis',
+      url: 'BESterionis',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Saturn.svg',
-      title: 'Saturn',
-      url: 'saturn',
+      title: 'BESblactura',
+      url: 'BESblactura',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Mars.svg',
-      title: 'Mars',
-      url: 'mars',
+      title: 'BESblactura',
+      url: 'BESblactura',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Moon.svg',
-      title: 'Moon',
-      url: 'moon',
+      title: 'BESorceum',
+      url: 'BESorceum',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Jupiter.svg',
-      title: 'Jupiter',
-      url: 'jupiter',
+      title: 'BESigonis',
+      url: 'BESigonis',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Neptune.svg',
-      title: 'Neptune',
-      url: 'neptune',
+      title: 'BESvoidum',
+      url: 'BESvoidum',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Mercury.svg',
-      title: 'Mercury',
-      url: 'mercury',
+      title: 'BESblacktaros',
+      url: 'BESblacktaros',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Venus.svg',
-      title: 'Venus',
-      url: 'venus',
+      title: 'BESenegos',
+      url: 'BESenegos',
       planetSize: '509 600 000'
     },
     {
       icon: '/images/planets/Pluto.svg',
-      title: 'Pluto',
-      url: 'pluto',
+      title: 'BESfuscantis',
+      url: 'BESfuscantis',
+      planetSize: '509 600 000'
+    },
+    {
+      icon: '/images/planets/Mercury.svg',
+      title: 'BESophoris',
+      url: 'BESophoris',
+      planetSize: '509 600 000'
+    },
+    {
+      icon: '/images/planets/Venus.svg',
+      title: 'BESobscurida',
+      url: 'BESobscurida',
+      planetSize: '509 600 000'
+    },
+    {
+      icon: '/images/planets/Pluto.svg',
+      title: 'BESinthrakos',
+      url: 'BESinthrakos',
       planetSize: '509 600 000'
     }
   ]

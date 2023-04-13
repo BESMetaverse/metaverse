@@ -26,6 +26,8 @@
       "@config": ["./@next/config"],
       "@store": ["./@next/store"],
       "@atoms": ["./@next/components/atoms"],
+      "@soroban": ["./@next/soroban"],
+
       "@molecules": ["./@next/components/molecules"],
       "@organisms": ["./@next/components/organisms"],
       "@templates": ["./@next/components/templates"],
