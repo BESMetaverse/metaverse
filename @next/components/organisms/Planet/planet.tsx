@@ -56,7 +56,6 @@ export const Planet = (): JSX.Element => {
       <Globe
         polygonAltitude={30}
         ref={globeEl}
-        // globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
         bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
@@ -71,18 +70,6 @@ export const Planet = (): JSX.Element => {
   )
 }
 
-// const Globe = dynamic(import('react-globe.gl'), { ssr: false })
-
-// const GlobeCustom = forwardRef((props: any, ref) => (
-//   <Globe {...props} forwardRef={ref} />
-// ))
-
-// const GlobeCustom = dynamic(
-//   async () => await import('@next/components/organisms/Globe'),
-//   {
-//     ssr: false
-//   }
-// )
 const GlobeCustom = dynamic(
   () => import('../Globe').then((mod) => mod.GlobeCustom),
   {
