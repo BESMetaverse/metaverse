@@ -6,6 +6,7 @@ import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
 import { ConnectWalletAlert } from '@next/components/atoms/ConnectWalletAlert'
+import { MintingSale } from '@next/components/atoms/MintingSale'
 
 // const web3Modal = new Web3Modal({
 //   projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
@@ -115,8 +116,16 @@ export const MintingCard = (): JSX.Element => {
   }, [signClient])
 
   return (
-    <Box sx={{ alignItems: 'baseline', maxWidth: '42.75rem', width: '100%' }}>
-      {/* <MintingSale /> */}
+    <Box
+      sx={{
+        alignItems: 'baseline',
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '42.75rem',
+        width: '100%'
+      }}
+    >
+      <MintingSale />
       <Box
         sx={{
           backgroundColor: '#262641',
@@ -127,7 +136,7 @@ export const MintingCard = (): JSX.Element => {
             lg: '2.5rem 2rem',
             md: '1.5rem',
             sm: '1.25rem',
-            xs: '1.25rem 0.5rem'
+            xs: '1.25rem 1rem'
           },
           width: '100%'
         }}

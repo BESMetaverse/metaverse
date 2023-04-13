@@ -6,7 +6,7 @@ export const ThirdStepHeading = (): JSX.Element => {
   return (
     <Box>
       <MainIcon />
-      <MainHeading Heading={'Connect  Freighter Wallet'} />
+      <MainHeading Heading={'Freighter Wallet'} />
       <Text Text={'Use the wallet you would like to mint your IPG from.'} />
     </Box>
   )

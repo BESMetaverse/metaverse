@@ -17,13 +17,13 @@ export const Minting = (): JSX.Element => {
         fontSize: '1rem',
         fontWeight: 600,
         height: '2.5rem',
-        margin: '0 1.25rem 0 0',
+        margin: { xl: '0 0 0 1.25rem', xs: '0 0 0 0.875rem' },
         textAlign: 'center',
-        width: '5rem'
+        width: '3.625rem'
       }}
       onClick={handleMinting}
     >
-      Minting
+      Mint
     </Button>
   )
 }

@@ -16,7 +16,7 @@ import { useState, useEffect } from 'react'
 const web3Modal = new Web3Modal({
   projectId: "7dac674c8ea2b550dfb4b918b14204b9",
   standaloneChains: ["eip155:"],
-  walletConnectVersion:1
+  walletConnectVersion:1,
 })
 
 export const ConnectWalletCard = (): JSX.Element => {
@@ -145,7 +145,7 @@ export const ConnectWalletCard = (): JSX.Element => {
             lg: '2.5rem 2rem',
             md: '1.5rem',
             sm: '1.25rem',
-            xs: '1.25rem 0.5rem'
+            xs: '1.25rem 1rem'
           },
           width: '100%'
         }}
