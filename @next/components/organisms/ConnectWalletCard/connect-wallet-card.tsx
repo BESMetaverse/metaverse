@@ -157,7 +157,7 @@ export const ConnectWalletCard = (): JSX.Element => {
             lg: '2.5rem 2rem',
             md: '1.5rem',
             sm: '1.25rem',
-            xs: '1.25rem 0.5rem'
+            xs: '1.25rem 1rem'
           },
           width: '100%'
         }}
