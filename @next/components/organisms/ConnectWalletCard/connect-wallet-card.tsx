@@ -16,9 +16,12 @@ import { useRouter } from 'next/router'
 import { useAppDispatch } from '@hooks'
 import { walletActions } from '@store'
 import { useSorobanReact } from '@soroban-react/core'
+import { isConnected, getPublicKey } from '@stellar/freighter-api'
+import { useSnackbar } from 'notistack'
 
 export const ConnectWalletCard = (): JSX.Element => {
   const dispatch = useAppDispatch()
+  const { enqueueSnackbar } = useSnackbar()
 
   const web3Modal = new Web3Modal({
     projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
@@ -57,17 +60,41 @@ export const ConnectWalletCard = (): JSX.Element => {
     setStepTwo(true)
     setStepThree(false)
   }
+
+  const retrievePublicKey = async (): Promise<any> => {
+    let publicKey = ''
+    try {
+      publicKey = await getPublicKey()
+    } catch (e) {
+      console.log('error is ', e)
+      return null
+    }
+    return publicKey
+  }
+
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
     if (wallet === 'Freighter') {
-      dispatch(walletActions.setWalletAccount(address as string))
-      dispatch(walletActions.setWalletProvider('Freighter'))
-      // set it from activeChain
-      dispatch(walletActions.setActiveNetwork('stellar'))
+      console.clear()
+      console.log('freighter is called')
 
-      setStepOne(false)
-      setStepTwo(false)
-      setStepThree(true)
+      //  check if user has freighter wallet installed
+      if (await isConnected()) {
+        //  if user has added his credential
+        const result = await retrievePublicKey()
+        console.log('public key is ', result)
+        if (result) {
+          dispatch(walletActions.setWalletAccount(result))
+          dispatch(walletActions.setWalletProvider('Freighter'))
+          // set it from activeChain
+          dispatch(walletActions.setActiveNetwork('stellar'))
+          setStepOne(false)
+          setStepTwo(false)
+          setStepThree(true)
+        }
+      } else {
+        enqueueSnackbar('Please install Freighter wallet!', { variant: 'info' })
+      }
 
       console.log('user has selected Freighter wallet')
     } else if (wallet === 'WalletConnect') {
@@ -100,7 +127,11 @@ export const ConnectWalletCard = (): JSX.Element => {
       const proposalNamespace = {
         stellar: {
           chains: ['stellar:futurenet'],
-          methods: ['stellar_signAndSubmitXDR', 'stellar_signXDR'],
+          methods: [
+            'stellar_sendTransaction',
+            'stellar_signAndSubmitXDR',
+            'stellar_signXDR'
+          ],
           events: ['connect', 'disconnect']
         }
       }
@@ -125,6 +156,7 @@ export const ConnectWalletCard = (): JSX.Element => {
     try {
       console.log('session connected ', session)
       //  set wallet Details here
+      setSessions(session)
       dispatch(
         walletActions.setWalletAccount(
           session.namespaces.stellar.accounts[0].slice(9)
