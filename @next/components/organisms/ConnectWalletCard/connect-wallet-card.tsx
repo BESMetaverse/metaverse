@@ -189,42 +189,6 @@ export const ConnectWalletCard = (): JSX.Element => {
     setSessions([])
   }
 
-  async function handleSend() {
-    try {
-      const account = await server?.getAccount(
-        'GBJCZGUK4BFCKPGR5IJNXNLZICDUXK2YAWZOHOA57TIKIFQTNCDJPDGZ'
-      )
-      const sequence = account?.sequenceNumber()
-      const source = new SorobanClient.Account(
-        'GBJCZGUK4BFCKPGR5IJNXNLZICDUXK2YAWZOHOA57TIKIFQTNCDJPDGZ',
-        sequence
-      )
-      const tx = contractTransaction({
-        networkPassphrase: 'Test SDF Future Network ; October 2022',
-        source,
-        contractId:
-          '2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350',
-        method: 'mint_nft',
-        params: [new SorobanClient.Address(address).toScVal()]
-      })
-
-      let txXdr = tx.toXDR()
-      // const result = await signClient.request({
-      //   // topic: sessions.topic,
-      //   request: {
-      //     method: 'stellar_signAndSubmitXDR',
-      //     params: {
-      //       xdr: txXdr
-      //     }
-      //   },
-      //   chainId: 'stellar:futurenet'
-      // })
-      // console.log('result is ', result)
-      // setTxnHash(result)
-    } catch (e) {
-      console.log(e)
-    }
-  }
   useEffect(() => {
     if (!signClient) {
       void createClient()
