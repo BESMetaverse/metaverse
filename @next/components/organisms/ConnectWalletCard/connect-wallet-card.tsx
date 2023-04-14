@@ -16,12 +16,12 @@ import { useRouter } from 'next/router'
 import { useAppDispatch } from '@hooks'
 import { walletActions } from '@store'
 import { useSorobanReact } from '@soroban-react/core'
-import * as SorobanClient from 'soroban-client'
 import { isConnected, getPublicKey } from '@stellar/freighter-api'
-import { contractTransaction } from '@soroban'
+import { useSnackbar } from 'notistack'
 
 export const ConnectWalletCard = (): JSX.Element => {
   const dispatch = useAppDispatch()
+  const { enqueueSnackbar } = useSnackbar()
 
   const web3Modal = new Web3Modal({
     projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
@@ -93,7 +93,7 @@ export const ConnectWalletCard = (): JSX.Element => {
           setStepThree(true)
         }
       } else {
-        alert('Please install Freighter wallet!')
+        enqueueSnackbar('Please install Freighter wallet!', { variant: 'info' })
       }
 
       console.log('user has selected Freighter wallet')
