@@ -16,6 +16,9 @@ import { useRouter } from 'next/router'
 import { useAppDispatch } from '@hooks'
 import { walletActions } from '@store'
 import { useSorobanReact } from '@soroban-react/core'
+import * as SorobanClient from 'soroban-client'
+import { isConnected, getPublicKey } from '@stellar/freighter-api'
+import { contractTransaction } from '@soroban'
 
 export const ConnectWalletCard = (): JSX.Element => {
   const dispatch = useAppDispatch()
@@ -57,17 +60,41 @@ export const ConnectWalletCard = (): JSX.Element => {
     setStepTwo(true)
     setStepThree(false)
   }
+
+  const retrievePublicKey = async (): Promise<any> => {
+    let publicKey = ''
+    try {
+      publicKey = await getPublicKey()
+    } catch (e) {
+      console.log('error is ', e)
+      return null
+    }
+    return publicKey
+  }
+
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
     if (wallet === 'Freighter') {
-      dispatch(walletActions.setWalletAccount(address as string))
-      dispatch(walletActions.setWalletProvider('Freighter'))
-      // set it from activeChain
-      dispatch(walletActions.setActiveNetwork('stellar'))
+      console.clear()
+      console.log('freighter is called')
 
-      setStepOne(false)
-      setStepTwo(false)
-      setStepThree(true)
+      //  check if user has freighter wallet installed
+      if (await isConnected()) {
+        //  if user has added his credential
+        const result = await retrievePublicKey()
+        console.log('public key is ', result)
+        if (result) {
+          dispatch(walletActions.setWalletAccount(result))
+          dispatch(walletActions.setWalletProvider('Freighter'))
+          // set it from activeChain
+          dispatch(walletActions.setActiveNetwork('stellar'))
+          setStepOne(false)
+          setStepTwo(false)
+          setStepThree(true)
+        }
+      } else {
+        alert('Please install Freighter wallet!')
+      }
 
       console.log('user has selected Freighter wallet')
     } else if (wallet === 'WalletConnect') {
@@ -100,7 +127,11 @@ export const ConnectWalletCard = (): JSX.Element => {
       const proposalNamespace = {
         stellar: {
           chains: ['stellar:futurenet'],
-          methods: ['stellar_signAndSubmitXDR', 'stellar_signXDR'],
+          methods: [
+            'stellar_sendTransaction',
+            'stellar_signAndSubmitXDR',
+            'stellar_signXDR'
+          ],
           events: ['connect', 'disconnect']
         }
       }
@@ -125,6 +156,7 @@ export const ConnectWalletCard = (): JSX.Element => {
     try {
       console.log('session connected ', session)
       //  set wallet Details here
+      setSessions(session)
       dispatch(
         walletActions.setWalletAccount(
           session.namespaces.stellar.accounts[0].slice(9)
@@ -157,6 +189,42 @@ export const ConnectWalletCard = (): JSX.Element => {
     setSessions([])
   }
 
+  async function handleSend() {
+    try {
+      const account = await server?.getAccount(
+        'GBJCZGUK4BFCKPGR5IJNXNLZICDUXK2YAWZOHOA57TIKIFQTNCDJPDGZ'
+      )
+      const sequence = account?.sequenceNumber()
+      const source = new SorobanClient.Account(
+        'GBJCZGUK4BFCKPGR5IJNXNLZICDUXK2YAWZOHOA57TIKIFQTNCDJPDGZ',
+        sequence
+      )
+      const tx = contractTransaction({
+        networkPassphrase: 'Test SDF Future Network ; October 2022',
+        source,
+        contractId:
+          '2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350',
+        method: 'mint_nft',
+        params: [new SorobanClient.Address(address).toScVal()]
+      })
+
+      let txXdr = tx.toXDR()
+      // const result = await signClient.request({
+      //   // topic: sessions.topic,
+      //   request: {
+      //     method: 'stellar_signAndSubmitXDR',
+      //     params: {
+      //       xdr: txXdr
+      //     }
+      //   },
+      //   chainId: 'stellar:futurenet'
+      // })
+      // console.log('result is ', result)
+      // setTxnHash(result)
+    } catch (e) {
+      console.log(e)
+    }
+  }
   useEffect(() => {
     if (!signClient) {
       void createClient()

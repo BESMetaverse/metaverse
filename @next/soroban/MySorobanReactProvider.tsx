@@ -5,12 +5,10 @@ import { public_chain, futurenet } from '@soroban-react/chains'
 import { ChainMetadata, Connector } from '@soroban-react/types'
 import { freighter } from '@soroban-react/freighter'
 
-// const appName = 'Pet Adopt Dapp'
-// const allowedConnectorName = 'My Allowed Connectors for Pet Adopt Dapp'
 const allowedChains: ChainMetadata[] = [futurenet]
 
 const allowedConnectors: Connector[] = [freighter()]
-
+// const allowedConnectors: Connector[] = []
 export function MySorobanReactProvider({
   children
 }: {
