@@ -21,21 +21,21 @@ const walletSlice = createSlice({
   reducers: {
     setWalletAccount(
       state: walletSliceState,
-      { payload }: PayloadAction<string>
+      { payload }: PayloadAction<string | null>
     ) {
       console.log('payload is ', payload)
       state.walletAccountNumber = payload
     },
     setWalletProvider(
       state: walletSliceState,
-      { payload }: PayloadAction<string>
+      { payload }: PayloadAction<string | null>
     ) {
       console.log('payload is ', payload)
       state.walletProvider = payload
     },
     setActiveNetwork(
       state: walletSliceState,
-      { payload }: PayloadAction<string>
+      { payload }: PayloadAction<string | null>
     ) {
       console.log('payload is ', payload)
       state.activeChain = payload

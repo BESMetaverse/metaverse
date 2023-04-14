@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useAppSelector } from '@hooks'
 import { MintingSale } from '@next/components/atoms/MintingSale'
 import { ConnectWalletModal } from '@next/components/molecules/Modals/conect-wallet-modal/connect-wallet-modal'
+import { MintingNotAllowedModal } from '@next/components/molecules/Modals/minting-not-allowed-modal'
 
 export const MintingCard = (): JSX.Element => {
   const [connected, setConnected] = useState(false)
@@ -39,12 +40,15 @@ export const MintingCard = (): JSX.Element => {
           width: '100%'
         }}
       >
-        <ThirdStepHeading />
+        <ThirdStepHeading walletname={account.walletProvider} />
         <ThirdStepSection />
       </Box>
       {!account?.walletAccountNumber && (
         <ConnectWalletModal connected={connected} handleClose={handleClose} />
       )}
+
+      {/* Updates required */}
+      <MintingNotAllowedModal connected={connected} handleClose={handleClose} />
     </Box>
   )
 }

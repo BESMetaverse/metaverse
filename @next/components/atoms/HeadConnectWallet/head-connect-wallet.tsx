@@ -3,6 +3,8 @@ import { Box, Button, Typography } from '@mui/material'
 import Modal from '@mui/material/Modal'
 import { useRouter } from 'next/router'
 import { useAppSelector } from '@hooks'
+import { useAppDispatch } from '@hooks'
+import { walletActions } from '@store'
 import CloseIcon from '@mui/icons-material/Close'
 import Image from 'next/image'
 
@@ -25,9 +27,18 @@ export const HeadConnectWallet = (): JSX.Element => {
   const account = useAppSelector((state: any) => state.wallet)
 
   const router = useRouter()
+  const dispatch = useAppDispatch()
 
   const handleConnectWallet = (): any => {
     return router.push('/wallet')
+  }
+
+  const handleDisconnectWallet = (): void => {
+    dispatch(walletActions.setWalletAccount(null))
+    dispatch(walletActions.setWalletProvider(null))
+    dispatch(walletActions.setActiveNetwork(null))
+
+    setOpen(false)
   }
 
   return (
@@ -109,7 +120,7 @@ export const HeadConnectWallet = (): JSX.Element => {
               height={90}
               alt="disconnect"
               style={{
-                margin: '0 0 0.875rem',
+                margin: '0 0 0.875rem'
               }}
             />
             <Typography
@@ -148,6 +159,7 @@ export const HeadConnectWallet = (): JSX.Element => {
                   border: '1px solid #02BCFC'
                 }
               }}
+              onClick={handleDisconnectWallet}
             >
               Disconnect
             </Button>

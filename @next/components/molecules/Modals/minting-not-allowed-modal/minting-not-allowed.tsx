@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { Box, Button, Modal, Typography } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
-import { useRouter } from 'next/router'
 
 interface MintingModalProps {
   connected: boolean
@@ -20,14 +19,13 @@ const style = {
   p: 4
 }
 
-export const ConnectWalletModal = ({
+export const MintingNotAllowedModal = ({
   connected,
   handleClose
 }: MintingModalProps): JSX.Element => {
-  const router = useRouter()
   return (
     <Modal
-      open={!connected}
+      open={false}
       onClose={handleClose}
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
@@ -56,7 +54,7 @@ export const ConnectWalletModal = ({
           }}
         >
           <Image
-            src="/images/info.svg"
+            src="/images/not-allowed.png"
             width={90}
             height={90}
             alt="disconnect"
@@ -73,36 +71,8 @@ export const ConnectWalletModal = ({
               textAlign: 'center'
             }}
           >
-            Your Wallet is not connected first you have to connect the wallet.
+            Minting not allowed
           </Typography>
-
-          <Button
-            sx={{
-              backgroundColor: '#02BCFC',
-              border: '1px solid #02BCFC',
-              borderRadius: '0.313rem',
-              color: '#181D18',
-              fontSize: '1.125rem',
-              fontWeight: 500,
-              height: '3.438rem',
-              textAlign: 'center',
-              width: '100%',
-              '& :disabled': {
-                backgroundColor: '#616D72'
-              },
-              '&:hover': {
-                backgroundColor: '#02BCFC',
-                border: '1px solid #02BCFC'
-              },
-              '&:focus': {
-                backgroundColor: '#02BCFC',
-                border: '1px solid #02BCFC'
-              }
-            }}
-            onClick={(): any => router.push('/wallet')}
-          >
-            Connect Wallet
-          </Button>
         </Box>
       </Box>
     </Modal>

@@ -16,6 +16,7 @@ import { useRouter } from 'next/router'
 import { useAppDispatch } from '@hooks'
 import { walletActions } from '@store'
 import { useSorobanReact } from '@soroban-react/core'
+import { SpinLoader } from '@next/components/atoms/SpinLoader'
 
 export const ConnectWalletCard = (): JSX.Element => {
   const dispatch = useAppDispatch()
@@ -95,6 +96,7 @@ export const ConnectWalletCard = (): JSX.Element => {
   }
   async function handleWalletConnect(): Promise<void> {
     if (!signClient) throw Error('Cannot connect. Sign Client is not created')
+
     try {
       // dapp is going to send a proposal namespace
       const proposalNamespace = {
@@ -133,7 +135,7 @@ export const ConnectWalletCard = (): JSX.Element => {
       dispatch(walletActions.setWalletProvider('WalletConnect'))
       dispatch(walletActions.setActiveNetwork('stellar'))
 
-      // void router.push('/minting')
+      void router.push('/minting')
     } catch (e) {
       console.log(e)
     }
