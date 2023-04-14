@@ -1,5 +1,7 @@
 import { Box, Typography } from '@mui/material'
+import { useState } from 'react'
 export const MintingCalculation = (): JSX.Element => {
+  const [value, setValue] = useState('0')
   return (
     <Box
       sx={{
@@ -28,7 +30,10 @@ export const MintingCalculation = (): JSX.Element => {
       >
         <input
           type="number"
+          name="value"
+          value={value}
           // value={0}
+          onChange={(e) => setValue(e.target.value)}
           placeholder="0"
           className="custom-input"
         />
@@ -40,7 +45,7 @@ export const MintingCalculation = (): JSX.Element => {
             margin: '0 0 0 0.5rem'
           }}
         >
-          x= 0.15
+          x= 1
         </Typography>
       </Box>
       <Typography
@@ -51,7 +56,7 @@ export const MintingCalculation = (): JSX.Element => {
           margin: '0 0 0 0.5rem'
         }}
       >
-        =0
+        {+value * 1}
       </Typography>
     </Box>
   )
