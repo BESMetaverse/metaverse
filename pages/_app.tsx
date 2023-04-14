@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import { MySorobanReactProvider } from '@soroban'
 import { persistStore } from 'redux-persist'
 import { appWithTranslation } from 'next-i18next'
+import { createWrapper } from 'next-redux-wrapper'
 
 import type { Page } from '@types'
 
@@ -46,4 +47,8 @@ const MyApp: FC<Props> = ({ Component, pageProps }) => {
     </>
   )
 }
-export default appWithTranslation(MyApp)
+const makeStore = (): any => createStore
+
+const wrapper = createWrapper(makeStore)
+
+export default wrapper.withRedux(appWithTranslation(MyApp))

@@ -44,7 +44,16 @@ export const MintingTerms = ({
       <FormControlLabel
         value="end"
         control={
-          <Checkbox checked={isChecked} onChange={handleCheckboxChange} />
+          <Checkbox
+            checked={isChecked}
+            onChange={handleCheckboxChange}
+            sx={{
+              color: '#02BCFC',
+              '&.Mui-checked': {
+                color: '#02BCFC'
+              }
+            }}
+          />
         }
         label="By minting you agree to the"
         labelPlacement="end"

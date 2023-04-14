@@ -122,6 +122,7 @@ export const ConnectWalletCard = (): JSX.Element => {
   }
   async function handleWalletConnect(): Promise<void> {
     if (!signClient) throw Error('Cannot connect. Sign Client is not created')
+
     try {
       // dapp is going to send a proposal namespace
       const proposalNamespace = {
@@ -165,7 +166,7 @@ export const ConnectWalletCard = (): JSX.Element => {
       dispatch(walletActions.setWalletProvider('WalletConnect'))
       dispatch(walletActions.setActiveNetwork('stellar'))
 
-      // void router.push('/minting')
+      void router.push('/minting')
     } catch (e) {
       console.log(e)
     }

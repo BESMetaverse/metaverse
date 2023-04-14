@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
+import { createWrapper } from 'next-redux-wrapper'
 
 import {
   persistStore,
