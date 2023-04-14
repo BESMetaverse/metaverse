@@ -1,10 +1,12 @@
 import { Box } from '@mui/material'
 // import { SoldOut } from '@next/components/atoms/SoldOut'
-// import { SpinLoader } from '@next/components/atoms/SpinLoader'
+import { SpinLoader } from '@next/components/atoms/SpinLoader'
 // import { WalletConnecting } from '@next/components/atoms/WalletConnecting'
 import { MintingCard } from '@next/components/organisms/MintingCard'
+import { useState } from 'react'
 
 export const MintingPage = (): JSX.Element => {
+  const [loading, setLoading] = useState(false)
   return (
     <Box
       sx={{
@@ -13,7 +15,8 @@ export const MintingPage = (): JSX.Element => {
         width: '100%'
       }}
     >
-      {/* <SpinLoader /> */}
+      {loading && <SpinLoader />}
+
       {/* <WalletConnecting /> */}
       {/* <SoldOut /> */}
       <Box
@@ -27,7 +30,7 @@ export const MintingPage = (): JSX.Element => {
           width: '100%'
         }}
       >
-        <MintingCard />
+        <MintingCard setLoading={setLoading} />
       </Box>
     </Box>
   )

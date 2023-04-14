@@ -7,7 +7,11 @@ import { MintingSale } from '@next/components/atoms/MintingSale'
 import { ConnectWalletModal } from '@next/components/molecules/Modals/conect-wallet-modal/connect-wallet-modal'
 import { MintingNotAllowedModal } from '@next/components/molecules/Modals/minting-not-allowed-modal'
 
-export const MintingCard = (): JSX.Element => {
+export const MintingCard = ({
+  setLoading
+}: {
+  setLoading: any
+}): JSX.Element => {
   const [connected, setConnected] = useState(false)
 
   const handleClose = (): void => setConnected(true)
@@ -41,7 +45,7 @@ export const MintingCard = (): JSX.Element => {
         }}
       >
         <ThirdStepHeading walletname={account.walletProvider} />
-        <ThirdStepSection />
+        <ThirdStepSection setLoading={setLoading} />
       </Box>
       {!account?.walletAccountNumber && (
         <ConnectWalletModal connected={connected} handleClose={handleClose} />

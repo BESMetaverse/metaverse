@@ -18,11 +18,13 @@ import { walletActions } from '@store'
 import { useSorobanReact } from '@soroban-react/core'
 import { isConnected, getPublicKey } from '@stellar/freighter-api'
 import { useSnackbar } from 'notistack'
-
-export const ConnectWalletCard = (): JSX.Element => {
+export const ConnectWalletCard = ({
+  setLoading
+}: {
+  setLoading: any
+}): JSX.Element => {
   const dispatch = useAppDispatch()
   const { enqueueSnackbar } = useSnackbar()
-
   const web3Modal = new Web3Modal({
     projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
     standaloneChains: ['stellar:futurenet'],
@@ -91,6 +93,7 @@ export const ConnectWalletCard = (): JSX.Element => {
           setStepOne(false)
           setStepTwo(false)
           setStepThree(true)
+          void router.push('/minting')
         }
       } else {
         enqueueSnackbar('Please install Freighter wallet!', { variant: 'info' })
@@ -240,12 +243,12 @@ export const ConnectWalletCard = (): JSX.Element => {
             />
           </>
         )}
-        {stepThree && (
+        {/* {stepThree && (
           <>
             <ThirdStepHeading />
-            <ThirdStepSection />
+            <ThirdStepSection setLoading={setLoading} />
           </>
-        )}
+        )} */}
       </Box>
       {stepOne && (
         <MintingTerms setConnectWalletDisabled={setConnectWalletDisabled} />
