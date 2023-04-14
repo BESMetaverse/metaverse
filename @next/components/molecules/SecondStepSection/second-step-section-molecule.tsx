@@ -66,7 +66,8 @@ export const SecondStepSection = ({
         <FieldLabel FieldLabel={'Connect Wallet'} />
         <Box
           sx={{
-            alignItems: 'flex-start',
+            // alignItems: 'flex-start',
+            alignItems: 'center',
             display: 'flex',
             flexWrap: {
               xl: 'nowrap',
@@ -88,7 +89,9 @@ export const SecondStepSection = ({
                 sm: '0 0 1.5rem',
                 xs: '0'
               },
-
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' }
             }}
             onClick={() => setWallet('Freighter')}
@@ -99,7 +102,7 @@ export const SecondStepSection = ({
               icon={'/images/Freighter.svg'}
             />
           </Box>
-          <Box
+          {/* <Box
             sx={{
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' },
               margin: {
@@ -117,8 +120,8 @@ export const SecondStepSection = ({
               Title={'WalletConnect'}
               icon={'/images/WalletConnect.svg'}
             />
-          </Box>
-          <Box
+          </Box> */}
+          {/* <Box
             sx={{
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' }
             }}
@@ -129,7 +132,7 @@ export const SecondStepSection = ({
               Title={'XBULL'}
               icon={'/images/XBULL.svg'}
             />
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     </Box>
