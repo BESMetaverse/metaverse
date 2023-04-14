@@ -13,16 +13,16 @@ export const Planet = (): JSX.Element => {
   const [showLand, setShowLand] = useState({ right: false })
   const [countries, setCountries] = useState<{ features: any } | null>(null)
 
-  useEffect((): any => {
-    if (globeEl.current) {
-      console.log('Test: ', globeEl)
-      return globeEl.current.pointOfView({
-        lat: 42,
-        lng: -95,
-        altitude: 0.5
-      })
-    }
-  }, [globeEl.current])
+  // useEffect((): any => {
+  //   if (globeEl.current) {
+  //     console.log('Test: ', globeEl)
+  //     return globeEl.current.pointOfView?.({
+  //       lat: 42,
+  //       lng: -95,
+  //       altitude: 0.5
+  //     })
+  //   }
+  // }, [globeEl.current])
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
