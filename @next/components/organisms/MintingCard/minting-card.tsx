@@ -2,15 +2,16 @@ import { Box } from '@mui/material'
 import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
 import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState } from 'react'
+import { useAppSelector } from '@hooks'
 import { MintingSale } from '@next/components/atoms/MintingSale'
 import { ConnectWalletModal } from '@next/components/molecules/Modals/conect-wallet-modal/connect-wallet-modal'
 
 export const MintingCard = (): JSX.Element => {
   const [connected, setConnected] = useState(false)
-  // const [stepTwo, setStepTwo] = useState(false)
-  // const [stepThree, setStepThree] = useState(false)
 
   const handleClose = (): void => setConnected(true)
+
+  const account = useAppSelector((state: any) => state.wallet)
 
   return (
     <Box
@@ -41,9 +42,9 @@ export const MintingCard = (): JSX.Element => {
         <ThirdStepHeading />
         <ThirdStepSection />
       </Box>
-
-      <ConnectWalletModal connected={connected} handleClose={handleClose} />
-      {/* {!connected ? <ConnectWalletAlert /> : null} */}
+      {!account?.walletAccountNumber && (
+        <ConnectWalletModal connected={connected} handleClose={handleClose} />
+      )}
     </Box>
   )
 }
