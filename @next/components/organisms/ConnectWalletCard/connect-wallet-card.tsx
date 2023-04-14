@@ -67,6 +67,8 @@ export const ConnectWalletCard = ({
     let publicKey = ''
     try {
       publicKey = await getPublicKey()
+      console.log('wallet called==> ', publicKey)
+      enqueueSnackbar('Wallet connection successfull', { variant: 'success' })
     } catch (e) {
       console.log('error is ', e)
       return null
@@ -90,9 +92,9 @@ export const ConnectWalletCard = ({
           dispatch(walletActions.setWalletProvider('Freighter'))
           // set it from activeChain
           dispatch(walletActions.setActiveNetwork('stellar'))
-          setStepOne(false)
-          setStepTwo(false)
-          setStepThree(true)
+          // setStepOne(false)
+          // setStepTwo(false)
+          // setStepThree(true)
           void router.push('/minting')
         }
       } else {
@@ -102,9 +104,9 @@ export const ConnectWalletCard = ({
       console.log('user has selected Freighter wallet')
     } else if (wallet === 'WalletConnect') {
       await handleWalletConnect()
-      setStepOne(false)
-      setStepTwo(false)
-      setStepThree(true)
+      // setStepOne(false)
+      // setStepTwo(false)
+      // setStepThree(true)
     } else if (wallet === 'XBULL') {
       // XBULL
       console.log('user has selected XBUll wallet')

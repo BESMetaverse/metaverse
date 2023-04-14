@@ -40,6 +40,7 @@ export const WalletPage = ({ props }: WalletPageProps): JSX.Element => {
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={open}
+        autoHideDuration={6000}
         onClose={handleClose}
         message="Wallet is already connected!"
         key="topcenter"
