@@ -3,6 +3,8 @@ import { Box, Typography } from '@mui/material'
 import { FieldLabel } from '@next/components/atoms/FieldLabel'
 import { MintSuccessfullModal } from '@next/components/atoms/MintSuccessfullModal'
 import { MintingCalculation } from '@next/components/atoms/MintingCalculation'
+import { useSnackbar } from 'notistack'
+
 // soroban
 import * as SorobanClient from 'soroban-client'
 import { useSorobanReact } from '@soroban-react/core'
@@ -21,6 +23,7 @@ export const ThirdStepSection = ({
   setLoading: any
 }): JSX.Element => {
   const [open, setOpen] = useState(false)
+  const { enqueueSnackbar } = useSnackbar()
 
   const handleOpen = (): void => setOpen(true)
   const handleClose = (): void => setOpen(false)
@@ -44,6 +47,10 @@ export const ThirdStepSection = ({
     const { activeChain, server, address } = sorobanContext
     if (!activeChain || !address || !server) {
       console.log('No active chain')
+      enqueueSnackbar(
+        'Please select futurenet in the wallet and enable experimental mode in your wallet preferences',
+        { variant: 'info' }
+      )
     } else {
       try {
         setLoading(true)
@@ -69,6 +76,10 @@ export const ThirdStepSection = ({
       } catch (error) {
         setLoading(false)
         console.log('Error while sending the transaction: ', error)
+        enqueueSnackbar(
+          'Please select futurenet in the wallet and enable experimental mode in your wallet preferences',
+          { variant: 'info' }
+        )
       }
     }
   }
