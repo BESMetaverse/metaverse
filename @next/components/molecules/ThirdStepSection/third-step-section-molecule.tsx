@@ -3,7 +3,6 @@ import { Box, Typography } from '@mui/material'
 import { FieldLabel } from '@next/components/atoms/FieldLabel'
 import { MintSuccessfullModal } from '@next/components/atoms/MintSuccessfullModal'
 import { MintingCalculation } from '@next/components/atoms/MintingCalculation'
-
 // soroban
 import * as SorobanClient from 'soroban-client'
 import { useSorobanReact } from '@soroban-react/core'
@@ -16,8 +15,13 @@ import {
 
 // import { useIsPetAdopted } from '@soroban'
 
-export const ThirdStepSection = (): JSX.Element => {
+export const ThirdStepSection = ({
+  setLoading
+}: {
+  setLoading: any
+}): JSX.Element => {
   const [open, setOpen] = useState(false)
+
   const handleOpen = (): void => setOpen(true)
   const handleClose = (): void => setOpen(false)
 
@@ -42,6 +46,7 @@ export const ThirdStepSection = (): JSX.Element => {
       console.log('No active chain')
     } else {
       try {
+        setLoading(true)
         const account = await server.getAccount(address)
         const sequence = account.sequenceNumber()
         const source = new SorobanClient.Account(address, sequence)
@@ -59,8 +64,10 @@ export const ThirdStepSection = (): JSX.Element => {
         })
         // check the success response here and then open successfull model
         setOpen(true)
+        setLoading(false)
         console.log('adoptPet.tsx:sendTransaction:result: ')
       } catch (error) {
+        setLoading(false)
         console.log('Error while sending the transaction: ', error)
       }
     }

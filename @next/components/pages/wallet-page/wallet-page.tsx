@@ -7,6 +7,7 @@ import { ConnectWalletCard } from '@next/components/organisms/ConnectWalletCard'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Snackbar from '@mui/material/Snackbar'
+import { SpinLoader } from '@next/components/atoms/SpinLoader'
 
 interface WalletPageProps {
   props: {
@@ -15,6 +16,7 @@ interface WalletPageProps {
 }
 export const WalletPage = ({ props }: WalletPageProps): JSX.Element => {
   const [open, setOpen] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const account = useAppSelector((state: any) => state.wallet)
   const router = useRouter()
@@ -49,6 +51,7 @@ export const WalletPage = ({ props }: WalletPageProps): JSX.Element => {
           width: '100%'
         }}
       >
+        {loading && <SpinLoader />}
         {/* <SpinLoader /> */}
         {/* <WalletConnecting /> */}
         {/* <SoldOut /> */}
@@ -63,7 +66,7 @@ export const WalletPage = ({ props }: WalletPageProps): JSX.Element => {
             width: '100%'
           }}
         >
-          <ConnectWalletCard />
+          <ConnectWalletCard setLoading={setLoading} />
         </Box>
       </Box>
     </>
