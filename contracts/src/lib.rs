@@ -7,9 +7,8 @@ mod storage_types;
 
 use crate::admin::{has_administrator, read_administrator, write_administrator};
 use crate::authorize::{is_authorized, write_authorization};
-use crate::metadata::{get_nft_counter, get_base_uri, total_supply, TokenMetadata};
-
-use soroban_sdk::{contractimpl, vec, Address, Env, Symbol, Vec, String};
+use crate::metadata::{get_base_uri, get_nft_counter, total_supply, TokenMetadata};
+use soroban_sdk::{contractimpl, vec, Address, Env, String, Symbol, Vec};
 pub struct Contract;
 
 #[contractimpl]
@@ -21,7 +20,10 @@ impl Contract {
         write_administrator(&env, &admin);
         write_authorization(&env, admin, true);
         env.storage().set(&"nftCounter", &(0));
-        env.storage().set(&"baseURI", &"https://gateway.pinata.cloud/ipfs/QmVxgKAbxYwVLPNE2DQwXvimhmuW5wtk2YHiZaJCkLCUCG/");
+        env.storage().set(
+            &"baseURI",
+            &"https://gateway.pinata.cloud/ipfs/QmVxgKAbxYwVLPNE2DQwXvimhmuW5wtk2YHiZaJCkLCUCG/",
+        );
         env.storage().set(&"nftSupply", &supply);
     }
 
@@ -35,6 +37,9 @@ impl Contract {
         to.require_auth();
         let new_token_id = get_nft_counter(&env);
         let base_uri = get_base_uri(&env);
+        if get_nft_counter(&env) >= total_supply(&env) {
+            panic!("MAX SUPPLY REACHED")
+        }
 
         let metadata = TokenMetadata {
             id: new_token_id,
@@ -66,7 +71,27 @@ impl Contract {
         };
         return symbol;
     }
+    pub fn owner_of(env: Env, id: u32) -> Address {
+        let token_result = env.storage().get_unchecked(&id);
+        let token: TokenMetadata = match token_result {
+            Ok(s) => s,
+            Err(_e) => {
+                panic!("Token not found")
+            }
+        };
+        return token.owner;
+    }
 
+    pub fn token_base_uri(env: Env, id: u32) -> String {
+        let token_result = env.storage().get_unchecked(&id);
+        let token: TokenMetadata = match token_result {
+            Ok(s) => s,
+            Err(_e) => {
+                panic!("Token not found")
+            }
+        };
+        return token.token_base_uri;
+    }
     pub fn set_admin(env: Env, new_admin: Address) {
         let admin = read_administrator(&env);
         admin.require_auth();

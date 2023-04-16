@@ -179,3 +179,25 @@ soroban contract invoke \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
 -- total_nft_supply
 ```
+
+### GET OWNER OF NFT
+```
+soroban contract invoke   \
+--id 59276e2b11fcEe298b3379a0b295af36196e01dd2653572026c9d83916c5aff4   \
+--source S...    \
+--rpc-url https://rpc-futurenet.stellar.org:443    \
+--network-passphrase 'Test SDF Future Network ; October 2022'  \
+-- owner_of \
+--id <TOKEN ID OF NFT>
+```
+
+### GET TOKEN BASE-URI OF NFT
+```
+soroban contract invoke   \
+--id 59276e2b11fcEe298b3379a0b295af36196e01dd2653572026c9d83916c5aff4   \
+--source S...    \
+--rpc-url https://rpc-futurenet.stellar.org:443    \
+--network-passphrase 'Test SDF Future Network ; October 2022'  \
+-- token_base_uri \
+--id <TOKEN ID OF NFT>
+```
