@@ -1,77 +1,76 @@
 import { Box, Grid, Typography } from '@mui/material'
 import { PlanetCard } from '@next/components/atoms/PlanetCard'
-import Image from 'next/image'
 
 export const SelectPlanet = (): JSX.Element => {
   const PlanetList = [
     {
-      icon: '/images/planets/Earth.svg',
+      icon: '/images/planets/BESterionis.png',
       title: 'BESterionis',
       url: 'BESterionis',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Saturn.svg',
+      icon: '/images/planets/BESblactura.png',
       title: 'BESblactura',
       url: 'BESblactura',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Mars.svg',
-      title: 'BESblactura',
-      url: 'BESblactura',
+      icon: '/images/planets/BESergynebula.png',
+      title: 'BESergynebula',
+      url: 'BESergynebula',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Moon.svg',
+      icon: '/images/planets/BESorceum.png',
       title: 'BESorceum',
       url: 'BESorceum',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Jupiter.svg',
+      icon: '/images/planets/BESigonis.png',
       title: 'BESigonis',
       url: 'BESigonis',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Neptune.svg',
+      icon: '/images/planets/BESvoidum.png',
       title: 'BESvoidum',
       url: 'BESvoidum',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Mercury.svg',
+      icon: '/images/planets/BESblacktaros.png',
       title: 'BESblacktaros',
       url: 'BESblacktaros',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Venus.svg',
+      icon: '/images/planets/BESenegos.png',
       title: 'BESenegos',
       url: 'BESenegos',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Pluto.svg',
+      icon: '/images/planets/BESfuscantis.png',
       title: 'BESfuscantis',
       url: 'BESfuscantis',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Mercury.svg',
+      icon: '/images/planets/BESophoris.png',
       title: 'BESophoris',
       url: 'BESophoris',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Venus.svg',
+      icon: '/images/planets/BESobscurida.png',
       title: 'BESobscurida',
       url: 'BESobscurida',
       planetSize: '509 600 000'
     },
     {
-      icon: '/images/planets/Pluto.svg',
+      icon: '/images/planets/BESinthrakos.png',
       title: 'BESinthrakos',
       url: 'BESinthrakos',
       planetSize: '509 600 000'
@@ -80,38 +79,29 @@ export const SelectPlanet = (): JSX.Element => {
   return (
     <Box
       sx={{
-        background: 'url(/images/mainBg.svg)',
+        background: 'url(/images/mainBg.jpg)',
         backgroundPosition: 'bottom center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         height: {
-          xl: '100%',
-          lg: '100%',
-          md: '100%',
+          xl: '100vh',
+          lg: '100vh',
+          md: '100vh',
           sm: '100%',
           xs: '100%'
         },
         overflow: 'hidden',
         padding: {
-          xl: '9rem 0 0',
-          lg: '9rem 0 0',
-          md: '9rem 0 0',
-          sm: '9rem 0 0',
-          xs: '7rem 0 0'
+          xl: '9rem 0 5rem',
+          lg: '9rem 0 5rem',
+          md: '9rem 0 5rem',
+          sm: '9rem 0 5rem',
+          xs: '7rem 0 5rem'
         },
         position: 'relative',
         width: '100%'
       }}
     >
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '5rem',
-          right: '0'
-        }}
-      >
-        <Image src="/images/radar.svg" height={660} width={208} alt="radar" />
-      </Box>
       <Typography
         variant="h1"
         sx={{
@@ -143,7 +133,7 @@ export const SelectPlanet = (): JSX.Element => {
             sm: 'center',
             xs: 'center'
           },
-          maxWidth: '66.5rem',
+          maxWidth: '72.5rem',
           margin: {
             xl: '5rem auto 0',
             lg: '5rem auto 0',
@@ -176,16 +166,6 @@ export const SelectPlanet = (): JSX.Element => {
             </Grid>
           ))}
         </Grid>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          margin: '0 0 -5rem',
-          width: '100%'
-        }}
-      >
-        <Image src="/images/earth.svg" height={500} width={1920} alt="earth" />
       </Box>
     </Box>
   )

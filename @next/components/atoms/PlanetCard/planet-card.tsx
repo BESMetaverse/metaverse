@@ -24,8 +24,8 @@ export const PlanetCard = ({
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           margin: '0 auto',
-          height: 100,
-          width: 220
+          height: 120,
+          width: 260
         }}
       >
         <Box
@@ -38,7 +38,7 @@ export const PlanetCard = ({
             margin: '0 0 0 -0.75rem'
           }}
         >
-          <Image src={icon} height={50} width={50} alt={title} />
+          <Image src={icon} height={65} width={65} alt={title} />
         </Box>
         <Box
           sx={{

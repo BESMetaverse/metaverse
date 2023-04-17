@@ -102,7 +102,7 @@ export const SecondStepSection = ({
               icon={'/images/Freighter.svg'}
             />
           </Box>
-          {/* <Box
+          <Box
             sx={{
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' },
               margin: {
@@ -120,8 +120,8 @@ export const SecondStepSection = ({
               Title={'WalletConnect'}
               icon={'/images/WalletConnect.svg'}
             />
-          </Box> */}
-          {/* <Box
+          </Box>
+          <Box
             sx={{
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' }
             }}
@@ -132,7 +132,7 @@ export const SecondStepSection = ({
               Title={'XBULL'}
               icon={'/images/XBULL.svg'}
             />
-          </Box> */}
+          </Box>
         </Box>
       </Box>
     </Box>
