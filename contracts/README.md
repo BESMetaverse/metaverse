@@ -10,7 +10,8 @@ Soroban CLI
 
 ### Install Rust
 Install rustup with the following command.
-```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 ### Install Target
@@ -32,7 +33,8 @@ cargo install --locked --version 0.7.0 soroban-cli
 ### Run Test
 Run cargo test and watch the contract run. You should see the following output:
 `cargo test`
-```running 1 test
+```
+running 1 test
 test test::test ... ok
 ```
 
@@ -87,7 +89,7 @@ The following output should appear.
 ### INVOKE INITIALIZE
 ```
 soroban contract invoke \
---id 2101c55919d5836b2qwqbd425d9b81f51ba4855d0543325fc8c58aded04379350 \
+--id <CONTRACT ID> \
 --source S... \
 --rpc-url https://rpc-futurenet.stellar.org:443 \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
@@ -99,7 +101,7 @@ soroban contract invoke \
 ### INVOKE MINT NFT
 ```
 soroban contract invoke \
---id 2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350 \
+--id <CONTRACT ID> \
 --source S.. \
 --rpc-url https://rpc-futurenet.stellar.org:443 \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
@@ -110,7 +112,7 @@ soroban contract invoke \
 ### INVOKE GET NFT
 ```
 soroban contract invoke \
---id 40f165538097420d43ee815c75b7d5d96a9929331d29ea36569aa6db37090325 \
+--id <CONTRACT ID> \
 --source S... \
 --rpc-url https://rpc-futurenet.stellar.org:443 \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
@@ -121,7 +123,7 @@ soroban contract invoke \
 ### WHITELIST ADDRESS
 ```
 soroban contract invoke \
---id 2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350 \
+--id <CONTRACT ID> \
 --source S... \
 --rpc-url https://rpc-futurenet.stellar.org:443 \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
@@ -133,7 +135,7 @@ soroban contract invoke \
 ### GET BASE URI
 ```
 soroban contract invoke \
---id 2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350 \
+--id <CONTRACT ID> \
 --source S... \
 --rpc-url https://rpc-futurenet.stellar.org:443 \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
@@ -143,7 +145,7 @@ soroban contract invoke \
 ### SET BASE URI
 ```
 soroban contract invoke \
---id 2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350 \
+--id <CONTRACT ID>  \
 --source S... \
 --rpc-url https://rpc-futurenet.stellar.org:443 \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
@@ -153,7 +155,7 @@ soroban contract invoke \
 ### SET ADMIN
 ```
 soroban contract invoke \
---id 2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350 \
+--id <CONTRACT ID> \
 --source S... \
 --rpc-url https://rpc-futurenet.stellar.org:443 \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
@@ -163,7 +165,7 @@ soroban contract invoke \
 ### GET CURRENT SUPPLY
 ```
 soroban contract invoke \
---id 2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350 \
+--id <CONTRACT ID> \
 --source SAJPJB6JZ7HMDUO5VPPFLA5DKPS2F5JBAHG3DXFDEUJ2ZVOES447VEG4 \
 --rpc-url https://rpc-futurenet.stellar.org:443 \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
@@ -173,7 +175,7 @@ soroban contract invoke \
 ### GET TOTAL NFT SUPPLY
 ```
 soroban contract invoke \
---id 2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350 \
+--id <CONTRACT ID> \
 --source S.... \
 --rpc-url https://rpc-futurenet.stellar.org:443 \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
@@ -183,7 +185,7 @@ soroban contract invoke \
 ### GET OWNER OF NFT
 ```
 soroban contract invoke   \
---id 59276e2b11fcEe298b3379a0b295af36196e01dd2653572026c9d83916c5aff4   \
+--id <CONTRACT ID>   \
 --source S...    \
 --rpc-url https://rpc-futurenet.stellar.org:443    \
 --network-passphrase 'Test SDF Future Network ; October 2022'  \
@@ -194,7 +196,7 @@ soroban contract invoke   \
 ### GET TOKEN BASE-URI OF NFT
 ```
 soroban contract invoke   \
---id 59276e2b11fcEe298b3379a0b295af36196e01dd2653572026c9d83916c5aff4   \
+--id <CONTRACT ID>   \
 --source S...    \
 --rpc-url https://rpc-futurenet.stellar.org:443    \
 --network-passphrase 'Test SDF Future Network ; October 2022'  \
