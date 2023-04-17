@@ -87,6 +87,7 @@ export const ThirdStepSection = ({
         } catch (error) {
           setLoading(false)
           const errorMessage = error as string
+          console.log('error in send transaction is ', error)
           if (errorMessage.toString().includes('not found (at ledger ')) {
             enqueueSnackbar(
               "Your account isn't in the ledger yet. Please fund your account",
@@ -113,6 +114,8 @@ export const ThirdStepSection = ({
             enqueueSnackbar('Your account is not a white listed account', {
               variant: 'error'
             })
+          } else if (errorMessage.toString() === 'User declined access') {
+            enqueueSnackbar('User declined the access', { variant: 'error' })
           } else {
             enqueueSnackbar(
               'Please select futurenet in the wallet and enable experimental mode in your wallet preferences',
