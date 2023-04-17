@@ -15,8 +15,8 @@ export const SecondStepSection = ({
       sx={{
         margin: {
           xl: '5rem 0 2.5rem',
-          lg: '5rem 0 2.5rem',
-          md: '5rem 0 2.5rem',
+          lg: '4rem 0 2.5rem',
+          md: '4rem 0 2.5rem',
           sm: '2.5rem 0',
           xs: '2.5rem 0'
         }
@@ -30,8 +30,8 @@ export const SecondStepSection = ({
           justifyContent: 'flex-start',
           margin: {
             xl: '0 0 7.813rem',
-            lg: '0 0 7.813rem',
-            md: '0 0 7.813rem',
+            lg: '0 0 4rem',
+            md: '0 0 4rem',
             sm: '2.5rem 0',
             xs: '2.5rem 0'
           },
@@ -102,7 +102,7 @@ export const SecondStepSection = ({
               icon={'/images/Freighter.svg'}
             />
           </Box>
-          {/* <Box
+          <Box
             sx={{
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' },
               margin: {
@@ -120,8 +120,8 @@ export const SecondStepSection = ({
               Title={'WalletConnect'}
               icon={'/images/WalletConnect.svg'}
             />
-          </Box> */}
-          {/* <Box
+          </Box>
+          <Box
             sx={{
               width: { xl: '32%', lg: '32%', md: '32%', sm: '48%', xs: '100%' }
             }}
@@ -132,7 +132,7 @@ export const SecondStepSection = ({
               Title={'XBULL'}
               icon={'/images/XBULL.svg'}
             />
-          </Box> */}
+          </Box>
         </Box>
       </Box>
     </Box>

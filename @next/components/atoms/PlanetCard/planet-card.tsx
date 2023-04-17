@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
+import useMediaQuery from '@mui/material/useMediaQuery'
 export const PlanetCard = ({
   icon,
   title,
@@ -12,6 +13,7 @@ export const PlanetCard = ({
   planetSize: string
   url: string
 }): JSX.Element => {
+  const matches1400 = useMediaQuery('(min-width:1400px)')
   return (
     <Link href={`/metaverse/${url}`} className="planet-item">
       <Box
@@ -23,10 +25,11 @@ export const PlanetCard = ({
           backgroundPosition: 'top left',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
-          margin: '0 auto',
-          height: 100,
-          width: 220
+          margin: '0 auto'
+          // height: `${matches1400 ? 120 : 100}`,
+          // width: `${matches1400 ? 260 : 220} `
         }}
+        className="planet-card"
       >
         <Box
           sx={{
@@ -38,7 +41,12 @@ export const PlanetCard = ({
             margin: '0 0 0 -0.75rem'
           }}
         >
-          <Image src={icon} height={50} width={50} alt={title} />
+          <Image
+            src={icon}
+            height={matches1400 ? 65 : 50}
+            width={matches1400 ? 65 : 50}
+            alt={title}
+          />
         </Box>
         <Box
           sx={{
@@ -52,7 +60,7 @@ export const PlanetCard = ({
             variant="h4"
             sx={{
               color: '#fff',
-              fontSize: '1.625rem',
+              fontSize: { xl: '1.625rem', lg: '1.25rem', sm: '1rem' },
               fontFamily: 'Amaranth'
             }}
           >

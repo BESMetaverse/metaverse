@@ -5,6 +5,7 @@ import axios from 'axios'
 import { PlanetsDrawer } from '@molecules'
 import dynamic from 'next/dynamic'
 import { GlobeMethods } from 'react-globe.gl'
+import { Box } from '@mui/material'
 
 const COLORS = ['#6898FF', '#A45CFF', '#D72E2E']
 
@@ -52,13 +53,13 @@ export const Planet = (): JSX.Element => {
   }
 
   return (
-    <>
+    <Box sx={{ background: 'url(/images/mainBg.jpg)' }}>
       <Globe
         polygonAltitude={30}
         ref={globeEl}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
         bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+        backgroundColor="rgba(0,0,0,0)"
         hexPolygonsData={countries?.features}
         hexPolygonResolution={2}
         hexPolygonMargin={0.1}
@@ -66,7 +67,7 @@ export const Planet = (): JSX.Element => {
         onHexPolygonClick={handlePlotClick}
       />
       <PlanetsDrawer showLand={showLand} toggleDrawer={toggleDrawer} />
-    </>
+    </Box>
   )
 }
 

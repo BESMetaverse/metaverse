@@ -133,8 +133,29 @@ export const HeadConnectWallet = (): JSX.Element => {
                 textAlign: 'center'
               }}
             >
-              Do you want to disconnect the wallet
+              Do you want to disconnect the wallet?
             </Typography>
+            <Box
+              sx={{
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden'
+              }}
+            >
+              <Typography
+                variant="body1"
+                sx={{
+                  color: '#fff',
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  margin: '0 0 1rem',
+                  textAlign: 'center',
+                  textDecoration: 'underline'
+                }}
+              >
+                {account?.walletAccountNumber?.slice(0, 12)}...
+              </Typography>
+            </Box>
 
             <Button
               sx={{
