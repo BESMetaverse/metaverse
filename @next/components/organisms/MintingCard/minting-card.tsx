@@ -36,7 +36,7 @@ export const MintingCard = ({
           borderRadius: '0.75rem',
           padding: {
             xl: '2.5rem 2rem',
-            lg: '2.5rem 2rem',
+            lg: '2rem',
             md: '1.5rem',
             sm: '1.25rem',
             xs: '1.25rem 1rem'

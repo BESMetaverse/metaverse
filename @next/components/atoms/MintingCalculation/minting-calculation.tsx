@@ -12,8 +12,8 @@ export const MintingCalculation = (): JSX.Element => {
         justifyContent: 'space-between',
         margin: {
           xl: '0 0 5rem',
-          lg: '0 0 5rem',
-          md: '0 0 5rem',
+          lg: '0 0 2rem',
+          md: '0 0 2rem',
           sm: '0 0 2.5rem',
           xs: '0 0 2.5rem'
         },

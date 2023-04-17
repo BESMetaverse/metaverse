@@ -89,8 +89,8 @@ export const ThirdStepSection = ({
       sx={{
         margin: {
           xl: '5rem 0 0',
-          lg: '5rem 0 0',
-          md: '5rem 0 0',
+          lg: '3rem 0 0',
+          md: '3rem 0 0',
           sm: '2.5rem 0 0',
           xs: '2.5rem 0 0'
         }
