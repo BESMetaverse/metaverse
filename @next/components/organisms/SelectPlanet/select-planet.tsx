@@ -92,11 +92,11 @@ export const SelectPlanet = (): JSX.Element => {
         },
         overflow: 'hidden',
         padding: {
-          xl: '9rem 0 5rem',
-          lg: '9rem 0 5rem',
-          md: '9rem 0 5rem',
-          sm: '9rem 0 5rem',
-          xs: '7rem 0 5rem'
+          xl: '9rem 0',
+          lg: '7rem 0',
+          md: '5rem 0 2.5rem',
+          sm: '5rem 0 2.5rem',
+          xs: '5rem 0 2.5rem'
         },
         position: 'relative',
         width: '100%'
@@ -108,9 +108,9 @@ export const SelectPlanet = (): JSX.Element => {
           color: '#fff',
           fontSize: {
             xl: '5.875rem',
-            lg: '5.875rem',
-            md: '5.875rem',
-            sm: '4rem',
+            lg: '4.5rem',
+            md: '3rem',
+            sm: '3rem',
             xs: '2.5rem'
           },
           fontWeight: 800,
@@ -136,9 +136,9 @@ export const SelectPlanet = (): JSX.Element => {
           maxWidth: '72.5rem',
           margin: {
             xl: '5rem auto 0',
-            lg: '5rem auto 0',
-            md: '5rem auto 0',
-            sm: '3rem auto 0',
+            lg: '3rem auto 0',
+            md: '2.5rem auto 0',
+            sm: '2.5rem auto 0',
             xs: '2.5rem auto 0'
           },
           position: 'relative',

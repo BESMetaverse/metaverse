@@ -15,8 +15,8 @@ export const SecondStepSection = ({
       sx={{
         margin: {
           xl: '5rem 0 2.5rem',
-          lg: '5rem 0 2.5rem',
-          md: '5rem 0 2.5rem',
+          lg: '4rem 0 2.5rem',
+          md: '4rem 0 2.5rem',
           sm: '2.5rem 0',
           xs: '2.5rem 0'
         }
@@ -30,8 +30,8 @@ export const SecondStepSection = ({
           justifyContent: 'flex-start',
           margin: {
             xl: '0 0 7.813rem',
-            lg: '0 0 7.813rem',
-            md: '0 0 7.813rem',
+            lg: '0 0 4rem',
+            md: '0 0 4rem',
             sm: '2.5rem 0',
             xs: '2.5rem 0'
           },

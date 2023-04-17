@@ -10,7 +10,7 @@ export const MintingPage = (): JSX.Element => {
   return (
     <Box
       sx={{
-        height: '100%',
+        height: '5rem 0.5rem 2rem',
         position: 'relative',
         width: '100%'
       }}
@@ -25,8 +25,20 @@ export const MintingPage = (): JSX.Element => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          height: '100vh',
-          padding: '5rem 0.5rem 0',
+          height: {
+            xl: '100vh',
+            lg: '100%',
+            md: '100%',
+            sm: '100%',
+            xs: '100%'
+          },
+          padding: {
+            xl: '5rem 0.5rem 0',
+            lg: '5rem 0.5rem 2rem',
+            md: '5rem 0.5rem 2rem',
+            sm: '5rem 0.5rem 2rem',
+            xs: '5rem 0.5rem 2rem'
+          },
           width: '100%'
         }}
       >

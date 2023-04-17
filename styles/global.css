@@ -222,6 +222,19 @@ input[type='number'] {
   display: block;
   margin: 0 0 1.5rem;
 }
+.planet-card {
+  height: 120px;
+  width: 260px;
+}
+@media (max-width: 1399px) {
+  header {
+    padding: 0.5rem 0;
+  }
+  .planet-card {
+    height: 100px;
+    width: 220px;
+  }
+}
 
 @media (max-width: 599px) {
   .planet-item {

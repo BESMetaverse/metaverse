@@ -62,8 +62,20 @@ export const WalletPage = ({ props }: WalletPageProps): JSX.Element => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            height: '100vh',
-            padding: '0 0.5rem',
+            height: {
+              xl: '100vh',
+              lg: '100%',
+              md: '100%',
+              sm: '100%',
+              xs: '100%'
+            },
+            padding: {
+              xl: '5rem 0.5rem 0',
+              lg: '5rem 0.5rem 2rem',
+              md: '5rem 0.5rem 2rem',
+              sm: '5rem 0.5rem 2rem',
+              xs: '5rem 0.5rem 2rem'
+            },
             width: '100%'
           }}
         >
