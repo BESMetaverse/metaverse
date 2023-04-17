@@ -47,10 +47,7 @@ export const ThirdStepSection = ({
     const { activeChain, server, address } = sorobanContext
     if (!activeChain || !address || !server) {
       console.log('No active chain')
-      enqueueSnackbar(
-        'Please select futurenet in the wallet and enable experimental mode in your wallet preferences',
-        { variant: 'info' }
-      )
+      enqueueSnackbar('No active chain or server', { variant: 'error' })
     } else {
       try {
         setLoading(true)
