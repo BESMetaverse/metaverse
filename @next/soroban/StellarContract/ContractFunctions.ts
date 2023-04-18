@@ -16,7 +16,6 @@ export const mintNFT = async ({
   // const publicKeyScval = bigNumberToI128(
   //   publicKeyBN.shiftedBy(0).decimalPlaces(0)
   // )
-  console.log('*public key is ', publicKey)
 
   const mintToken = useContractValue({
     //paste line
@@ -27,7 +26,6 @@ export const mintNFT = async ({
 
     sorobanContext
   }).result
-  console.log('*Mint NFT response is: ', mintToken)
 
   return mintToken
 }
@@ -49,8 +47,6 @@ export const getNFT = async ({
     sorobanContext
   }).result
 
-  console.log('*NFT for tokenId: ', tokenId, ' is ', NFT?.value()?.toString())
-
   return NFT?.value()?.toString()
 }
 
@@ -68,8 +64,6 @@ export const getCurrentSupply = async ({
     sorobanContext
   }).result
 
-  console.log('Current NFT supply is', currentSupply?.value()?.toString())
-
   return currentSupply?.value()?.toString()
 }
 
@@ -82,8 +76,6 @@ export const getTotalNFTSupply = async ({
     method: 'total_nft_supply',
     sorobanContext
   }).result
-
-  console.log('Total NFT supply is ', totalNFTSupply?.value()?.toString())
 
   return totalNFTSupply?.value()?.toString()
 }
