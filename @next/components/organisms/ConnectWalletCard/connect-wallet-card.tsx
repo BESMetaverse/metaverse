@@ -224,6 +224,7 @@ export const ConnectWalletCard = ({
             <SecondStepHeading />
             <SecondStepSection
               wallet={wallet}
+              network={network}
               setNetwork={setNetwork}
               setWallet={setWallet}
             />

@@ -10,7 +10,7 @@ export const Minting = (): JSX.Element => {
   return (
     <Button
       sx={{
-        backgroundColor: 'transparent',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
         border: '1px solid #fff',
         borderRadius: '0.625rem',
         color: '#fff',

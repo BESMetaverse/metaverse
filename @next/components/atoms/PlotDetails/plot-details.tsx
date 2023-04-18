@@ -93,7 +93,7 @@ export const PlotDetails = (): JSX.Element => {
               letterSpacing: '-0.5px'
             }}
           >
-            Plot ID
+            Current Owner
           </Typography>
           <Typography
             sx={{
