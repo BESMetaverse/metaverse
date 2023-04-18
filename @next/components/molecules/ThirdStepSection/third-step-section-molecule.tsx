@@ -16,12 +16,14 @@ import {
 } from 'stellar-wallets-kit'
 
 import {
-  getCurrentSupply,
-  getTotalNFTSupply,
   useSendTransaction,
   contractTransaction
-} from '@soroban'
+} from '@soroban-react/contracts'
 
+import {
+  getCurrentSupply,
+  getTotalNFTSupply,
+} from '@soroban'
 // import { useIsPetAdopted } from '@soroban'
 
 export const ThirdStepSection = ({
@@ -71,8 +73,7 @@ export const ThirdStepSection = ({
           const transaction = contractTransaction({
             networkPassphrase: activeChain.networkPassphrase,
             source,
-            contractId:
-              '21688d8188b8aededbcf994c2238e745547e2899a84a314efbc54c8a8162ca1e',
+            contractId: process.env.NEXT_PUBLIC_CONTRACT_ID as string,
             method: 'mint_nft',
             params: [new SorobanClient.Address(address).toScVal()]
           })
@@ -168,19 +169,19 @@ export const ThirdStepSection = ({
             method: 'mint_nft',
             params: [new SorobanClient.Address(publicKeys).toScVal()]
           })
-          // const txn = await server.prepareTransaction(
-          //   transaction,
-          //   'Test SDF Future Network ; October 2022'
-          // )
+          const txn = await server.prepareTransaction(
+            transaction,
+            'Test SDF Future Network ; October 2022'
+          )
 
-          // // prepare transaction
+          // prepare transaction
 
-          // // sign transaction here
-          // const signedXDR = await kit.sign({
-          //   xdr: txn.toXDR(),
-          //   publicKey: publicKeys
-          // })
-          // console.log('signed XDR is ', signedXDR)
+          // sign transaction here
+          const signedXDR = await kit.sign({
+            xdr: txn.toXDR(),
+            publicKey: publicKeys
+          })
+          console.log('signed XDR is ', signedXDR)
         }
       } catch (error) {
         console.log('error in xbull sign transaction is', error)
