@@ -141,50 +141,44 @@ export const ThirdStepSection = ({
         if (!server) {
           console.log('No server')
         } else {
-          console.log('account')
-          console.log('server')
-          console.log(publicKeys)
-
-          console.log(server)
-
-          const account = await server.getAccount(publicKeys)
-          console.log(account)
-          const sequence = account.sequenceNumber()
-          console.log(sequence)
-
-          const source = new SorobanClient.Account(publicKeys, sequence)
-          console.log('Sequence number is :', sequence)
-          console.log(new SorobanClient.Address(publicKeys).toScVal())
-          console.log('SOURCE IS ', source)
-          console.log('SOURCE IS ', sequence)
-
-          const transaction = contractTransaction({
-            networkPassphrase: WalletNetwork.FUTURENET,
-            source,
-            contractId: process.env.NEXT_PUBLIC_CONTRACT_ID as string,
-            method: 'mint_nft',
-            params: [new SorobanClient.Address(publicKeys).toScVal()]
-          })
-          const txn = await server.prepareTransaction(
-            transaction,
-            'Test SDF Future Network ; October 2022'
-          )
-
-          // prepare transaction
-
-          // sign transaction here
-          const signedXDR = await kit.sign({
-            xdr: txn.toXDR(),
-            publicKey: publicKeys
-          })
-          console.log('signed XDR is ', signedXDR)
+          // console.log('account')
+          // console.log('server')
+          // console.log(publicKeys)
+          // console.log(server)
+          // const account = await server.getAccount(publicKeys)
+          // console.log(account)
+          // const sequence = account.sequenceNumber()
+          // console.log(sequence)
+          // const source = new SorobanClient.Account(publicKeys, sequence)
+          // console.log('Sequence number is :', sequence)
+          // console.log(new SorobanClient.Address(publicKeys).toScVal())
+          // console.log('SOURCE IS ', source)
+          // console.log('SOURCE IS ', sequence)
+          // // create transaction
+          // const transaction = contractTransaction({
+          //   networkPassphrase: WalletNetwork.FUTURENET,
+          //   source,
+          //   contractId: process.env.NEXT_PUBLIC_CONTRACT_ID as string,
+          //   method: 'mint_nft',
+          //   params: [new SorobanClient.Address(publicKeys).toScVal()]
+          // })
+          // // prepare transaction
+          // const txn = await server.prepareTransaction(
+          //   transaction,
+          //   'Test SDF Future Network ; October 2022'
+          // )
+          // // sign transaction here
+          // const signedXDR = await kit.sign({
+          //   xdr: txn.toXDR(),
+          //   publicKey: publicKeys,
+          //   network: WalletNetwork.FUTURENET
+          // })
+          // console.log('signed XDR is ', signedXDR)
         }
       } catch (error) {
         console.log('error in xbull sign transaction is', error)
       }
     }
-
-    // create transaction xdr rightly
   }
 
   return (
