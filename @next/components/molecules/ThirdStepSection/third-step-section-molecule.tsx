@@ -39,24 +39,16 @@ export const ThirdStepSection = ({
   // call contract functions here to check if our contract is working fine
   const sorobanContext = useSorobanReact()
   const { address, activeChain, server } = useSorobanReact()
-  console.log('soroban context activechain is ==> ', activeChain, address)
-
-  console.log('soroban context is ', sorobanContext)
 
   const { sendTransaction } = useSendTransaction()
-  if (!activeChain || !address || !server) {
-    console.log('No active chain')
-  } else {
-    // getCurrentSupply({ sorobanContext: sorobanContext })
-    // getTotalNFTSupply({ sorobanContext: sorobanContext })
-  }
+
+  // getCurrentSupply({ sorobanContext: sorobanContext })
+  // getTotalNFTSupply({ sorobanContext: sorobanContext })
 
   const handleMint = async (): Promise<void> => {
     if (wallet?.walletProvider === 'Freighter') {
       const { activeChain, server, address } = sorobanContext
-      console.log('active chain is ', activeChain, server)
       if (!activeChain || !address || !server) {
-        console.log('No active chain')
         enqueueSnackbar(
           'No active chain: please refresh or reconnect your wallet',
           { variant: 'error' }
@@ -81,10 +73,8 @@ export const ThirdStepSection = ({
           // check the success response here and then open successfull model
           setOpen(true)
           setLoading(false)
-          console.log('success', txn)
         } catch (error: any) {
           console.log('error in transaction is ', error, error?.response)
-          console.log('error type ', typeof error)
           // console.log(error.)
 
           setLoading(false)
@@ -131,7 +121,6 @@ export const ThirdStepSection = ({
       }
     } else if (wallet?.walletProvider === 'XBULL') {
       try {
-        console.log('XBULL')
         const kit = new StellarWalletsKit({
           network: WalletNetwork.FUTURENET,
           selectedWallet: WalletType.XBULL

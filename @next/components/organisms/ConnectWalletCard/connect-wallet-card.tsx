@@ -107,12 +107,9 @@ export const ConnectWalletCard = ({
       const client = await SignClient.init({
         projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string
       })
-      console.log('client is ', client)
       setSignClient(client)
       await subscribeToEvents(client)
-    } catch (e) {
-      console.log(e)
-    }
+    } catch (e) {}
   }
   async function handleWalletConnect(): Promise<void> {
     if (!signClient) throw Error('Cannot connect. Sign Client is not created')
@@ -136,20 +133,16 @@ export const ConnectWalletCard = ({
       })
 
       if (uri) {
-        console.log('uri is ', uri)
         await web3Modal.openModal({ uri })
         const sessionNamespace = await approval()
         await onSessionConnect(sessionNamespace)
         web3Modal.closeModal()
       }
-    } catch (e) {
-      console.log(e)
-    }
+    } catch (e) {}
   }
   async function onSessionConnect(session: any): Promise<void> {
     if (!session) throw Error("session doesn't exist")
     try {
-      console.log('session connected ', session)
       //  set wallet Details here
       setSessions(session)
       dispatch(
@@ -161,9 +154,7 @@ export const ConnectWalletCard = ({
       dispatch(walletActions.setActiveNetwork('stellar'))
 
       void router.push('/minting')
-    } catch (e) {
-      console.log(e)
-    }
+    } catch (e) {}
   }
   async function subscribeToEvents(client: any): Promise<void> {
     if (!client) {
@@ -172,12 +163,9 @@ export const ConnectWalletCard = ({
 
     try {
       client.on('session_delete', () => {
-        console.log('user disconnected the session from their wallet')
         reset()
       })
-    } catch (e) {
-      console.log(e)
-    }
+    } catch (e) {}
   }
   const reset = (): void => {
     setAccounts([])
