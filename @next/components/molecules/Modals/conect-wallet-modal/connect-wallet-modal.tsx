@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { Box, Button, Modal, Typography } from '@mui/material'
-import CloseIcon from '@mui/icons-material/Close'
+// import CloseIcon from '@mui/icons-material/Close'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 interface MintingModalProps {
   connected: boolean
@@ -28,12 +29,12 @@ export const ConnectWalletModal = ({
   return (
     <Modal
       open={!connected}
-      onClose={handleClose}
+      onClose={() => {}}
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
     >
       <Box sx={style}>
-        <Button
+        {/* <Button
           onClick={handleClose}
           sx={{
             color: '#fff',
@@ -46,7 +47,7 @@ export const ConnectWalletModal = ({
           }}
         >
           <CloseIcon />
-        </Button>
+        </Button> */}
         <Box
           sx={{
             alignItems: 'center',
@@ -103,6 +104,16 @@ export const ConnectWalletModal = ({
           >
             Connect Wallet
           </Button>
+          <Link
+            href="/"
+            style={{
+              color: '#fff',
+              marginTop: '1rem',
+              textDecoration: 'underline'
+            }}
+          >
+            Return to home
+          </Link>
         </Box>
       </Box>
     </Modal>
