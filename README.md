@@ -34,7 +34,8 @@ If you configure a .env file (just copy [.env.example](https://github.com/BESMet
 
     NEXT_PUBLIC_API_KEY=API_KEY_URL
     NEXT_PUBLIC_PROJECT_ID='PROJECT_ID'
-    GENERATE_SOURCEMAP=false    
+    NEXT_PUBLIC_CONTRACT_ID ='CONTRACT_ID'
+    GENERATE_SOURCEMAP=false  
 
 ## Running Jest Tests
 
