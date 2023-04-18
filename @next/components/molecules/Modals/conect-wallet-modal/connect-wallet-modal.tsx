@@ -25,16 +25,20 @@ export const ConnectWalletModal = ({
   handleClose
 }: MintingModalProps): JSX.Element => {
   const router = useRouter()
+
+  const handleModalClose = (): any => {
+    return router.push('/')
+  }
   return (
     <Modal
       open={!connected}
-      onClose={handleClose}
+      onClose={() => {}}
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
     >
       <Box sx={style}>
         <Button
-          onClick={handleClose}
+          onClick={handleModalClose}
           sx={{
             color: '#fff',
             height: '1.5rem',
