@@ -83,44 +83,51 @@ export const ThirdStepSection = ({
           // check the success response here and then open successfull model
           setOpen(true)
           setLoading(false)
-          console.log('adoptPet.tsx:sendTransaction:result: ')
-        } catch (error) {
+          console.log('success')
+        } catch (error: any) {
+          console.log('error in transaction is ', error, error?.response)
+          console.log('error type ', typeof error)
+          // console.log(error.)
+
           setLoading(false)
-          const errorMessage = error as string
-          console.log('error in send transaction is ', error)
-          if (errorMessage.toString().includes('not found (at ledger ')) {
-            enqueueSnackbar(
-              "Your account isn't in the ledger yet. Please fund your account",
-              {
-                variant: 'error'
-              }
-            )
-          } else if (
-            errorMessage
-              .toString()
-              .includes('Request failed with status code 405')
-          ) {
-            enqueueSnackbar(
-              'Please select custom FUTURE NET in your wallet and refresh the page',
-              {
-                variant: 'error'
-              }
-            )
-          } else if (
-            errorMessage
-              .toString()
-              .includes('soroban_env_host::host::err_helper')
-          ) {
-            enqueueSnackbar('Your account is not a white listed account', {
-              variant: 'error'
-            })
-          } else if (errorMessage.toString() === 'User declined access') {
-            enqueueSnackbar('User declined the access', { variant: 'error' })
+          if (error?.code) {
+            if (error?.code === -32600) {
+              enqueueSnackbar(
+                "Your account isn't in the ledger yet. Please fund your account",
+                {
+                  variant: 'error'
+                }
+              )
+            }
+          } else if (error?.response) {
+            const errorMessage = error?.response
+            if (errorMessage?.status === 405) {
+              // statusText: "Method Not Allowed"
+              enqueueSnackbar(
+                'Please select custom FUTURE NET in your wallet and refresh the page',
+                {
+                  variant: 'error'
+                }
+              )
+            }
           } else {
-            enqueueSnackbar(
-              'Please select futurenet in the wallet and enable experimental mode in your wallet preferences',
-              { variant: 'info' }
-            )
+            const errorMessage = error as string
+            if (
+              errorMessage
+                .toString()
+                .includes('soroban_env_host::host::err_helper')
+            ) {
+              enqueueSnackbar('Your account is not a white listed account', {
+                variant: 'error'
+              })
+            } else if (errorMessage.toString() === 'User declined access') {
+              enqueueSnackbar('User declined the access', { variant: 'error' })
+            } else {
+              enqueueSnackbar(
+                'Please select futurenet in the wallet and enable experimental mode in your wallet preferences',
+                { variant: 'info' }
+              )
+            }
           }
         }
       }
