@@ -103,7 +103,7 @@ export function useSendTransaction<E = Error>(
       const server = sorobanContext?.server
 
       const { timeout, skipAddingFootprint } = {
-        timeout: 60000,
+        timeout: 40000,
         skipAddingFootprint: false,
         ...defaultOptions,
         ...passedOptions

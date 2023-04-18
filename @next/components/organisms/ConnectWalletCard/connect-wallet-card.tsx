@@ -9,14 +9,18 @@ import { CardHeadingSection } from '@next/components/molecules/CardHeadingSectio
 import { FirstStepSection } from '@next/components/molecules/FirstStepSection'
 import { SecondStepHeading } from '@next/components/molecules/SecondStepHeading'
 import { SecondStepSection } from '@next/components/molecules/SecondStepSection'
-import { ThirdStepHeading } from '@next/components/molecules/ThirdStepHeading'
-import { ThirdStepSection } from '@next/components/molecules/ThirdStepSection'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAppDispatch } from '@hooks'
 import { walletActions } from '@store'
 import { useSorobanReact } from '@soroban-react/core'
-import { isConnected, getPublicKey } from '@stellar/freighter-api'
+// import { isConnected, getPublicKey } from '@stellar/freighter-api'
+import {
+  StellarWalletsKit,
+  WalletNetwork,
+  WalletType
+} from 'stellar-wallets-kit'
+
 import { useSnackbar } from 'notistack'
 export const ConnectWalletCard = ({
   setLoading
@@ -63,53 +67,38 @@ export const ConnectWalletCard = ({
     setStepThree(false)
   }
 
-  const retrievePublicKey = async (): Promise<any> => {
-    let publicKey = ''
-    try {
-      publicKey = await getPublicKey()
-      console.log('wallet called==> ', publicKey)
-      enqueueSnackbar('Wallet connection successfull', { variant: 'success' })
-    } catch (e) {
-      console.log('error is ', e)
-      return null
-    }
-    return publicKey
-  }
-
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
     if (wallet === 'Freighter') {
-      console.clear()
-      console.log('freighter is called')
-
-      //  check if user has freighter wallet installed
-      if (await isConnected()) {
-        //  if user has added his credential
-        const result = await retrievePublicKey()
-        console.log('public key is ', result)
-        if (result) {
-          dispatch(walletActions.setWalletAccount(result))
-          dispatch(walletActions.setWalletProvider('Freighter'))
-          // set it from activeChain
-          dispatch(walletActions.setActiveNetwork('stellar'))
-          // setStepOne(false)
-          // setStepTwo(false)
-          // setStepThree(true)
-          void router.push('/minting')
-        }
+      const kit = new StellarWalletsKit({
+        network: WalletNetwork.FUTURENET,
+        selectedWallet: WalletType.FREIGHTER
+      })
+      const result = await kit.getPublicKey()
+      if (result) {
+        dispatch(walletActions.setWalletAccount(result))
+        dispatch(walletActions.setWalletProvider('Freighter'))
+        dispatch(walletActions.setActiveNetwork('stellar'))
+        void router.push('/minting')
       } else {
         enqueueSnackbar('Please install Freighter wallet!', { variant: 'info' })
       }
-
-      console.log('user has selected Freighter wallet')
+    } else if (wallet === 'XBULL') {
+      const kit = new StellarWalletsKit({
+        network: WalletNetwork.FUTURENET,
+        selectedWallet: WalletType.XBULL
+      })
+      const result = await kit.getPublicKey()
+      if (result) {
+        dispatch(walletActions.setWalletAccount(result))
+        dispatch(walletActions.setWalletProvider('XBULL'))
+        dispatch(walletActions.setActiveNetwork('stellar'))
+        void router.push('/minting')
+      } else {
+        enqueueSnackbar('Please install XBUll wallet!', { variant: 'info' })
+      }
     } else if (wallet === 'WalletConnect') {
       await handleWalletConnect()
-      // setStepOne(false)
-      // setStepTwo(false)
-      // setStepThree(true)
-    } else if (wallet === 'XBULL') {
-      // XBULL
-      console.log('user has selected XBUll wallet')
     }
   }
 

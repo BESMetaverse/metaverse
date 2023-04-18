@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@creit-tech/xbull-wallet-connect": "github:Creit-Tech/xBull-Wallet-Connect",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
@@ -38,6 +39,7 @@
     "redux-persist": "^6.0.0",
     "soroban-client": "^0.5.0",
     "stellar-sdk": "^10.4.1",
+    "stellar-wallets-kit": "github:Creit-Tech/Stellar-Wallets-Kit",
     "yup": "^0.32.11"
   },
   "devDependencies": {
