@@ -1,12 +1,10 @@
 #![no_std]
 mod admin;
-mod authorize;
 mod event;
 mod metadata;
 mod storage_types;
 
 use crate::admin::{has_administrator, read_administrator, write_administrator};
-use crate::authorize::{is_authorized, write_authorization};
 use crate::metadata::{get_base_uri, get_nft_counter, total_supply, TokenMetadata};
 use soroban_sdk::{contractimpl, vec, Address, Env, String, Symbol, Vec};
 pub struct Contract;
@@ -18,7 +16,6 @@ impl Contract {
             panic!("already initialized")
         }
         write_administrator(&env, &admin);
-        write_authorization(&env, admin, true);
         env.storage().set(&"nftCounter", &(0));
         env.storage().set(
             &"baseURI",
@@ -31,9 +28,6 @@ impl Contract {
         vec![&env, Symbol::short("Hello"), from]
     }
     pub fn mint_nft(env: Env, to: Address) {
-        if !is_authorized(&env, to.clone()) {
-            panic!("Address is not whitelisted");
-        }
         to.require_auth();
         let new_token_id = get_nft_counter(&env);
         let base_uri = get_base_uri(&env);
@@ -107,12 +101,5 @@ impl Contract {
     pub fn total_nft_supply(env: Env) -> u32 {
         let max_supply = total_supply(&env);
         return max_supply;
-    }
-
-    pub fn set_authorization(env: Env, id: Address, authorize: bool) {
-        let admin = read_administrator(&env);
-        admin.require_auth();
-        write_authorization(&env, id.clone(), authorize);
-        event::set_authorized(&env, admin, id, authorize);
     }
 }
