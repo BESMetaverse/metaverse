@@ -72,7 +72,7 @@ export const ThirdStepSection = ({
             networkPassphrase: activeChain.networkPassphrase,
             source,
             contractId:
-              '2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350',
+              '21688d8188b8aededbcf994c2238e745547e2899a84a314efbc54c8a8162ca1e',
             method: 'mint_nft',
             params: [new SorobanClient.Address(address).toScVal()]
           })
@@ -139,12 +139,24 @@ export const ThirdStepSection = ({
         })
         const publickey = wallet?.walletAccountNumber
         // create transaction xdr rightly
-        // const signedXDR = await kit.sign({
-        //   xdr: 'AAAAAgAAAQAAAAAAAAAAAOwLt5VQAsyVhQr7Ps0XaKsE99JVCRWUV0V3t+B/5iYdAAABLAAAUN4AAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAElRoaXMgaXMgYSBuZXcgdGVzdAAAAAAAAwAAAAAAAAAAAAAAAGP4PCOshTlRoCoEFOyQZW8dCyRa4t28ju+DWOyBGWmQAAAAAACYloAAAAAAAAAAAQAAAQAAAAAAAAAAAGP4PCOshTlRoCoEFOyQZW8dCyRa4t28ju+DWOyBGWmQAAAAAAAAAAAC+vCAAAAAAAAAAAEAAAEAAAAAAAAAAABj+DwjrIU5UaAqBBTskGVvHQskWuLdvI7vg1jsgRlpkAAAAAAAAAAABycOAAAAAAAAAAAA',
-        //   network: WalletNetwork.FUTURENET,
-        //   publicKey: publickey
-        // })
-        // console.log('signed XDR is ', signedXDR)
+        const transaction = contractTransaction({
+          networkPassphrase: activeChain.networkPassphrase,
+          source,
+          contractId:
+            '21688d8188b8aededbcf994c2238e745547e2899a84a314efbc54c8a8162ca1e',
+          method: 'mint_nft',
+          params: [new SorobanClient.Address(address).toScVal()]
+        })
+
+        // prepare transaction
+
+        // sign transaction here
+        const signedXDR = await kit.sign({
+          xdr: 'AAAAAgAAAQAAAAAAAAAAAOwLt5VQAsyVhQr7Ps0XaKsE99JVCRWUV0V3t+B/5iYdAAABLAAAUN4AAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAElRoaXMgaXMgYSBuZXcgdGVzdAAAAAAAAwAAAAAAAAAAAAAAAGP4PCOshTlRoCoEFOyQZW8dCyRa4t28ju+DWOyBGWmQAAAAAACYloAAAAAAAAAAAQAAAQAAAAAAAAAAAGP4PCOshTlRoCoEFOyQZW8dCyRa4t28ju+DWOyBGWmQAAAAAAAAAAAC+vCAAAAAAAAAAAEAAAEAAAAAAAAAAABj+DwjrIU5UaAqBBTskGVvHQskWuLdvI7vg1jsgRlpkAAAAAAAAAAABycOAAAAAAAAAAAA',
+          network: WalletNetwork.FUTURENET,
+          publicKey: publickey
+        })
+        console.log('signed XDR is ', signedXDR)
       } catch (error) {
         console.log('error in xbull sign transaction is', error)
       }
