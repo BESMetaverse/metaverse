@@ -83,17 +83,17 @@ export const SelectPlanet = (): JSX.Element => {
         backgroundPosition: 'bottom center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        height: {
+        minHeight: {
           xl: '100vh',
-          lg: '100%',
+          lg: '100vh',
           md: '100%',
           sm: '100%',
           xs: '100%'
         },
         overflow: 'hidden',
         padding: {
-          xl: '9rem 0',
-          lg: '7rem 0',
+          xl: '7.5rem 0 3rem',
+          lg: '4rem 0',
           md: '5rem 0 2.5rem',
           sm: '5rem 0 2.5rem',
           xs: '5rem 0 2.5rem'
@@ -136,7 +136,7 @@ export const SelectPlanet = (): JSX.Element => {
           maxWidth: '72.5rem',
           margin: {
             xl: '5rem auto 0',
-            lg: '3rem auto 0',
+            lg: '2rem auto 0',
             md: '2.5rem auto 0',
             sm: '2.5rem auto 0',
             xs: '2.5rem auto 0'
@@ -153,7 +153,7 @@ export const SelectPlanet = (): JSX.Element => {
           zIndex: 1
         }}
       >
-        <Grid container spacing={2.5} sx={{ marginLeft: '0' }}>
+        <Grid container columnSpacing={2} sx={{ marginLeft: '0' }}>
           {PlanetList.map((planet, index) => (
             <Grid item xl={3} lg={3} md={4} sm={6} xs={12} key={index}>
               <PlanetCard
