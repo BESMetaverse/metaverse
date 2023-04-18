@@ -120,18 +120,6 @@ soroban contract invoke \
 --id <TOKEN ID>
 ```
 
-### WHITELIST ADDRESS
-```
-soroban contract invoke \
---id <CONTRACT ID> \
---source S... \
---rpc-url https://rpc-futurenet.stellar.org:443 \
---network-passphrase 'Test SDF Future Network ; October 2022' \
--- set_authorization \
---id <ADDRESS TO WHITELIST> \
---authorize
-```
-
 ### GET BASE URI
 ```
 soroban contract invoke \
