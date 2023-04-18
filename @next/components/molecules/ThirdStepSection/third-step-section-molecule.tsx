@@ -20,10 +20,7 @@ import {
   contractTransaction
 } from '@soroban-react/contracts'
 
-import {
-  getCurrentSupply,
-  getTotalNFTSupply,
-} from '@soroban'
+import { getCurrentSupply, getTotalNFTSupply } from '@soroban'
 // import { useIsPetAdopted } from '@soroban'
 
 export const ThirdStepSection = ({
@@ -164,8 +161,7 @@ export const ThirdStepSection = ({
           const transaction = contractTransaction({
             networkPassphrase: WalletNetwork.FUTURENET,
             source,
-            contractId:
-              '21688d8188b8aededbcf994c2238e745547e2899a84a314efbc54c8a8162ca1e',
+            contractId: process.env.NEXT_PUBLIC_CONTRACT_ID as string,
             method: 'mint_nft',
             params: [new SorobanClient.Address(publicKeys).toScVal()]
           })
