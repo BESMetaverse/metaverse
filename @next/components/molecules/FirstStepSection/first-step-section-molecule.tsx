@@ -14,7 +14,7 @@ export const FirstStepSection = (): JSX.Element => {
         }
       }}
     >
-      <FieldLabel FieldLabel={'Allowlist Mint'} />
+      <FieldLabel FieldLabel={'Allow list Mint'} />
       <MintingCalculation />
     </Box>
   )

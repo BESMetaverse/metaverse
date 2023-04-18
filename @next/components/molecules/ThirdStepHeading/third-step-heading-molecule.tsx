@@ -7,7 +7,7 @@ export const ThirdStepHeading = ({ walletname }: any): JSX.Element => {
   return (
     <Box>
       <MainIcon />
-      <MainHeading Heading={walletname} />
+      <MainHeading Heading={walletname} name="Wallet" />
       <Text Text={'Use the wallet you would like to mint your IPG from.'} />
     </Box>
   )

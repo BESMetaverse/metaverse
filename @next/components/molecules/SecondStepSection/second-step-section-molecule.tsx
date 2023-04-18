@@ -3,10 +3,12 @@ import { FieldLabel } from '@next/components/atoms/FieldLabel'
 import { IconItem } from '@next/components/atoms/IconItem'
 export const SecondStepSection = ({
   wallet,
+  network,
   setNetwork,
   setWallet
 }: {
   wallet: string
+  network: string
   setNetwork: (network: string) => void
   setWallet: (wallet: string) => void
 }): JSX.Element => {
@@ -51,7 +53,11 @@ export const SecondStepSection = ({
           }}
           onClick={() => setNetwork('Stellar')}
         >
-          <IconItem Title={'Stellar'} icon={'/images/Stellar.svg'} />
+          <IconItem
+            selected={network === 'Stellar'}
+            Title={'Stellar'}
+            icon={'/images/Stellar.svg'}
+          />
         </Box>
       </Box>
       <Box

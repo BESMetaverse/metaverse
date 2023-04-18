@@ -96,7 +96,7 @@ export const ThirdStepSection = ({
         }
       }}
     >
-      <FieldLabel FieldLabel={'Allowlist Mint'} />
+      <FieldLabel FieldLabel={'Allow list Mint'} />
       <Typography
         sx={{
           color: '#fff',
