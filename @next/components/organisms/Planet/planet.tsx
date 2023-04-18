@@ -16,7 +16,6 @@ export const Planet = (): JSX.Element => {
 
   useEffect((): any => {
     if (globeEl.current) {
-      console.log('Test: ', globeEl)
       return globeEl.current.pointOfView?.({
         lat: 42,
         lng: -95,
@@ -37,7 +36,6 @@ export const Planet = (): JSX.Element => {
 
   const toggleDrawer =
     (open: any) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      console.log('toggle hit')
       if (
         event.type === 'keydown' &&
         ((event as React.KeyboardEvent).key === 'Tab' ||

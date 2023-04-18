@@ -16,12 +16,11 @@ import {
 } from 'stellar-wallets-kit'
 
 import {
-  getCurrentSupply,
-  getTotalNFTSupply,
   useSendTransaction,
   contractTransaction
-} from '@soroban'
+} from '@soroban-react/contracts'
 
+import { getCurrentSupply, getTotalNFTSupply } from '@soroban'
 // import { useIsPetAdopted } from '@soroban'
 
 export const ThirdStepSection = ({
@@ -40,24 +39,16 @@ export const ThirdStepSection = ({
   // call contract functions here to check if our contract is working fine
   const sorobanContext = useSorobanReact()
   const { address, activeChain, server } = useSorobanReact()
-  console.log('soroban context activechain is ==> ', activeChain, address)
-
-  console.log('soroban context is ', sorobanContext)
 
   const { sendTransaction } = useSendTransaction()
-  if (!activeChain || !address || !server) {
-    console.log('No active chain')
-  } else {
-    // getCurrentSupply({ sorobanContext: sorobanContext })
-    // getTotalNFTSupply({ sorobanContext: sorobanContext })
-  }
+
+  // getCurrentSupply({ sorobanContext: sorobanContext })
+  // getTotalNFTSupply({ sorobanContext: sorobanContext })
 
   const handleMint = async (): Promise<void> => {
     if (wallet?.walletProvider === 'Freighter') {
       const { activeChain, server, address } = sorobanContext
-      console.log('active chain is ', activeChain, server)
       if (!activeChain || !address || !server) {
-        console.log('No active chain')
         enqueueSnackbar(
           'No active chain: please refresh or reconnect your wallet',
           { variant: 'error' }
@@ -71,8 +62,7 @@ export const ThirdStepSection = ({
           const transaction = contractTransaction({
             networkPassphrase: activeChain.networkPassphrase,
             source,
-            contractId:
-              '21688d8188b8aededbcf994c2238e745547e2899a84a314efbc54c8a8162ca1e',
+            contractId: process.env.NEXT_PUBLIC_CONTRACT_ID as string,
             method: 'mint_nft',
             params: [new SorobanClient.Address(address).toScVal()]
           })
@@ -83,10 +73,8 @@ export const ThirdStepSection = ({
           // check the success response here and then open successfull model
           setOpen(true)
           setLoading(false)
-          console.log('success')
         } catch (error: any) {
           console.log('error in transaction is ', error, error?.response)
-          console.log('error type ', typeof error)
           // console.log(error.)
 
           setLoading(false)
@@ -137,14 +125,45 @@ export const ThirdStepSection = ({
           network: WalletNetwork.FUTURENET,
           selectedWallet: WalletType.XBULL
         })
-        const publickey = wallet?.walletAccountNumber
-        // create transaction xdr rightly
-        // const signedXDR = await kit.sign({
-        //   xdr: 'AAAAAgAAAQAAAAAAAAAAAOwLt5VQAsyVhQr7Ps0XaKsE99JVCRWUV0V3t+B/5iYdAAABLAAAUN4AAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAElRoaXMgaXMgYSBuZXcgdGVzdAAAAAAAAwAAAAAAAAAAAAAAAGP4PCOshTlRoCoEFOyQZW8dCyRa4t28ju+DWOyBGWmQAAAAAACYloAAAAAAAAAAAQAAAQAAAAAAAAAAAGP4PCOshTlRoCoEFOyQZW8dCyRa4t28ju+DWOyBGWmQAAAAAAAAAAAC+vCAAAAAAAAAAAEAAAEAAAAAAAAAAABj+DwjrIU5UaAqBBTskGVvHQskWuLdvI7vg1jsgRlpkAAAAAAAAAAABycOAAAAAAAAAAAA',
-        //   network: WalletNetwork.FUTURENET,
-        //   publicKey: publickey
-        // })
-        // console.log('signed XDR is ', signedXDR)
+        const publicKeys = wallet?.walletAccountNumber
+        const { server } = sorobanContext
+        if (!server) {
+          console.log('No server')
+        } else {
+          // console.log('account')
+          // console.log('server')
+          // console.log(publicKeys)
+          // console.log(server)
+          // const account = await server.getAccount(publicKeys)
+          // console.log(account)
+          // const sequence = account.sequenceNumber()
+          // console.log(sequence)
+          // const source = new SorobanClient.Account(publicKeys, sequence)
+          // console.log('Sequence number is :', sequence)
+          // console.log(new SorobanClient.Address(publicKeys).toScVal())
+          // console.log('SOURCE IS ', source)
+          // console.log('SOURCE IS ', sequence)
+          // // create transaction
+          // const transaction = contractTransaction({
+          //   networkPassphrase: WalletNetwork.FUTURENET,
+          //   source,
+          //   contractId: process.env.NEXT_PUBLIC_CONTRACT_ID as string,
+          //   method: 'mint_nft',
+          //   params: [new SorobanClient.Address(publicKeys).toScVal()]
+          // })
+          // // prepare transaction
+          // const txn = await server.prepareTransaction(
+          //   transaction,
+          //   'Test SDF Future Network ; October 2022'
+          // )
+          // // sign transaction here
+          // const signedXDR = await kit.sign({
+          //   xdr: txn.toXDR(),
+          //   publicKey: publicKeys,
+          //   network: WalletNetwork.FUTURENET
+          // })
+          // console.log('signed XDR is ', signedXDR)
+        }
       } catch (error) {
         console.log('error in xbull sign transaction is', error)
       }

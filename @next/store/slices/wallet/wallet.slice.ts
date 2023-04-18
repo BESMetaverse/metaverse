@@ -23,21 +23,18 @@ const walletSlice = createSlice({
       state: walletSliceState,
       { payload }: PayloadAction<string | null>
     ) {
-      console.log('payload is ', payload)
       state.walletAccountNumber = payload
     },
     setWalletProvider(
       state: walletSliceState,
       { payload }: PayloadAction<string | null>
     ) {
-      console.log('payload is ', payload)
       state.walletProvider = payload
     },
     setActiveNetwork(
       state: walletSliceState,
       { payload }: PayloadAction<string | null>
     ) {
-      console.log('payload is ', payload)
       state.activeChain = payload
     }
   }

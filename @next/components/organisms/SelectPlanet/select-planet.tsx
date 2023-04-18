@@ -155,7 +155,7 @@ export const SelectPlanet = (): JSX.Element => {
       >
         <Grid container spacing={2.5} sx={{ marginLeft: '0' }}>
           {PlanetList.map((planet, index) => (
-            <Grid xl={3} lg={3} md={4} sm={6} xs={12} key={index}>
+            <Grid item xl={3} lg={3} md={4} sm={6} xs={12} key={index}>
               <PlanetCard
                 key={index}
                 icon={planet.icon}
