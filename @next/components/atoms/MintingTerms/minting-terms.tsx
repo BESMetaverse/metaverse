@@ -62,7 +62,7 @@ export const MintingTerms = ({
         }}
       />
       <Link
-        href="https://ironpaw.io/terms"
+        href="https://www.besmetaverse.com/terms-conditions"
         target="_blank"
         rel="noopener noreferrer"
         style={{

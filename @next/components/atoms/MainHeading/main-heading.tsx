@@ -1,5 +1,11 @@
 import { Typography } from '@mui/material'
-export const MainHeading = ({ Heading }: { Heading: string }): JSX.Element => {
+export const MainHeading = ({
+  Heading,
+  name
+}: {
+  Heading: string
+  name?: string
+}): JSX.Element => {
   return (
     <Typography
       variant="h2"
@@ -11,7 +17,7 @@ export const MainHeading = ({ Heading }: { Heading: string }): JSX.Element => {
         margin: '0 0 1.5rem'
       }}
     >
-      {Heading}
+      {Heading} {name ?? name}
     </Typography>
   )
 }
