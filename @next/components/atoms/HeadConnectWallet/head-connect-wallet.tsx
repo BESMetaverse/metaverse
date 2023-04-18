@@ -2,8 +2,7 @@ import * as React from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import Modal from '@mui/material/Modal'
 import { useRouter } from 'next/router'
-import { useAppSelector } from '@hooks'
-import { useAppDispatch } from '@hooks'
+import { useAppSelector, useAppDispatch } from '@hooks'
 import { walletActions } from '@store'
 import CloseIcon from '@mui/icons-material/Close'
 import Image from 'next/image'
@@ -22,8 +21,8 @@ const style = {
 
 export const HeadConnectWallet = (): JSX.Element => {
   const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleOpen = (): void => setOpen(true)
+  const handleClose = (): void => setOpen(false)
   const account = useAppSelector((state: any) => state.wallet)
 
   const router = useRouter()
@@ -85,7 +84,6 @@ export const HeadConnectWallet = (): JSX.Element => {
         </Button>
       )}
       <Modal
-        keepMounted
         open={open}
         onClose={handleClose}
         aria-labelledby="keep-mounted-modal-title"
