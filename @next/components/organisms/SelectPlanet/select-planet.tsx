@@ -85,8 +85,8 @@ export const SelectPlanet = (): JSX.Element => {
         backgroundSize: 'cover',
         height: {
           xl: '100vh',
-          lg: '100vh',
-          md: '100vh',
+          lg: '100%',
+          md: '100%',
           sm: '100%',
           xs: '100%'
         },
