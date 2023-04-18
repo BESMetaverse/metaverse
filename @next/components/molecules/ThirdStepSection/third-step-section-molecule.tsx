@@ -72,7 +72,7 @@ export const ThirdStepSection = ({
             networkPassphrase: activeChain.networkPassphrase,
             source,
             contractId:
-              '2101c55919d5836b253bd425d9b81f51ba4855d0543325fc8c58aded04379350',
+              '21688d8188b8aededbcf994c2238e745547e2899a84a314efbc54c8a8162ca1e',
             method: 'mint_nft',
             params: [new SorobanClient.Address(address).toScVal()]
           })

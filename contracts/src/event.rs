@@ -8,7 +8,3 @@ pub(crate) fn mint(e: &Env, to: Address, id: u32) {
     let topics = (Symbol::short("mint"), to);
     e.events().publish(topics, id);
 }
-pub(crate) fn set_authorized(e: &Env, admin: Address, id: Address, authorize: bool) {
-    let topics = (Symbol::new(e, "set_authorized"), admin, id);
-    e.events().publish(topics, authorize);
-}
