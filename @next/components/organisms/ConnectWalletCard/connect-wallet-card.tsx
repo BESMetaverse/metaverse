@@ -79,6 +79,8 @@ export const ConnectWalletCard = ({
         dispatch(walletActions.setWalletAccount(result))
         dispatch(walletActions.setWalletProvider('Freighter'))
         dispatch(walletActions.setActiveNetwork('stellar'))
+        enqueueSnackbar('wallet connected successfully', { variant: 'success' })
+
         void router.push('/minting')
       } else {
         enqueueSnackbar('Please install Freighter wallet!', { variant: 'info' })
@@ -93,6 +95,7 @@ export const ConnectWalletCard = ({
         dispatch(walletActions.setWalletAccount(result))
         dispatch(walletActions.setWalletProvider('XBULL'))
         dispatch(walletActions.setActiveNetwork('stellar'))
+        enqueueSnackbar('wallet connected successfully', { variant: 'success' })
         void router.push('/minting')
       } else {
         enqueueSnackbar('Please install XBUll wallet!', { variant: 'info' })
