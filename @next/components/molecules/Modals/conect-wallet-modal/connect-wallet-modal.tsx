@@ -27,7 +27,7 @@ export const ConnectWalletModal = ({
   const router = useRouter()
 
   const handleModalClose = (): any => {
-    return router.push('/')
+    return router.push('/wallet')
   }
   return (
     <Modal
