@@ -5,6 +5,7 @@ import { MintSuccessfullModal } from '@next/components/atoms/MintSuccessfullModa
 import { MintingCalculation } from '@next/components/atoms/MintingCalculation'
 import { useSnackbar } from 'notistack'
 import { useAppSelector } from '@hooks'
+import StellarSdk from 'stellar-sdk'
 
 // soroban
 import * as SorobanClient from 'soroban-client'
@@ -31,6 +32,7 @@ export const ThirdStepSection = ({
   const wallet = useAppSelector((state: any) => state.wallet)
 
   const [open, setOpen] = useState(false)
+  const [latestTransaction, setLatestTransaction] = useState("")
   const { enqueueSnackbar } = useSnackbar()
 
   const handleOpen = (): void => setOpen(true)
@@ -72,8 +74,17 @@ export const ThirdStepSection = ({
           })
 
           // check the success response here and then open successfull model
+          const servers = new StellarSdk.Server("https://horizon-futurenet.stellar.org/");
+          var results = await servers.transactions()
+            .forAccount(address)
+            .order("desc")
+            .call();
+          // console.log("Result is ", results.records[0].id)
+          const latest_transaction = results.records[0].id
+          setLatestTransaction(latest_transaction)
           setOpen(true)
           setLoading(false)
+
         } catch (error: any) {
           console.log('error in transaction is ', error, error?.response)
           // console.log(error.)
@@ -201,6 +212,7 @@ export const ThirdStepSection = ({
         handleMint={handleMint}
         handleOpen={handleOpen}
         handleClose={handleClose}
+        txn={latestTransaction}
       />
       {/* to display frighter wallet details */}
       {/* If the Connector is not connected, will show the ConnectButton. If the Connector is connected, will show address and network. */}

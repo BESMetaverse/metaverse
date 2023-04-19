@@ -32,13 +32,15 @@ export const MintSuccessfullModal = ({
   open,
   handleMint,
   handleOpen,
-  handleClose
+  handleClose,
+  txn
 }: {
   Text: string
   open: boolean
   handleMint: () => Promise<void>
   handleOpen: () => void
   handleClose: () => void
+  txn: string
 }): JSX.Element => {
   const account: Account = useAppSelector((state: any) => state.wallet)
   const [text, setText] = React.useState<string>('Copy')
@@ -168,7 +170,7 @@ export const MintSuccessfullModal = ({
               }}
             >
               <Link
-                href={`https://stellarchain.io/accounts/${account?.walletAccountNumber}`}
+                href={`https://stellarchain.io/transactions/${txn}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -181,10 +183,7 @@ export const MintSuccessfullModal = ({
                   textAlign: 'center'
                 }}
               >
-                {`https://stellarchain.io/accounts/${account?.walletAccountNumber?.slice(
-                  0,
-                  10
-                )}`}
+                {`https://stellarchain.io/transactions/${txn}`}
               </Link>
             </Box>
             <Box
