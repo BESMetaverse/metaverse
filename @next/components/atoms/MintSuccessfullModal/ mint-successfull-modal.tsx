@@ -249,31 +249,31 @@ export const MintSuccessfullModal = ({
                 </ListItem>
                 <Typography sx={{ color: '#6D6D6D' }}>
                   https://horizon-futurenet.stellar.org/
-                </Typography>
-                <Tooltip
-                  title={text}
-                  arrow
-                  placement="top"
-                  sx={{
-                    backgroundColor: '#000'
-                  }}
-                >
-                  <Button
+                  <Tooltip
+                    title={text}
+                    arrow
+                    placement="top"
                     sx={{
-                      minWidth: '1.875rem'
+                      backgroundColor: '#000'
                     }}
-                    onClick={() =>
-                      copyText('https://horizon-futurenet.stellar.org/')
-                    }
                   >
-                    <Image
-                      src="/images/copy.svg"
-                      width={20.4}
-                      height={20.4}
-                      alt="copy"
-                    />
-                  </Button>
-                </Tooltip>
+                    <Button
+                      sx={{
+                        minWidth: '1.875rem'
+                      }}
+                      onClick={() =>
+                        copyText('https://horizon-futurenet.stellar.org/')
+                      }
+                    >
+                      <Image
+                        src="/images/copy.svg"
+                        width={20.4}
+                        height={20.4}
+                        alt="copy"
+                      />
+                    </Button>
+                  </Tooltip>
+                </Typography>
               </List>
             </Box>
           </Box>
