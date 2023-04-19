@@ -183,7 +183,7 @@ export const MintSuccessfullModal = ({
                   textAlign: 'center'
                 }}
               >
-                {`https://stellarchain.io/transactions/${txn}`}
+                {`https://stellarchain.io/transactions/${txn.slice(0, 8)}`}
               </Link>
             </Box>
             <Box
