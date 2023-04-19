@@ -182,7 +182,7 @@ export const ThirdStepSection = ({
         }
       }}
     >
-      <FieldLabel FieldLabel={'Allow list Mint'} />
+      <FieldLabel FieldLabel={'Allowlist Mint'} />
       <Typography
         sx={{
           color: '#fff',
@@ -196,7 +196,7 @@ export const ThirdStepSection = ({
       <MintingCalculation />
       <MintSuccessfullModal
         Text={'Mint'}
-        open={open}
+        open={true}
         handleMint={handleMint}
         handleOpen={handleOpen}
         handleClose={handleClose}

@@ -7,6 +7,14 @@ import CloseIcon from '@mui/icons-material/Close'
 import Image from 'next/image'
 import Tooltip from '@mui/material/Tooltip'
 import Link from 'next/link'
+import { useAppSelector } from '@hooks'
+import { List, ListItem, ListItemAvatar, ListItemText } from '@mui/material'
+import { connect } from 'react-redux'
+
+interface Account {
+  walletAccountNumber: string
+  // Other properties of the account object go here
+}
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -21,17 +29,18 @@ const style = {
 }
 export const MintSuccessfullModal = ({
   Text,
-  open,
+  connected,
   handleMint,
   handleOpen,
   handleClose
 }: {
   Text: string
-  open: boolean
+  connected: boolean
   handleMint: () => Promise<void>
   handleOpen: () => void
   handleClose: () => void
 }): JSX.Element => {
+  const account: Account = useAppSelector((state: any) => state.wallet)
   const [text, setText] = React.useState<string>('Copy')
 
   const copyText = (copyText: string): void => {
@@ -73,13 +82,7 @@ export const MintSuccessfullModal = ({
       >
         {Text} 1 Mechs
       </Button>
-      <Modal
-        keepMounted
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="keep-mounted-modal-title"
-        aria-describedby="keep-mounted-modal-description"
-      >
+      <Modal open={connected} onClose={handleClose}>
         <Box sx={style}>
           <Button
             onClick={handleClose}
@@ -145,54 +148,134 @@ export const MintSuccessfullModal = ({
               }}
             >
               Link to explore
-            </Link>
+            </Link> */}
+            <Typography
+              sx={{
+                color: '#fff',
+                fontSize: '1rem',
+                fontWeight: 600,
+                margin: '0.5rem 0 0'
+              }}
+            >
+              Link to explore
+            </Typography>
             <Box
               sx={{
                 alignItems: 'center',
                 display: 'flex',
                 justifyContent: 'center',
-                margin: '2.813rem 0 0'
+                margin: '0.1rem 0 0'
               }}
             >
               <Link
-                href="https://ironpaw.io/terms"
+                href={`https://stellarchain.io/accounts/${account?.walletAccountNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  borderBottom: '1px solid #02BCFC',
+                  // borderBottom: '1px solid #02BCFC',
                   color: '#02BCFC',
                   display: 'block',
                   fontSize: '1.125rem',
                   fontWeight: 400,
-                  lineHeight: '26px'
+                  lineHeight: '26px',
+                  textAlign: 'center'
                 }}
               >
-                http://search?q=exploere
+                {`https://stellarchain.io/accounts/${account?.walletAccountNumber?.slice(
+                  0,
+                  10
+                )}`}
               </Link>
-              <Tooltip
-                title={text}
-                arrow
-                placement="top"
+            </Box>
+            <Box
+              sx={{
+                textAlign: 'center',
+                color: '#fff',
+                margin: '2rem 0 0',
+                width: '100%'
+              }}
+            >
+              <Typography>
+                Steps for adding Futurenet in your networks
+              </Typography>
+              <List
                 sx={{
-                  backgroundColor: '#000'
+                  width: '100%',
+                  maxWidth: 360
+                  // bgcolor: 'background.paper'
                 }}
               >
-                <Button
-                  sx={{
-                    minWidth: '1.875rem'
-                  }}
-                  onClick={() => copyText('http://search?q=exploere')}
-                >
-                  {' '}
-                  <Image
-                    src="/images/copy.svg"
-                    width={20.4}
-                    height={20.4}
-                    alt="copy"
+                <ListItem>
+                  <ListItemAvatar>
+                    {/* <Avatar>
+            <ImageIcon />
+          </Avatar> */}
+                    <Typography>Step 1</Typography>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="Click on the above link"
+                    sx={{
+                      fontSize: '11px'
+                    }}
                   />
-                </Button>
-              </Tooltip>
-            </Box> */}
+                </ListItem>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Typography>Step 2</Typography>
+                    {/* <Avatar>
+            <WorkIcon />
+          </Avatar> */}
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="Select CUSTOM NETWORK"
+                    sx={{
+                      fontSize: '11px'
+                    }}
+                  />
+                </ListItem>
+                <ListItem sx={{}}>
+                  <ListItemAvatar>
+                    <Typography>Step 3</Typography>
+                    {/* <Avatar>
+            <BeachAccessIcon />
+          </Avatar> */}
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="Enter below custom address"
+                    sx={{
+                      fontSize: '11px'
+                    }}
+                  />
+                </ListItem>
+                <Typography sx={{ color: '#6D6D6D' }}>
+                  https://horizon-futurenet.stellar.org/
+                  <Tooltip
+                    title={text}
+                    arrow
+                    placement="top"
+                    sx={{
+                      backgroundColor: '#000'
+                    }}
+                  >
+                    <Button
+                      sx={{
+                        minWidth: '1.875rem'
+                      }}
+                      onClick={() =>
+                        copyText('https://horizon-futurenet.stellar.org/')
+                      }
+                    >
+                      <Image
+                        src="/images/copy.svg"
+                        width={20.4}
+                        height={20.4}
+                        alt="copy"
+                      />
+                    </Button>
+                  </Tooltip>
+                </Typography>
+              </List>
+            </Box>
           </Box>
         </Box>
       </Modal>
