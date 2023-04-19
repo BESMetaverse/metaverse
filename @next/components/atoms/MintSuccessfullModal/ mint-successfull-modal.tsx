@@ -157,7 +157,7 @@ export const MintSuccessfullModal = ({
                 margin: '0.5rem 0 0'
               }}
             >
-              Link to explore
+              Link to explorer
             </Typography>
             <Box
               sx={{
