@@ -1,6 +1,5 @@
 import { SignClient } from '@walletconnect/sign-client'
 import { Web3Modal } from '@web3modal/standalone'
-
 import { Box } from '@mui/material'
 import { ContinueButton } from '@next/components/atoms/ContinueButton'
 import { MintingTerms } from '@next/components/atoms/MintingTerms'
@@ -22,6 +21,7 @@ import {
 } from 'stellar-wallets-kit'
 
 import { useSnackbar } from 'notistack'
+
 export const ConnectWalletCard = ({
   setLoading
 }: {
@@ -42,6 +42,8 @@ export const ConnectWalletCard = ({
   const [continueDisabled, setContinueDisabled] = useState(false)
   const [network, setNetwork] = useState('')
   const [wallet, setWallet] = useState('')
+
+  const [isFreighter, setIsFreighter] = useState(false)
 
   const router = useRouter()
 
@@ -69,22 +71,37 @@ export const ConnectWalletCard = ({
 
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
+
     if (wallet === 'Freighter') {
+      const globalWithFreighter = global as any
+      if (!globalWithFreighter.freighter) {
+        enqueueSnackbar('Please install Freighter wallet!', {
+          variant: 'info'
+        })
+        return
+      }
       const kit = new StellarWalletsKit({
         network: WalletNetwork.FUTURENET,
         selectedWallet: WalletType.FREIGHTER
       })
+
       const result = await kit.getPublicKey()
+
       if (result) {
         dispatch(walletActions.setWalletAccount(result))
         dispatch(walletActions.setWalletProvider('Freighter'))
         dispatch(walletActions.setActiveNetwork('stellar'))
-        enqueueSnackbar('wallet connected successfully', { variant: 'success' })
+        enqueueSnackbar('wallet connected successfully', {
+          variant: 'success'
+        })
 
         void router.push('/minting')
-      } else {
-        enqueueSnackbar('Please install Freighter wallet!', { variant: 'info' })
       }
+      //  else {
+      //   enqueueSnackbar('Please install Freighter wallet!', {
+      //     variant: 'info'
+      //   })
+      // }
     } else if (wallet === 'XBULL') {
       const kit = new StellarWalletsKit({
         network: WalletNetwork.FUTURENET,

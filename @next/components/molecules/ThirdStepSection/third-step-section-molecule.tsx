@@ -70,6 +70,7 @@ export const ThirdStepSection = ({
           const txn = await sendTransaction(transaction, {
             sorobanContext
           })
+
           // check the success response here and then open successfull model
           setOpen(true)
           setLoading(false)
@@ -182,7 +183,7 @@ export const ThirdStepSection = ({
         }
       }}
     >
-      <FieldLabel FieldLabel={'Allow list Mint'} />
+      <FieldLabel FieldLabel={'Allowlist Mint'} />
       <Typography
         sx={{
           color: '#fff',
