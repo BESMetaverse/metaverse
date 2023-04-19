@@ -70,6 +70,7 @@ export const ThirdStepSection = ({
           const txn = await sendTransaction(transaction, {
             sorobanContext
           })
+
           // check the success response here and then open successfull model
           setOpen(true)
           setLoading(false)
@@ -196,7 +197,7 @@ export const ThirdStepSection = ({
       <MintingCalculation />
       <MintSuccessfullModal
         Text={'Mint'}
-        open={true}
+        open={open}
         handleMint={handleMint}
         handleOpen={handleOpen}
         handleClose={handleClose}

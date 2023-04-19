@@ -29,13 +29,13 @@ const style = {
 }
 export const MintSuccessfullModal = ({
   Text,
-  connected,
+  open,
   handleMint,
   handleOpen,
   handleClose
 }: {
   Text: string
-  connected: boolean
+  open: boolean
   handleMint: () => Promise<void>
   handleOpen: () => void
   handleClose: () => void
@@ -82,7 +82,7 @@ export const MintSuccessfullModal = ({
       >
         {Text} 1 Mechs
       </Button>
-      <Modal open={connected} onClose={handleClose}>
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <Button
             onClick={handleClose}
@@ -249,31 +249,31 @@ export const MintSuccessfullModal = ({
                 </ListItem>
                 <Typography sx={{ color: '#6D6D6D' }}>
                   https://horizon-futurenet.stellar.org/
-                  <Tooltip
-                    title={text}
-                    arrow
-                    placement="top"
-                    sx={{
-                      backgroundColor: '#000'
-                    }}
-                  >
-                    <Button
-                      sx={{
-                        minWidth: '1.875rem'
-                      }}
-                      onClick={() =>
-                        copyText('https://horizon-futurenet.stellar.org/')
-                      }
-                    >
-                      <Image
-                        src="/images/copy.svg"
-                        width={20.4}
-                        height={20.4}
-                        alt="copy"
-                      />
-                    </Button>
-                  </Tooltip>
                 </Typography>
+                <Tooltip
+                  title={text}
+                  arrow
+                  placement="top"
+                  sx={{
+                    backgroundColor: '#000'
+                  }}
+                >
+                  <Button
+                    sx={{
+                      minWidth: '1.875rem'
+                    }}
+                    onClick={() =>
+                      copyText('https://horizon-futurenet.stellar.org/')
+                    }
+                  >
+                    <Image
+                      src="/images/copy.svg"
+                      width={20.4}
+                      height={20.4}
+                      alt="copy"
+                    />
+                  </Button>
+                </Tooltip>
               </List>
             </Box>
           </Box>
