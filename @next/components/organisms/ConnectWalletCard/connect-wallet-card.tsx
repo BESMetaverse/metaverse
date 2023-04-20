@@ -73,7 +73,7 @@ export const ConnectWalletCard = ({
     if (wallet === 'Freighter') {
       const globalWithFreighter = global as any
       if (!globalWithFreighter.freighter) {
-        enqueueSnackbar('Please install Freighter wallet!', {
+        enqueueSnackbar('Please install Freighter wallet extension!', {
           variant: 'info'
         })
         return
@@ -89,7 +89,7 @@ export const ConnectWalletCard = ({
         dispatch(walletActions.setWalletAccount(result))
         dispatch(walletActions.setWalletProvider('Freighter'))
         dispatch(walletActions.setActiveNetwork('stellar'))
-        enqueueSnackbar('wallet connected successfully', {
+        enqueueSnackbar('Wallet connected successfully', {
           variant: 'success'
         })
 
