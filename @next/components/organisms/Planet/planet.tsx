@@ -58,10 +58,6 @@ export const Planet = (): JSX.Element => {
     console.log(hex)
   }
 
-  const hexPolygonLabel = ({ bbox }: { bbox: number[] }): any => {
-    return `<button><i>${bbox[0] < 0 ? bbox[0] * -1 : bbox[0]}</button>`
-  }
-
   const GLOBE = useMemo((): JSX.Element => {
     return (
       <>
@@ -75,7 +71,11 @@ export const Planet = (): JSX.Element => {
           hexPolygonResolution={2}
           hexPolygonMargin={0.1}
           hexPolygonColor={() => `${color[Math.round(Math.random() * 2)]}`}
-          hexPolygonLabel={hexPolygonLabel}
+          hexPolygonLabel={({ bbox }: { bbox: number[] }) =>
+            `<button><b>${
+              bbox[0] < 0 ? (bbox[0] * -1).toFixed(3) : bbox[0].toFixed(3)
+            }</b></button>`
+          }
           onHexPolygonClick={handlePlotClick}
         />
       </>

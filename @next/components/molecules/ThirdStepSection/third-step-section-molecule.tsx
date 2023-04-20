@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { FieldLabel } from '@next/components/atoms/FieldLabel'
 import { MintSuccessfullModal } from '@next/components/atoms/MintSuccessfullModal'
 import { MintingCalculation } from '@next/components/atoms/MintingCalculation'
 import { useSnackbar } from 'notistack'
 import { useAppSelector } from '@hooks'
-
 import StellarSdk from 'stellar-sdk'
 
 // const StellarSdk = require('stellar-sdk')
@@ -37,6 +36,7 @@ export const ThirdStepSection = ({
   const wallet = useAppSelector((state: any) => state.wallet)
 
   const [open, setOpen] = useState(false)
+  const [latestTransaction, setLatestTransaction] = useState('')
   const { enqueueSnackbar } = useSnackbar()
 
   const handleOpen = (): void => setOpen(true)
@@ -78,7 +78,17 @@ export const ThirdStepSection = ({
           })
 
           // check the success response here and then open successfull model
-          setIsSuccess(true)
+          const servers = new StellarSdk.Server(
+            'https://horizon-futurenet.stellar.org/'
+          )
+          var results = await servers
+            .transactions()
+            .forAccount(address)
+            .order('desc')
+            .call()
+          // console.log("Result is ", results.records[0].id)
+          const latestTransaction = results.records[0].id
+          setLatestTransaction(latestTransaction)
           setOpen(true)
           setLoading(false)
         } catch (error: any) {
@@ -208,6 +218,7 @@ export const ThirdStepSection = ({
         handleMint={handleMint}
         handleOpen={handleOpen}
         handleClose={handleClose}
+        txn={latestTransaction}
       />
       {/* to display frighter wallet details */}
       {/* If the Connector is not connected, will show the ConnectButton. If the Connector is connected, will show address and network. */}
