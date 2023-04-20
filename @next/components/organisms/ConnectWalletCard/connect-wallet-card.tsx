@@ -43,8 +43,6 @@ export const ConnectWalletCard = ({
   const [network, setNetwork] = useState('')
   const [wallet, setWallet] = useState('')
 
-  const [isFreighter, setIsFreighter] = useState(false)
-
   const router = useRouter()
 
   // wallet connect

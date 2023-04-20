@@ -243,3 +243,6 @@ input[type='number'] {
   text-align: center;
   min-width: 6.75rem;
 }
+.new {
+  color: 'red';
+}

@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { FieldLabel } from '@next/components/atoms/FieldLabel'
 import { MintSuccessfullModal } from '@next/components/atoms/MintSuccessfullModal'
 import { MintingCalculation } from '@next/components/atoms/MintingCalculation'
 import { useSnackbar } from 'notistack'
 import { useAppSelector } from '@hooks'
+
+import StellarSdk from 'stellar-sdk'
+
+// const StellarSdk = require('stellar-sdk')
 
 // soroban
 import * as SorobanClient from 'soroban-client'
@@ -21,8 +25,10 @@ import {
 } from '@soroban-react/contracts'
 
 import { getCurrentSupply, getTotalNFTSupply } from '@soroban'
+import axios from 'axios'
 // import { useIsPetAdopted } from '@soroban'
 
+const server = new StellarSdk.Server('https://horizon-futurenet.stellar.org/')
 export const ThirdStepSection = ({
   setLoading
 }: {
@@ -72,6 +78,7 @@ export const ThirdStepSection = ({
           })
 
           // check the success response here and then open successfull model
+          setIsSuccess(true)
           setOpen(true)
           setLoading(false)
         } catch (error: any) {
