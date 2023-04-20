@@ -1,21 +1,12 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @typescript-eslint/promise-function-async */
-import {
-  useState,
-  useEffect,
-  useRef,
-  forwardRef,
-  useMemo,
-  useCallback
-} from 'react'
+import { useState, useEffect, useRef, forwardRef, useMemo } from 'react'
 import axios from 'axios'
 import { PlanetsDrawer } from '@molecules'
 import dynamic from 'next/dynamic'
 import { GlobeMethods } from 'react-globe.gl'
 import { Box } from '@mui/material'
 import { SpinLoader } from '@next/components/atoms/SpinLoader'
-
-const COLORS = ['#6898FF', '#A45CFF', '#D72E2E']
 
 export const Planet = (): JSX.Element => {
   const globeEl = useRef<GlobeMethods>()
@@ -68,7 +59,6 @@ export const Planet = (): JSX.Element => {
   }
 
   const GLOBE = useMemo((): JSX.Element => {
-    console.log('colors loaded', color)
     return (
       <>
         <Globe
@@ -82,7 +72,9 @@ export const Planet = (): JSX.Element => {
           hexPolygonMargin={0.1}
           hexPolygonColor={() => `${color[Math.round(Math.random() * 2)]}`}
           hexPolygonLabel={({ bbox }: { bbox: number[] }) =>
-            ` Plot ID: <i>${bbox[0] < 0 ? bbox[0] * -1 : bbox[0]}</i>`
+            `<button><b>${
+              bbox[0] < 0 ? (bbox[0] * -1).toFixed(3) : bbox[0].toFixed(3)
+            }</b></button>`
           }
           onHexPolygonClick={handlePlotClick}
         />
