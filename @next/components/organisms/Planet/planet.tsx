@@ -72,8 +72,10 @@ export const Planet = (): JSX.Element => {
           hexPolygonMargin={0.1}
           hexPolygonColor={() => `${color[Math.round(Math.random() * 2)]}`}
           hexPolygonLabel={({ bbox }: { bbox: number[] }) =>
-            `<button><b>${
-              bbox[0] < 0 ? (bbox[0] * -1).toFixed(3) : bbox[0].toFixed(3)
+            `<button><b>#${
+              bbox[0] < 0
+                ? Math.ceil(bbox[0] * -1) * 100
+                : Math.ceil(bbox[0]) * 100
             }</b></button>`
           }
           onHexPolygonClick={handlePlotClick}

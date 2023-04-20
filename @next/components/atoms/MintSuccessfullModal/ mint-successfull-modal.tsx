@@ -84,7 +84,13 @@ export const MintSuccessfullModal = ({
       >
         {Text} 1 Mechs
       </Button>
-      <Modal open={open} onClose={handleClose}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        sx={{
+          top: '15%'
+        }}
+      >
         <Box sx={style}>
           <Button
             onClick={handleClose}
@@ -159,7 +165,7 @@ export const MintSuccessfullModal = ({
                 margin: '0.5rem 0 0'
               }}
             >
-              Link to explorer
+              Link to Explorer
             </Typography>
             <Box
               sx={{
@@ -195,7 +201,7 @@ export const MintSuccessfullModal = ({
               }}
             >
               <Typography>
-                Steps for adding Futurenet in your networks
+                Steps for adding Futurenet in your network
               </Typography>
               <List
                 sx={{
@@ -214,7 +220,8 @@ export const MintSuccessfullModal = ({
                   <ListItemText
                     primary="Click on the above link"
                     sx={{
-                      fontSize: '11px'
+                      fontSize: '11px',
+                      marginTop: '0'
                     }}
                   />
                 </ListItem>
@@ -228,7 +235,8 @@ export const MintSuccessfullModal = ({
                   <ListItemText
                     primary="Select CUSTOM NETWORK"
                     sx={{
-                      fontSize: '11px'
+                      fontSize: '11px',
+                      marginTop: '0'
                     }}
                   />
                 </ListItem>
@@ -240,9 +248,10 @@ export const MintSuccessfullModal = ({
           </Avatar> */}
                   </ListItemAvatar>
                   <ListItemText
-                    primary="Enter the below custom address"
+                    primary="Enter below custom address"
                     sx={{
-                      fontSize: '11px'
+                      fontSize: '11px',
+                      marginTop: '0'
                     }}
                   />
                 </ListItem>
