@@ -87,6 +87,7 @@ The following output should appear.
 
 ## Contract  Functions
 ### INVOKE INITIALIZE
+This function serves to initialize the NFT contract and define the smart contract's admin and the total supply of NFTs. When invoking this function, it is necessary to provide the `PUBLIC ADDRESS OF THE ADMIN`  and the `TOTAL_SUPPLY` of NFTs. To execute the initialization function via the command line interface (CLI), use the following command.
 ```
 soroban contract invoke \
 --id <CONTRACT ID> \
@@ -99,6 +100,7 @@ soroban contract invoke \
 ```
 
 ### INVOKE MINT NFT
+The mint function is responsible for minting an NFT and assigning ownership to the NFT's creator. When invoking this function, it is necessary to provide the `MINTER PUBLIC ADDRESS`. To execute the mint_nft function via the Soroban Command Line Interface (CLI), use the following command.
 ```
 soroban contract invoke \
 --id <CONTRACT ID> \
@@ -110,6 +112,7 @@ soroban contract invoke \
 ```
 
 ### INVOKE GET NFT
+To retrieve information about a specific minted NFT, the 'get_nft' function must be invoked, and the corresponding `TOKEN ID` must be provided as a parameter. To execute the get_nft function via the Soroban Command Line Interface (CLI), use the following command.
 ```
 soroban contract invoke \
 --id <CONTRACT ID> \
@@ -121,6 +124,8 @@ soroban contract invoke \
 ```
 
 ### GET BASE URI
+To obtain the base URI where the metadata is stored, it is necessary to execute the 'get_base_uri' function via the soroban-cli command.
+
 ```
 soroban contract invoke \
 --id <CONTRACT ID> \
@@ -131,6 +136,7 @@ soroban contract invoke \
 ```
 
 ### SET BASE URI
+To modify the base URI where the metadata of an NFT is stored, it is necessary to provide the `NEW BASE-URI` as a parameter while invoking the relevant function. The command for updating the base URI is:
 ```
 soroban contract invoke \
 --id <CONTRACT ID>  \
@@ -140,7 +146,11 @@ soroban contract invoke \
 -- set_base_uri \
 --base_uri <NEW BASE-URI>
 ```
+**Only Admin can call this function**
+
 ### SET ADMIN
+To modify the administrator of a Soroban contract, the 'set_admin' function can be utilized. This can be executed by providing the `PUBLIC ADDRESS OF NEW ADMIN` as a parameter while invoking the function. The command to update the admin is 
+
 ```
 soroban contract invoke \
 --id <CONTRACT ID> \
@@ -150,17 +160,23 @@ soroban contract invoke \
 -- set_admin \
 --new_admin <PUBLIC ADDRESS OF NEW ADMIN>
 ```
+**Only Admin can call this function**
+
 ### GET CURRENT SUPPLY
+To retrieve the total number of minted tokens up to the current date, it is necessary to invoke the 'current_nft_supply' function. This function will return the count of the total number of minted NFTs.
+
 ```
 soroban contract invoke \
 --id <CONTRACT ID> \
---source SAJPJB6JZ7HMDUO5VPPFLA5DKPS2F5JBAHG3DXFDEUJ2ZVOES447VEG4 \
+--source S.. \
 --rpc-url https://rpc-futurenet.stellar.org:443 \
 --network-passphrase 'Test SDF Future Network ; October 2022' \
 -- current_nft_supply
 ```
 
 ### GET TOTAL NFT SUPPLY
+To retrieve the total number of nft that can be minted , it is necessary to invoke the 'total_nft_supply' function. This function will return the count of the total number of minted NFTs.
+
 ```
 soroban contract invoke \
 --id <CONTRACT ID> \
@@ -171,6 +187,7 @@ soroban contract invoke \
 ```
 
 ### GET OWNER OF NFT
+To obtain the owner of a specific NFT, it is necessary to execute the 'owner_of' function and provide the corresponding `TOKEN ID OF NFT` as a parameter. This function will return the public address of the NFT owner. The soroban-cli command to get the owner of the NFT is 
 ```
 soroban contract invoke   \
 --id <CONTRACT ID>   \
@@ -182,6 +199,8 @@ soroban contract invoke   \
 ```
 
 ### GET TOKEN BASE-URI OF NFT
+To retrieve the base URI of a particular NFT where the metadata of that NFT is stored, 'token_base_uri' function of the contract will be called and` TOKEN ID OF NFT` will be passed as a parameter.
+
 ```
 soroban contract invoke   \
 --id <CONTRACT ID>   \
