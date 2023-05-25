@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3004",
+    "start": "next start",
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "lint": "next lint"
