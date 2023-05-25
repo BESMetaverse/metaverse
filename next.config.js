@@ -4,7 +4,7 @@ const nextConfig = {
   i18n,
   reactStrictMode: true,
   swcMinify: true,
-  staticPageGenerationTimeout: 10000
+  staticPageGenerationTimeout: 1000
 }
 
 module.exports = nextConfig
