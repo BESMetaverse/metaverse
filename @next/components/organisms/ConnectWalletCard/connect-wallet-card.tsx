@@ -69,7 +69,7 @@ export const ConnectWalletCard = ({
 
   const handleStepTwo = async (): Promise<any> => {
     // check which wallet provider is selected
-
+    console.log('Result1:     ')
     if (wallet === 'Freighter') {
       // const globalWithFreighter = global as any
       // if (!globalWithFreighter.freighter) {
@@ -78,12 +78,20 @@ export const ConnectWalletCard = ({
       //   })
       //   return
       // }
+      console.log('frighter:     ')
       const kit = new StellarWalletsKit({
         network: WalletNetwork.FUTURENET,
         selectedWallet: WalletType.FREIGHTER
       })
-
-      const result = await kit.getPublicKey()
+      console.log('Result2:     ')
+      let result = null
+      try {
+        console.log('Try')
+        result = await kit.getPublicKey()
+        console.log('Result:     ', result)
+      } catch (err: any) {
+        console.log('Error came', err)
+      }
 
       if (result) {
         dispatch(walletActions.setWalletAccount(result))
@@ -116,6 +124,8 @@ export const ConnectWalletCard = ({
       }
     } else if (wallet === 'WalletConnect') {
       await handleWalletConnect()
+    } else {
+      console.log('scenarios is called')
     }
   }
 

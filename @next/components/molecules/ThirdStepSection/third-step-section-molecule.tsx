@@ -52,140 +52,146 @@ export const ThirdStepSection = ({
   // getTotalNFTSupply({ sorobanContext: sorobanContext })
 
   const handleMint = async (): Promise<void> => {
-    if (wallet?.walletProvider === 'Freighter') {
-      const { activeChain, server, address } = sorobanContext
-      if (!activeChain || !address || !server) {
-        enqueueSnackbar(
-          'No active chain: please refresh or reconnect your wallet',
-          { variant: 'error' }
-        )
-      } else {
-        try {
-          setLoading(true)
-          const account = await server.getAccount(address)
-          const sequence = account.sequenceNumber()
-          const source = new SorobanClient.Account(address, sequence)
-          const transaction = contractTransaction({
-            networkPassphrase: activeChain.networkPassphrase,
-            source,
-            contractId: process.env.NEXT_PUBLIC_CONTRACT_ID as string,
-            method: 'mint_nft',
-            params: [new SorobanClient.Address(address).toScVal()]
-          })
-          // open sign pop-up
-          const txn = await sendTransaction(transaction, {
-            sorobanContext
-          })
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      handleOpen()
+    }, 3000)
+    // handleOpen()
+    //   if (wallet?.walletProvider === 'Freighter') {
+    //     const { activeChain, server, address } = sorobanContext
+    //     if (!activeChain || !address || !server) {
+    //       enqueueSnackbar(
+    //         'No active chain: please refresh or reconnect your wallet',
+    //         { variant: 'error' }
+    //       )
+    //     } else {
+    //       try {
+    //         setLoading(true)
+    //         const account = await server.getAccount(address)
+    //         const sequence = account.sequenceNumber()
+    //         const source = new SorobanClient.Account(address, sequence)
+    //         const transaction = contractTransaction({
+    //           networkPassphrase: activeChain.networkPassphrase,
+    //           source,
+    //           contractId: process.env.NEXT_PUBLIC_CONTRACT_ID as string,
+    //           method: 'mint_nft',
+    //           params: [new SorobanClient.Address(address).toScVal()]
+    //         })
+    //         // open sign pop-up
+    //         const txn = await sendTransaction(transaction, {
+    //           sorobanContext
+    //         })
 
-          // check the success response here and then open successfull model
-          const servers = new StellarSdk.Server(
-            'https://horizon-futurenet.stellar.org/'
-          )
-          var results = await servers
-            .transactions()
-            .forAccount(address)
-            .order('desc')
-            .call()
-          // console.log("Result is ", results.records[0].id)
-          const latestTransaction = results.records[0].id
-          setLatestTransaction(latestTransaction)
-          setOpen(true)
-          setLoading(false)
-        } catch (error: any) {
-          console.log('error in transaction is ', error, error?.response)
-          // console.log(error.)
+    //         // check the success response here and then open successfull model
+    //         const servers = new StellarSdk.Server(
+    //           'https://horizon-futurenet.stellar.org/'
+    //         )
+    //         var results = await servers
+    //           .transactions()
+    //           .forAccount(address)
+    //           .order('desc')
+    //           .call()
+    //         // console.log("Result is ", results.records[0].id)
+    //         const latestTransaction = results.records[0].id
+    //         setLatestTransaction(latestTransaction)
+    //         setOpen(true)
+    //         setLoading(false)
+    //       } catch (error: any) {
+    //         console.log('error in transaction is ', error, error?.response)
+    //         // console.log(error.)
 
-          setLoading(false)
-          if (error?.code) {
-            if (error?.code === -32600) {
-              enqueueSnackbar(
-                "Your account isn't in the ledger yet. Please fund your account",
-                {
-                  variant: 'error'
-                }
-              )
-            }
-          } else if (error?.response) {
-            const errorMessage = error?.response
-            if (errorMessage?.status === 405) {
-              // statusText: "Method Not Allowed"
-              enqueueSnackbar(
-                'Please select custom FUTURE NET in your wallet and refresh the page',
-                {
-                  variant: 'error'
-                }
-              )
-            }
-          } else {
-            const errorMessage = error as string
-            if (
-              errorMessage
-                .toString()
-                .includes('soroban_env_host::host::err_helper')
-            ) {
-              enqueueSnackbar('Your account is not a white listed account', {
-                variant: 'error'
-              })
-            } else if (errorMessage.toString() === 'User declined access') {
-              enqueueSnackbar('User declined the access', { variant: 'error' })
-            } else {
-              enqueueSnackbar(
-                'Please select futurenet in the wallet and enable experimental mode in your wallet preferences',
-                { variant: 'info' }
-              )
-            }
-          }
-        }
-      }
-    } else if (wallet?.walletProvider === 'XBULL') {
-      try {
-        const kit = new StellarWalletsKit({
-          network: WalletNetwork.FUTURENET,
-          selectedWallet: WalletType.XBULL
-        })
-        const publicKeys = wallet?.walletAccountNumber
-        const { server } = sorobanContext
-        if (!server) {
-          console.log('No server')
-        } else {
-          // console.log('account')
-          // console.log('server')
-          // console.log(publicKeys)
-          // console.log(server)
-          // const account = await server.getAccount(publicKeys)
-          // console.log(account)
-          // const sequence = account.sequenceNumber()
-          // console.log(sequence)
-          // const source = new SorobanClient.Account(publicKeys, sequence)
-          // console.log('Sequence number is :', sequence)
-          // console.log(new SorobanClient.Address(publicKeys).toScVal())
-          // console.log('SOURCE IS ', source)
-          // console.log('SOURCE IS ', sequence)
-          // // create transaction
-          // const transaction = contractTransaction({
-          //   networkPassphrase: WalletNetwork.FUTURENET,
-          //   source,
-          //   contractId: process.env.NEXT_PUBLIC_CONTRACT_ID as string,
-          //   method: 'mint_nft',
-          //   params: [new SorobanClient.Address(publicKeys).toScVal()]
-          // })
-          // // prepare transaction
-          // const txn = await server.prepareTransaction(
-          //   transaction,
-          //   'Test SDF Future Network ; October 2022'
-          // )
-          // // sign transaction here
-          // const signedXDR = await kit.sign({
-          //   xdr: txn.toXDR(),
-          //   publicKey: publicKeys,
-          //   network: WalletNetwork.FUTURENET
-          // })
-          // console.log('signed XDR is ', signedXDR)
-        }
-      } catch (error) {
-        console.log('error in xbull sign transaction is', error)
-      }
-    }
+    //         setLoading(false)
+    //         if (error?.code) {
+    //           if (error?.code === -32600) {
+    //             enqueueSnackbar(
+    //               "Your account isn't in the ledger yet. Please fund your account",
+    //               {
+    //                 variant: 'error'
+    //               }
+    //             )
+    //           }
+    //         } else if (error?.response) {
+    //           const errorMessage = error?.response
+    //           if (errorMessage?.status === 405) {
+    //             // statusText: "Method Not Allowed"
+    //             enqueueSnackbar(
+    //               'Please select custom FUTURE NET in your wallet and refresh the page',
+    //               {
+    //                 variant: 'error'
+    //               }
+    //             )
+    //           }
+    //         } else {
+    //           const errorMessage = error as string
+    //           if (
+    //             errorMessage
+    //               .toString()
+    //               .includes('soroban_env_host::host::err_helper')
+    //           ) {
+    //             enqueueSnackbar('Your account is not a white listed account', {
+    //               variant: 'error'
+    //             })
+    //           } else if (errorMessage.toString() === 'User declined access') {
+    //             enqueueSnackbar('User declined the access', { variant: 'error' })
+    //           } else {
+    //             enqueueSnackbar(
+    //               'Please select futurenet in the wallet and enable experimental mode in your wallet preferences',
+    //               { variant: 'info' }
+    //             )
+    //           }
+    //         }
+    //       }
+    //     }
+    //   } else if (wallet?.walletProvider === 'XBULL') {
+    //     try {
+    //       const kit = new StellarWalletsKit({
+    //         network: WalletNetwork.FUTURENET,
+    //         selectedWallet: WalletType.XBULL
+    //       })
+    //       const publicKeys = wallet?.walletAccountNumber
+    //       const { server } = sorobanContext
+    //       if (!server) {
+    //         console.log('No server')
+    //       } else {
+    //         // console.log('account')
+    //         // console.log('server')
+    //         // console.log(publicKeys)
+    //         // console.log(server)
+    //         // const account = await server.getAccount(publicKeys)
+    //         // console.log(account)
+    //         // const sequence = account.sequenceNumber()
+    //         // console.log(sequence)
+    //         // const source = new SorobanClient.Account(publicKeys, sequence)
+    //         // console.log('Sequence number is :', sequence)
+    //         // console.log(new SorobanClient.Address(publicKeys).toScVal())
+    //         // console.log('SOURCE IS ', source)
+    //         // console.log('SOURCE IS ', sequence)
+    //         // // create transaction
+    //         // const transaction = contractTransaction({
+    //         //   networkPassphrase: WalletNetwork.FUTURENET,
+    //         //   source,
+    //         //   contractId: process.env.NEXT_PUBLIC_CONTRACT_ID as string,
+    //         //   method: 'mint_nft',
+    //         //   params: [new SorobanClient.Address(publicKeys).toScVal()]
+    //         // })
+    //         // // prepare transaction
+    //         // const txn = await server.prepareTransaction(
+    //         //   transaction,
+    //         //   'Test SDF Future Network ; October 2022'
+    //         // )
+    //         // // sign transaction here
+    //         // const signedXDR = await kit.sign({
+    //         //   xdr: txn.toXDR(),
+    //         //   publicKey: publicKeys,
+    //         //   network: WalletNetwork.FUTURENET
+    //         // })
+    //         // console.log('signed XDR is ', signedXDR)
+    //       }
+    //     } catch (error) {
+    //       console.log('error in xbull sign transaction is', error)
+    //     }
+    //   }
   }
 
   return (
