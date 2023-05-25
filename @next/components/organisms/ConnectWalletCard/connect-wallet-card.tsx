@@ -71,13 +71,13 @@ export const ConnectWalletCard = ({
     // check which wallet provider is selected
 
     if (wallet === 'Freighter') {
-      const globalWithFreighter = global as any
-      if (!globalWithFreighter.freighter) {
-        enqueueSnackbar('Please install Freighter wallet extension!', {
-          variant: 'info'
-        })
-        return
-      }
+      // const globalWithFreighter = global as any
+      // if (!globalWithFreighter.freighter) {
+      //   enqueueSnackbar('Please install Freighter wallet extension!', {
+      //     variant: 'info'
+      //   })
+      //   return
+      // }
       const kit = new StellarWalletsKit({
         network: WalletNetwork.FUTURENET,
         selectedWallet: WalletType.FREIGHTER
@@ -94,12 +94,11 @@ export const ConnectWalletCard = ({
         })
 
         void router.push('/minting')
+      } else {
+        enqueueSnackbar('Please install Freighter wallet!', {
+          variant: 'info'
+        })
       }
-      //  else {
-      //   enqueueSnackbar('Please install Freighter wallet!', {
-      //     variant: 'info'
-      //   })
-      // }
     } else if (wallet === 'XBULL') {
       const kit = new StellarWalletsKit({
         network: WalletNetwork.FUTURENET,
